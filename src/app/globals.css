@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-gold: #DFC063;
+  --color-gold-light: #E8D48A;
+  --color-gold-dark: #B89A3E;
+  --color-surface-void: #000000;
+  --color-surface-primary: #050505;
+  --color-surface-elevated: #0A0A0A;
+  --color-surface-subtle: #111111;
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono-custom);
+  --font-display: var(--font-display-custom);
+}
+
+:root {
+  --gold-rgb: 223, 192, 99;
+  --font-display-custom: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono-custom: 'JetBrains Mono', monospace;
+}
+
+/* === Smooth Scroll === */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* === Base === */
+body {
+  background: #050505;
+  color: #ffffff;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Film Grain Overlay === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* === Selection === */
+::selection {
+  background: rgba(223, 192, 99, 0.3);
+  color: #ffffff;
+}
+
+/* === Gold Underline Animation === */
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #DFC063;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gold-underline:hover::after {
+  width: 100%;
+}
+
+/* === Glass Surfaces === */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* === Scrolled Header (non-hero sections) === */
+.header-scrolled {
+  background: rgba(5, 5, 5, 0.82);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.4);
+}
+
+.glass-gold {
+  background: rgba(223, 192, 99, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(223, 192, 99, 0.08);
+}
+
+/* === Keyframes === */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes gold-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scroll-hint {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes hero-ring-pulse {
+  0% { transform: scale(1); opacity: 0.4; }
+  70% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes line-expand {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 192, 99, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(223, 192, 99, 0.5);
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === Input Styles === */
+.input-field {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  color: #ffffff;
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-body);
+  width: 100%;
+}
+
+.input-field:focus {
+  border-color: rgba(223, 192, 99, 0.4);
+  box-shadow: 0 0 0 3px rgba(223, 192, 99, 0.1);
+}
+
+.input-field::placeholder {
+  color: #71717a;
+}
+
+/* === Hide Scrollbar (for horizontal thumbnail strips) === */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* === Brochure Book System === */
+.brochure-scene {
+  perspective: 2200px;
+  perspective-origin: 50% 50%;
+}
+
+.brochure-book {
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.brochure-page {
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+
+.brochure-page-back {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.brochure-page-front {
+  backface-visibility: hidden;
+}
+
+/* Paper texture overlay for pages */
+.paper-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23DFC063' surfaceScale='1.5'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Art Deco corner ornaments */
+.deco-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+
+.deco-corner::before,
+.deco-corner::after {
+  content: '';
+  position: absolute;
+  background: rgba(223, 192, 99, 0.3);
+}
+
+.deco-corner--tl::before { top: 0; left: 0; width: 100%; height: 1px; }
+.deco-corner--tl::after  { top: 0; left: 0; width: 1px; height: 100%; }
+.deco-corner--tr::before { top: 0; right: 0; width: 100%; height: 1px; left: auto; }
+.deco-corner--tr::after  { top: 0; right: 0; width: 1px; height: 100%; left: auto; }
+.deco-corner--bl::before { bottom: 0; left: 0; width: 100%; height: 1px; top: auto; }
+.deco-corner--bl::after  { bottom: 0; left: 0; width: 1px; height: 100%; top: auto; }
+.deco-corner--br::before { bottom: 0; right: 0; width: 100%; height: 1px; top: auto; left: auto; }
+.deco-corner--br::after  { bottom: 0; right: 0; width: 1px; height: 100%; top: auto; left: auto; }
+
+/* Page fold shadow */
+.page-fold-shadow {
+  box-shadow:
+    inset -8px 0 30px -10px rgba(0, 0, 0, 0.5),
+    inset 3px 0 8px -3px rgba(223, 192, 99, 0.05);
+}
+
+.page-fold-shadow-right {
+  box-shadow:
+    inset 8px 0 30px -10px rgba(0, 0, 0, 0.5),
+    inset -3px 0 8px -3px rgba(223, 192, 99, 0.05);
+}
+
+/* Gold spine line */
+@keyframes spine-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(223, 192, 99, 0.15); }
+  50% { box-shadow: 0 0 25px rgba(223, 192, 99, 0.25); }
+}
+
+/* Page flip shadow that follows the page */
+.page-shadow {
+  filter: drop-shadow(-5px 0 15px rgba(0, 0, 0, 0.4));
+}
