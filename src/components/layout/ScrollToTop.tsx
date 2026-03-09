@@ -8,7 +8,6 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show after hero section is scrolled past
       setVisible(window.scrollY > window.innerHeight);
     };
 
@@ -24,19 +23,33 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-[90] w-12 h-12 rounded-full border border-white/15 bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/50 hover:border-gold/50 hover:text-gold hover:bg-black/80 hover:shadow-[0_0_30px_rgba(223,192,99,0.2)] transition-all duration-400 group ${
+      className={`fixed bottom-8 right-8 z-[90] w-12 h-12 rounded-full flex items-center justify-center group transition-all duration-500 ${
         visible
           ? "translate-y-0 opacity-100 pointer-events-auto"
           : "translate-y-4 opacity-0 pointer-events-none"
       }`}
+      style={{
+        background: "linear-gradient(135deg, #DFC063 0%, #C4A44D 100%)",
+        boxShadow:
+          "0 4px 20px rgba(223, 192, 99, 0.35), 0 2px 8px rgba(0, 0, 0, 0.15)",
+      }}
       aria-label="Scroll to top"
     >
       <ArrowUp
         size={18}
-        className="group-hover:-translate-y-0.5 transition-transform duration-300"
+        className="text-[#0D1A26] group-hover:-translate-y-1 transition-transform duration-300"
+        strokeWidth={2.5}
       />
-      {/* Pulsing ring on hover */}
-      <div className="absolute inset-0 rounded-full border border-gold/0 group-hover:border-gold/20 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700 pointer-events-none" />
+      {/* Glow ring on hover */}
+      <div className="absolute inset-0 rounded-full border-2 border-gold/0 group-hover:border-gold-light/40 group-hover:scale-[1.4] group-hover:opacity-0 transition-all duration-700 pointer-events-none" />
+      {/* Inner highlight */}
+      <div
+        className="absolute inset-0 rounded-full pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity duration-300"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%)",
+        }}
+      />
     </button>
   );
 }

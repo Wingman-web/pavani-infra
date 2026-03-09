@@ -187,24 +187,24 @@ export default function Testimonials() {
     <>
       <section
         ref={sectionRef}
-        className="relative py-24 md:py-36 overflow-hidden"
+        className="relative py-14 md:py-20 overflow-hidden"
         style={{
           background:
-            "linear-gradient(180deg, #060606 0%, #0A0A08 50%, #070707 100%)",
+            "linear-gradient(180deg, #111B2E 0%, #161F38 50%, #111B2E 100%)",
         }}
       >
         {/* Gold frame lines */}
-        <div className="testi-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/25 to-transparent origin-center" />
-        <div className="testi-line absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/25 to-transparent origin-center" />
+        <div className="testi-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald/20 to-transparent origin-center" />
+        <div className="testi-line absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald/20 to-transparent origin-center" />
 
         {/* Ambient gold glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gold/[0.03] blur-[200px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold/[0.03] blur-[160px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           {/* ── Header ── */}
-          <div className="testi-header text-center mb-14 md:mb-20">
+          <div className="testi-header text-center mb-10 md:mb-14">
             <span
-              className="text-gold/60 text-xs tracking-[0.3em] uppercase block mb-4"
+              className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4"
               style={{ fontFamily: "var(--font-mono-custom)" }}
             >
               Testimonials
@@ -223,7 +223,7 @@ export default function Testimonials() {
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
               {/* LEFT — Image with play button */}
               <div
-                className="relative w-full lg:w-[55%] aspect-[4/3] lg:aspect-[16/11] rounded-xl overflow-hidden group cursor-pointer shrink-0"
+                className="relative w-full lg:w-[55%] aspect-[16/10] lg:aspect-[16/10] rounded-xl overflow-hidden group cursor-pointer shrink-0"
                 onClick={() => openVideo(story.videoId)}
               >
                 <AnimatePresence mode="wait">
@@ -241,7 +241,7 @@ export default function Testimonials() {
                 </AnimatePresence>
 
                 {/* Gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111B2E]/50 via-transparent to-[#111B2E]/20" />
                 <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.06] transition-colors duration-500" />
 
                 {/* Film frame corners */}
@@ -253,7 +253,7 @@ export default function Testimonials() {
                 {/* Centered play button */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
                   <div className="absolute w-20 h-20 md:w-24 md:h-24 rounded-full border border-gold/30 animate-ping opacity-20" />
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold/80 group-hover:bg-gold group-hover:shadow-[0_0_50px_rgba(223,192,99,0.5)] flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold/80 group-hover:bg-gold group-hover:shadow-[0_0_50px_rgba(223, 192, 99,0.5)] flex items-center justify-center transition-all duration-500 group-hover:scale-110">
                     <Play
                       size={26}
                       className="text-surface-primary ml-1"
@@ -265,7 +265,7 @@ export default function Testimonials() {
                 {/* Watch Story label */}
                 <div className="absolute bottom-5 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                   <span
-                    className="text-white/60 text-[10px] tracking-[0.3em] uppercase"
+                    className="text-white/60 text-xs tracking-[0.3em] uppercase"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Watch Their Story
@@ -274,13 +274,13 @@ export default function Testimonials() {
               </div>
 
               {/* RIGHT — Testimonial content card, overlapping the image */}
-              <div className="relative w-full lg:w-[60%] lg:-ml-[12%] z-10">
-                <div className="relative bg-[#0C0C0C]/95 backdrop-blur-md border border-white/[0.08] rounded-xl px-6 py-8 md:px-10 md:py-12 lg:px-12 lg:py-14 shadow-2xl shadow-black/40">
-                  {/* Subtle gold accent on left edge */}
-                  <div className="absolute top-6 left-0 bottom-6 w-[2px] bg-gradient-to-b from-transparent via-gold/30 to-transparent rounded-full" />
+              <div className="relative w-full lg:w-[55%] lg:-ml-[6%] z-10">
+                <div className="relative bg-[#111B2E]/95 backdrop-blur-md border border-white/10 rounded-xl px-6 py-6 md:px-8 md:py-8 lg:px-10 lg:py-10 shadow-2xl shadow-black/40">
+                  {/* Subtle emerald-to-gold accent on left edge */}
+                  <div className="absolute top-6 left-0 bottom-6 w-[2px] bg-gradient-to-b from-emerald/40 via-gold/30 to-emerald/20 rounded-full" />
 
                   {/* Counter badge — top-right */}
-                  <div className="absolute -top-4 right-6 md:right-10 flex items-baseline gap-1.5 bg-[#0C0C0C] px-3 py-1 border border-white/[0.06] rounded-full">
+                  <div className="absolute -top-4 right-6 md:right-10 flex items-baseline gap-1.5 bg-[#111B2E] px-3 py-1 border border-white/[0.06] rounded-full">
                     <span
                       className="text-gold text-lg font-bold"
                       style={{ fontFamily: "var(--font-display-custom)" }}
@@ -325,7 +325,7 @@ export default function Testimonials() {
                       initial="initial"
                       animate="animate"
                       exit="exit"
-                      className="text-white/80 text-sm md:text-base lg:text-lg leading-relaxed mb-7 italic"
+                      className="text-white/80 text-base md:text-lg lg:text-xl leading-relaxed mb-7 italic"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       &ldquo;{story.quote}&rdquo;
@@ -350,7 +350,7 @@ export default function Testimonials() {
                     >
                       <div className="w-10 h-10 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center shrink-0">
                         <span
-                          className="text-gold text-[10px] font-bold"
+                          className="text-gold text-xs font-bold"
                           style={{ fontFamily: "var(--font-mono-custom)" }}
                         >
                           {story.name
@@ -361,11 +361,11 @@ export default function Testimonials() {
                         </span>
                       </div>
                       <div>
-                        <p className="text-white font-semibold text-sm md:text-base">
+                        <p className="text-white font-semibold text-base md:text-lg">
                           {story.name}
                         </p>
                         <p
-                          className="text-gold/60 text-[10px] tracking-[0.15em] uppercase mt-0.5"
+                          className="text-gold/60 text-[11px] tracking-[0.15em] uppercase mt-0.5"
                           style={{ fontFamily: "var(--font-mono-custom)" }}
                         >
                           {story.project}
@@ -451,7 +451,7 @@ export default function Testimonials() {
           <div className="absolute bottom-8 right-8 w-16 h-16 border-b border-r border-gold/20 pointer-events-none" />
 
           <div
-            className="relative z-10 w-[90vw] max-w-5xl aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(223,192,99,0.1)]"
+            className="relative z-10 w-[90vw] max-w-5xl aspect-video rounded-xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(223, 192, 99,0.1)]"
             onClick={(e) => e.stopPropagation()}
             style={{
               animation:

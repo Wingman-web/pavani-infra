@@ -65,7 +65,7 @@ export default function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="relative text-[11px] sm:text-xs md:text-[13px] lg:text-sm text-white/60 hover:text-gold tracking-[0.18em] md:tracking-[0.22em] uppercase transition-all duration-300 group"
+                  className="relative text-[11px] sm:text-xs md:text-[13px] lg:text-sm text-white/70 hover:text-gold tracking-[0.18em] md:tracking-[0.22em] uppercase transition-all duration-300 group"
                 >
                   <span className="relative z-10">{link.label}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold/60 group-hover:w-full transition-all duration-400" />
@@ -80,9 +80,9 @@ export default function Header() {
               aria-label="Open menu"
             >
               <div className="flex flex-col items-end gap-[5px] md:gap-[6px]">
-                <span className="block w-5.5 md:w-6 lg:w-7 h-[1.5px] bg-white/70 group-hover:bg-gold group-hover:w-7 md:group-hover:w-7 lg:group-hover:w-8 transition-all duration-300 origin-right" />
-                <span className="block w-4 md:w-4.5 lg:w-5 h-[1.5px] bg-white/70 group-hover:bg-gold group-hover:w-7 md:group-hover:w-7 lg:group-hover:w-8 transition-all duration-300 origin-right" />
-                <span className="block w-4.5 md:w-5 lg:w-6 h-[1.5px] bg-white/70 group-hover:bg-gold group-hover:w-7 md:group-hover:w-7 lg:group-hover:w-8 transition-all duration-300 origin-right" />
+                <span className="block w-5.5 md:w-6 lg:w-7 h-[1.5px] bg-white/80 group-hover:bg-gold group-hover:w-7 md:group-hover:w-7 lg:group-hover:w-8 transition-all duration-300 origin-right" />
+                <span className="block w-4 md:w-4.5 lg:w-5 h-[1.5px] bg-white/80 group-hover:bg-gold group-hover:w-7 md:group-hover:w-7 lg:group-hover:w-8 transition-all duration-300 origin-right" />
+                <span className="block w-4.5 md:w-5 lg:w-6 h-[1.5px] bg-white/80 group-hover:bg-gold group-hover:w-7 md:group-hover:w-7 lg:group-hover:w-8 transition-all duration-300 origin-right" />
               </div>
             </button>
           </div>
@@ -118,13 +118,13 @@ export default function Header() {
                 transformOrigin: "right center",
               }}
             >
-              <div className="absolute inset-0 bg-[#0A0A0A]">
+              <div className="absolute inset-0 bg-[#0D1A26]">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div
                     className="absolute inset-0"
                     style={{
                       backgroundImage:
-                        "repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(223,192,99,1) 60px, rgba(223,192,99,1) 61px)",
+                        "repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(223, 192, 99,1) 60px, rgba(223, 192, 99,1) 61px)",
                     }}
                   />
                 </div>
@@ -168,7 +168,7 @@ export default function Header() {
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
                           <span
-                            className="text-[9px] sm:text-[10px] text-white/20 group-hover:text-gold/50 tracking-widest transition-colors duration-300"
+                            className="text-[10px] sm:text-xs text-white/20 group-hover:text-gold/50 tracking-widest transition-colors duration-300"
                             style={{
                               fontFamily: "var(--font-mono-custom)",
                             }}
@@ -219,7 +219,7 @@ export default function Header() {
                     </a>
                     <a
                       href={`mailto:${CONTACT_INFO.email}`}
-                      className="block text-white/40 hover:text-white/70 text-[10px] sm:text-xs tracking-wider transition-colors duration-300"
+                      className="block text-white/40 hover:text-white/70 text-xs sm:text-sm tracking-wider transition-colors duration-300"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {CONTACT_INFO.email}
@@ -245,7 +245,7 @@ export default function Header() {
                               stiffness: 300,
                               damping: 15,
                             }}
-                            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/8 bg-white/3 flex items-center justify-center text-white/40 hover:border-gold/40 hover:text-gold hover:bg-gold/8 hover:shadow-[0_0_20px_rgba(223,192,99,0.2)] transition-all duration-400 group"
+                            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/8 bg-white/3 flex items-center justify-center text-white/40 hover:border-gold/40 hover:text-gold hover:bg-gold/8 hover:shadow-[0_0_20px_rgba(223, 192, 99,0.2)] transition-all duration-400 group"
                             aria-label={name}
                           >
                             <Icon size={15} className="relative z-10" />

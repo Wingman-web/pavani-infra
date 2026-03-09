@@ -141,11 +141,13 @@ export default function StatsCounter() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-28 md:py-40 bg-surface-primary overflow-hidden"
+      className="relative py-14 md:py-20 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #0B1C2B 0%, #0D2536 50%, #0B1C2B 100%)" }}
     >
       {/* Ambient effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gold/[0.02] blur-[180px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/[0.02] blur-[150px] rounded-full" />
+        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/[0.02] blur-[120px] rounded-full" />
       </div>
 
       {/* Decorative vertical line running through the center */}
@@ -153,9 +155,9 @@ export default function StatsCounter() {
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}
-        <div className="stats-header text-center mb-20 md:mb-28">
+        <div className="stats-header text-center mb-10 md:mb-14">
           <span
-            className="text-gold/60 text-xs tracking-[0.3em] uppercase block mb-4"
+            className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Our Achievements
@@ -184,7 +186,7 @@ export default function StatsCounter() {
                   }`}
                 >
                   <span
-                    className="stat-ghost-num text-[100px] sm:text-[140px] md:text-[180px] lg:text-[220px] font-bold text-white/[0.03] leading-none"
+                    className="stat-ghost-num text-[100px] sm:text-[140px] md:text-[180px] lg:text-[220px] font-bold text-white/[0.025] leading-none"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     0{stat.suffix}
@@ -216,7 +218,7 @@ export default function StatsCounter() {
 
                   {/* Label */}
                   <p
-                    className="text-white/30 text-[10px] sm:text-xs tracking-[0.25em] uppercase"
+                    className="text-white/30 text-xs sm:text-sm tracking-[0.25em] uppercase"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     {stat.label}

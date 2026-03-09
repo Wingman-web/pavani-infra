@@ -2,21 +2,29 @@
 
 @theme inline {
   --color-gold: #DFC063;
-  --color-gold-light: #E8D48A;
-  --color-gold-dark: #B89A3E;
-  --color-surface-void: #000000;
-  --color-surface-primary: #050505;
-  --color-surface-elevated: #0A0A0A;
-  --color-surface-subtle: #111111;
-  --font-sans: var(--font-body);
+  --color-gold-light: #E8D08A;
+  --color-gold-dark: #C4A44D;
+  --color-gold-contrast: #7A5B15;
+  --color-emerald: #2A6B5A;
+  --color-emerald-light: #3A8B74;
+  --color-emerald-dark: #1E5244;
+  --color-surface-void: #0D1A26;
+  --color-surface-primary: #0D1A26;
+  --color-surface-elevated: #142536;
+  --color-surface-subtle: #1a3045;
+  --color-cream: #EBDEC9;
+  --color-cream-light: #F2E8D8;
+  --color-cream-dark: #D9CCBA;
+  --color-navy: #0D1A26;
+  --font-sans: 'Proxima Nova', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Avenir Next', 'Avenir', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-mono: var(--font-mono-custom);
-  --font-display: var(--font-display-custom);
 }
 
 :root {
   --gold-rgb: 223, 192, 99;
-  --font-display-custom: 'Playfair Display', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display-custom: 'Avenir Next', 'Avenir', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Proxima Nova', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-mono-custom: 'JetBrains Mono', monospace;
 }
 
@@ -36,8 +44,8 @@ html.lenis body {
 
 /* === Base === */
 body {
-  background: #050505;
-  color: #ffffff;
+  background: #EBDEC9;
+  color: #0D1A26;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -48,7 +56,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  opacity: 0.02;
+  opacity: 0.015;
   pointer-events: none;
   z-index: 9998;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -57,7 +65,7 @@ body::before {
 /* === Selection === */
 ::selection {
   background: rgba(223, 192, 99, 0.3);
-  color: #ffffff;
+  color: #0D1A26;
 }
 
 /* === Gold Underline Animation === */
@@ -91,10 +99,10 @@ body::before {
 
 /* === Scrolled Header (non-hero sections) === */
 .header-scrolled {
-  background: rgba(5, 5, 5, 0.82);
+  background: rgba(235, 222, 201, 0.92);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 20px rgba(13, 26, 38, 0.1);
 }
 
 .glass-gold {
@@ -168,16 +176,16 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: #EBDEC9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(223, 192, 99, 0.3);
+  background: rgba(223, 192, 99, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(223, 192, 99, 0.5);
+  background: rgba(223, 192, 99, 0.6);
 }
 
 /* === Reduced Motion === */
@@ -194,11 +202,11 @@ body::before {
 
 /* === Input Styles === */
 .input-field {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(13, 26, 38, 0.05);
+  border: 1px solid rgba(13, 26, 38, 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
-  color: #ffffff;
+  color: #0D1A26;
   padding: 0.875rem 1rem;
   border-radius: 0.5rem;
   font-family: var(--font-body);
@@ -206,12 +214,12 @@ body::before {
 }
 
 .input-field:focus {
-  border-color: rgba(223, 192, 99, 0.4);
-  box-shadow: 0 0 0 3px rgba(223, 192, 99, 0.1);
+  border-color: rgba(223, 192, 99, 0.5);
+  box-shadow: 0 0 0 3px rgba(223, 192, 99, 0.15);
 }
 
 .input-field::placeholder {
-  color: #71717a;
+  color: #8a7e6e;
 }
 
 /* === Hide Scrollbar (for horizontal thumbnail strips) === */
@@ -259,7 +267,7 @@ body::before {
   inset: 0;
   opacity: 0.03;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23DFC063' surfaceScale='1.5'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23CFA24F' surfaceScale='1.5'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
 

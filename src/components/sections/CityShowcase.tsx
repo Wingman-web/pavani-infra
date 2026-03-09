@@ -69,11 +69,11 @@ export default function CityShowcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-clip bg-surface-primary">
+    <section ref={sectionRef} className="relative overflow-clip bg-navy">
       {/* Header */}
       <div className="city-section-label absolute top-8 left-4 md:left-8 z-20 opacity-0">
         <span
-          className="text-gold/60 text-xs tracking-[0.3em] uppercase block mb-2"
+          className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-2"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           Our Presence
@@ -102,7 +102,7 @@ export default function CityShowcase() {
             </div>
 
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0D1A26]/80 via-[#0D1A26]/30 to-[#0D1A26]/10 z-10" />
             <div className="absolute inset-0 bg-gold/[0.03] z-10" />
 
             {/* Content */}
@@ -124,8 +124,8 @@ export default function CityShowcase() {
               </h3>
 
               {/* Description */}
-              <p className="text-white/50 text-sm md:text-base flex items-center gap-2 mb-6">
-                <MapPin size={14} className="text-gold/60" />
+              <p className="text-white/50 text-base md:text-lg flex items-center gap-2 mb-6">
+                <MapPin size={14} className="text-emerald-light" />
                 {city.description}
               </p>
 

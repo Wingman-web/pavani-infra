@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "@/lib/constants";
@@ -12,61 +12,17 @@ gsap.registerPlugin(ScrollTrigger);
    SUB-COMPONENTS
    ══════════════════════════════════════════════════════════════ */
 
-const DecoOrnament = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 120 12" fill="none" className={className}>
-    <line x1="0" y1="6" x2="45" y2="6" stroke="rgba(223,192,99,0.3)" strokeWidth="0.5" />
-    <polygon points="52,1 60,6 52,11" fill="rgba(223,192,99,0.25)" />
-    <polygon points="68,1 60,6 68,11" fill="rgba(223,192,99,0.25)" />
-    <line x1="75" y1="6" x2="120" y2="6" stroke="rgba(223,192,99,0.3)" strokeWidth="0.5" />
-  </svg>
-);
-
 const DecoCoverPattern = () => (
   <svg viewBox="0 0 200 200" fill="none" className="w-28 h-28 lg:w-36 lg:h-36">
-    <rect x="50" y="50" width="100" height="100" stroke="rgba(223,192,99,0.4)" strokeWidth="0.5" transform="rotate(45 100 100)" />
-    <rect x="65" y="65" width="70" height="70" stroke="rgba(223,192,99,0.25)" strokeWidth="0.5" transform="rotate(45 100 100)" />
-    <rect x="80" y="80" width="40" height="40" stroke="rgba(223,192,99,0.15)" strokeWidth="0.5" transform="rotate(45 100 100)" />
-    <line x1="100" y1="15" x2="100" y2="185" stroke="rgba(223,192,99,0.1)" strokeWidth="0.5" />
-    <line x1="15" y1="100" x2="185" y2="100" stroke="rgba(223,192,99,0.1)" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="55" stroke="rgba(223,192,99,0.08)" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="35" stroke="rgba(223,192,99,0.06)" strokeWidth="0.5" />
+    <rect x="50" y="50" width="100" height="100" stroke="rgba(223, 192, 99,0.4)" strokeWidth="0.5" transform="rotate(45 100 100)" />
+    <rect x="65" y="65" width="70" height="70" stroke="rgba(223, 192, 99,0.25)" strokeWidth="0.5" transform="rotate(45 100 100)" />
+    <rect x="80" y="80" width="40" height="40" stroke="rgba(223, 192, 99,0.15)" strokeWidth="0.5" transform="rotate(45 100 100)" />
+    <line x1="100" y1="15" x2="100" y2="185" stroke="rgba(223, 192, 99,0.1)" strokeWidth="0.5" />
+    <line x1="15" y1="100" x2="185" y2="100" stroke="rgba(223, 192, 99,0.1)" strokeWidth="0.5" />
+    <circle cx="100" cy="100" r="55" stroke="rgba(223, 192, 99,0.08)" strokeWidth="0.5" />
+    <circle cx="100" cy="100" r="35" stroke="rgba(223, 192, 99,0.06)" strokeWidth="0.5" />
   </svg>
 );
-
-const GoldParticles = () => {
-  const dots = useMemo(
-    () =>
-      Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        w: 1.5 + (((i * 7 + 3) % 11) / 11) * 3,
-        left: ((i * 17 + 5) % 100),
-        top: 40 + ((i * 13 + 7) % 55),
-        dur: 5 + ((i * 11 + 2) % 9),
-        delay: ((i * 3 + 1) % 7),
-        blur: i % 3 === 0,
-      })),
-    []
-  );
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      {dots.map((d) => (
-        <div
-          key={d.id}
-          className="absolute rounded-full bg-gold/15"
-          style={{
-            width: d.w,
-            height: d.w,
-            left: `${d.left}%`,
-            top: `${d.top}%`,
-            animation: `float ${d.dur}s ease-in-out infinite`,
-            animationDelay: `${d.delay}s`,
-            filter: d.blur ? "blur(1px)" : "none",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 /* ══════════════════════════════════════════════════════════════
    MAIN COMPONENT
@@ -77,7 +33,7 @@ export default function FeaturedProjects() {
   const bookRef = useRef<HTMLDivElement>(null);
   const desktopHeaderRef = useRef<HTMLDivElement>(null);
   const desktopDotsRef = useRef<HTMLDivElement>(null);
-  const desktopCounterRef = useRef<HTMLDivElement>(null);
+
   const [activeProject, setActiveProject] = useState(-1);
   const total = PROJECTS.length;
 
@@ -142,7 +98,6 @@ export default function FeaturedProjects() {
 
         // Desktop header animations — use refs to avoid matching mobile elements
         const dHeader = desktopHeaderRef.current;
-        const dCounter = desktopCounterRef.current;
         const dDots = desktopDotsRef.current;
 
         if (dHeader) {
@@ -185,10 +140,7 @@ export default function FeaturedProjects() {
           coverStart + fP * 0.4
         );
 
-        // Counter & dots — use refs
-        if (dCounter) {
-          tl.fromTo(dCounter, { opacity: 0 }, { opacity: 1, duration: fP * 0.3, ease: "power2.out" }, coverStart + fP * 0.5);
-        }
+        // Dots — use refs
         if (dDots) {
           tl.fromTo(dDots, { opacity: 0 }, { opacity: 1, duration: fP * 0.3, ease: "power2.out" }, coverStart + fP * 0.5);
         }
@@ -275,26 +227,37 @@ export default function FeaturedProjects() {
 
   /* ─── Render helpers ─── */
 
-  const renderPageFront = (project: (typeof PROJECTS)[number], idx: number) => (
+  const renderPageFront = (project: (typeof PROJECTS)[number], idx: number, total: number) => (
     <div
       className="absolute inset-0 overflow-hidden rounded-r-sm paper-texture"
       style={{
         backfaceVisibility: "hidden",
-        background: "linear-gradient(150deg, #0d0d0d 0%, #090909 50%, #0b0b0b 100%)",
+        background: "linear-gradient(150deg, #0E1924 0%, #101F2D 50%, #0A1620 100%)",
       }}
     >
-      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-black/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-[#0A1620]/60 to-transparent pointer-events-none z-10" />
 
-      <div className="absolute top-4 left-4 lg:top-6 lg:left-6 w-8 lg:w-10 h-8 lg:h-10 border-t border-l border-gold/20" />
-      <div className="absolute top-4 right-4 lg:top-6 lg:right-6 w-8 lg:w-10 h-8 lg:h-10 border-t border-r border-gold/20" />
-      <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 w-8 lg:w-10 h-8 lg:h-10 border-b border-l border-gold/20" />
-      <div className="absolute bottom-4 right-4 lg:bottom-6 lg:right-6 w-8 lg:w-10 h-8 lg:h-10 border-b border-r border-gold/20" />
 
-      <div className="absolute inset-2.5 border border-gold/[0.05] rounded-sm pointer-events-none" />
+
+      {/* Page number — top right */}
+      <div className="absolute top-6 right-8 lg:top-8 lg:right-10 z-10 flex items-baseline gap-1 select-none pointer-events-none">
+        <span
+          className="pg-detail text-gold/60 text-2xl lg:text-3xl font-bold tabular-nums"
+          style={{ fontFamily: "var(--font-display-custom)" }}
+        >
+          {String(idx + 1).padStart(2, "0")}
+        </span>
+        <span
+          className="pg-detail text-white/15 text-xs"
+          style={{ fontFamily: "var(--font-mono-custom)" }}
+        >
+          / {String(total).padStart(2, "0")}
+        </span>
+      </div>
 
       <div className="absolute inset-0 p-8 lg:p-12 xl:p-14 flex flex-col justify-center z-5">
         <span
-          className="pg-detail inline-block text-gold/50 text-[10px] lg:text-xs tracking-[0.3em] uppercase mb-5 border border-gold/15 px-3 py-1 rounded-full w-fit"
+          className="pg-detail inline-block text-gold/50 text-xs lg:text-sm tracking-[0.3em] uppercase mb-5 border border-gold/15 px-3 py-1 rounded-full w-fit"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           {project.type}
@@ -309,29 +272,27 @@ export default function FeaturedProjects() {
 
         <div className="pg-detail w-16 lg:w-24 h-[1px] bg-gradient-to-r from-gold/60 to-transparent mb-6 origin-left" />
 
-        <div className="pg-detail flex items-center gap-2.5 text-white/50 text-sm mb-2.5">
+        <div className="pg-detail flex items-center gap-2.5 text-white/50 text-[15px] mb-2.5">
           <MapPin size={14} className="text-gold/50 shrink-0" />
           <span>{project.location}</span>
         </div>
 
-        <div className="pg-detail flex items-center gap-2.5 text-white/50 text-sm mb-8">
+        <div className="pg-detail flex items-center gap-2.5 text-white/50 text-[15px] mb-8">
           <Maximize2 size={14} className="text-gold/50 shrink-0" />
           <span>{project.area}</span>
         </div>
-
-        <DecoOrnament className="pg-detail w-24 mb-8 opacity-40" />
 
         <a
           href={`/project/${project.slug}`}
           className="pg-detail inline-flex items-center gap-3 group w-fit"
         >
           <span
-            className="text-gold text-sm tracking-wider uppercase border-b border-gold/25 group-hover:border-gold pb-1 transition-colors duration-300"
+            className="text-gold text-[15px] tracking-wider uppercase border-b border-gold/25 group-hover:border-gold pb-1 transition-colors duration-300"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Explore Project
           </span>
-          <div className="w-10 h-10 rounded-full border border-gold/25 flex items-center justify-center group-hover:bg-gold/10 group-hover:border-gold/50 group-hover:shadow-[0_0_25px_rgba(223,192,99,0.2)] transition-all duration-300">
+          <div className="w-10 h-10 rounded-full border border-gold/25 flex items-center justify-center group-hover:bg-gold/10 group-hover:border-gold/50 group-hover:shadow-[0_0_25px_rgba(223, 192, 99,0.2)] transition-all duration-300">
             <ArrowRight
               size={15}
               className="text-gold group-hover:translate-x-0.5 transition-transform duration-300"
@@ -340,17 +301,6 @@ export default function FeaturedProjects() {
         </a>
       </div>
 
-      <div className="absolute bottom-6 right-8 select-none pointer-events-none">
-        <span
-          className="text-[80px] lg:text-[130px] font-bold leading-none"
-          style={{
-            fontFamily: "var(--font-display-custom)",
-            color: "rgba(223, 192, 99, 0.025)",
-          }}
-        >
-          {String(idx + 1).padStart(2, "0")}
-        </span>
-      </div>
 
       <div
         className="pg-shadow absolute inset-0 pointer-events-none z-20 opacity-0"
@@ -374,26 +324,15 @@ export default function FeaturedProjects() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${nextProject.image})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/25 via-transparent to-[#0A1620]/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/60 via-transparent to-[#0A1620]/25" />
       <div className="absolute inset-0 bg-gold/[0.02]" />
 
-      <div className="absolute top-5 left-6 select-none pointer-events-none">
-        <span
-          className="text-[100px] lg:text-[160px] font-bold leading-none"
-          style={{
-            fontFamily: "var(--font-display-custom)",
-            color: "rgba(223, 192, 99, 0.06)",
-          }}
-        >
-          {String(num).padStart(2, "0")}
-        </span>
-      </div>
 
       <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2">
         <div className="w-8 h-[1px] bg-gold/30" />
         <span
-          className="text-white/30 text-[9px] tracking-[0.2em] uppercase"
+          className="text-white/30 text-[11px] tracking-[0.2em] uppercase"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           {nextProject.type}
@@ -409,7 +348,7 @@ export default function FeaturedProjects() {
         </h4>
       </div>
 
-      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-black/50 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-[#0A1620]/50 to-transparent pointer-events-none" />
     </div>
   );
 
@@ -418,46 +357,26 @@ export default function FeaturedProjects() {
       ref={sectionRef}
       className="relative overflow-hidden"
       style={{
-        background:
-          "radial-gradient(ellipse at 50% 40%, rgba(223,192,99,0.04) 0%, #050505 50%)",
+        background: "#EBDEC9",
       }}
     >
-      <GoldParticles />
-
-      {/* Ambient glow orb */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gold/[0.015] blur-[200px] rounded-full pointer-events-none" />
 
       {/* ─── Desktop section header (unique class names to avoid mobile collision) ─── */}
       <div ref={desktopHeaderRef} className="hidden md:block absolute top-4 md:top-7 left-0 right-0 z-30 text-center pointer-events-none">
         <span
-          className="fp-dk-sub text-gold/50 text-[10px] md:text-xs tracking-[0.35em] uppercase block mb-1"
+          className="fp-dk-sub text-gold-contrast text-xs md:text-sm tracking-[0.35em] uppercase block mb-1"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           Portfolio
         </span>
         <h2
-          className="fp-dk-title text-xl md:text-3xl font-bold text-white tracking-tight"
+          className="fp-dk-title text-xl md:text-3xl font-bold text-navy tracking-tight"
           style={{ fontFamily: "var(--font-display-custom)" }}
         >
           Featured <span className="text-gold">Projects</span>
         </h2>
       </div>
 
-      {/* ─── Desktop Counter ─── */}
-      <div ref={desktopCounterRef} className="hidden md:flex absolute top-5 md:top-9 right-5 md:right-10 z-30 items-baseline gap-1.5 opacity-0">
-        <span
-          className="text-gold text-xl md:text-3xl font-bold tabular-nums"
-          style={{ fontFamily: "var(--font-display-custom)" }}
-        >
-          {String(Math.max(0, activeProject) + 1).padStart(2, "0")}
-        </span>
-        <span
-          className="text-white/20 text-[10px] md:text-xs"
-          style={{ fontFamily: "var(--font-mono-custom)" }}
-        >
-          / {String(total).padStart(2, "0")}
-        </span>
-      </div>
 
       {/* ─── Desktop Progress diamonds ─── */}
       <div ref={desktopDotsRef} className="hidden md:flex absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 flex-col gap-3 opacity-0">
@@ -466,8 +385,8 @@ export default function FeaturedProjects() {
             <div
               className={`w-2 h-2 rotate-45 border transition-all duration-500 ${
                 i === Math.max(0, activeProject)
-                  ? "border-gold bg-gold/30 scale-125 shadow-[0_0_12px_rgba(223,192,99,0.3)]"
-                  : "border-white/15"
+                  ? "border-gold bg-gold/30 scale-125 shadow-[0_0_12px_rgba(223, 192, 99,0.3)]"
+                  : "border-navy/20"
               }`}
             />
             {i === Math.max(0, activeProject) && (
@@ -490,8 +409,8 @@ export default function FeaturedProjects() {
             className="relative mx-auto"
             style={{
               width: "100%",
-              height: "80vh",
-              maxHeight: "780px",
+              height: "70vh",
+              maxHeight: "650px",
               transformStyle: "preserve-3d",
             }}
           >
@@ -501,9 +420,9 @@ export default function FeaturedProjects() {
               style={{
                 zIndex: 200,
                 background:
-                  "linear-gradient(to bottom, transparent 3%, rgba(223,192,99,0.35) 15%, rgba(223,192,99,0.35) 85%, transparent 97%)",
+                  "linear-gradient(to bottom, transparent 3%, rgba(223, 192, 99,0.35) 15%, rgba(223, 192, 99,0.35) 85%, transparent 97%)",
                 boxShadow:
-                  "0 0 20px rgba(223,192,99,0.15), 0 0 50px rgba(223,192,99,0.05)",
+                  "0 0 20px rgba(223, 192, 99,0.15), 0 0 50px rgba(223, 192, 99,0.05)",
               }}
             />
 
@@ -515,7 +434,7 @@ export default function FeaturedProjects() {
                   className="absolute left-0 right-0 h-[1px]"
                   style={{
                     bottom: i,
-                    background: `rgba(223,192,99,${0.04 - i * 0.004})`,
+                    background: `rgba(223, 192, 99,${0.04 - i * 0.004})`,
                   }}
                 />
               ))}
@@ -524,10 +443,10 @@ export default function FeaturedProjects() {
             {/* ── LEFT BASE PANEL (visible behind flipped pages) ── */}
             <div
               className="absolute top-0 left-0 w-1/2 h-full overflow-hidden rounded-l-sm"
-              style={{ zIndex: 1, background: "#080808" }}
+              style={{ zIndex: 1, background: "#0A1620" }}
             >
               <div className="absolute inset-0 bg-gold/[0.01]" />
-              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-black/60 to-transparent pointer-events-none" />
+              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-[#0A1620]/60 to-transparent pointer-events-none" />
             </div>
 
             {/* ── COVER ── */}
@@ -544,7 +463,7 @@ export default function FeaturedProjects() {
                 className="absolute inset-0 overflow-hidden rounded-r-sm"
                 style={{
                   backfaceVisibility: "hidden",
-                  background: "linear-gradient(145deg, #0f0f0f 0%, #090909 40%, #0c0c0c 100%)",
+                  background: "linear-gradient(145deg, #0E1924 0%, #101F2D 40%, #0A1620 100%)",
                 }}
               >
                 <div className="absolute inset-2 border border-gold/20 rounded-sm" />
@@ -569,33 +488,20 @@ export default function FeaturedProjects() {
                     Projects
                   </h3>
 
-                  <DecoOrnament className="w-28 mb-4 opacity-50" />
+                  <div className="w-20 h-px bg-gold/30 mb-4" />
 
                   <p
-                    className="text-white/20 text-[10px] tracking-[0.25em] uppercase mb-4"
+                    className="text-white/20 text-xs tracking-[0.25em] uppercase mb-4"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Pavani Infra
                   </p>
 
-                  <BookOpen size={18} className="text-gold/20 mb-4" />
-
-                  <span
-                    className="text-gold/30 text-[9px] tracking-[0.25em] uppercase"
-                    style={{ fontFamily: "var(--font-mono-custom)" }}
-                  >
-                    Scroll to Open
-                  </span>
-
                   <div className="w-[1px] h-10 lg:h-16 bg-gradient-to-t from-transparent via-gold/40 to-gold/10 mt-5" />
                 </div>
 
-                <div className="deco-corner deco-corner--tl top-5 left-5 lg:top-8 lg:left-8" />
-                <div className="deco-corner deco-corner--tr top-5 right-5 lg:top-8 lg:right-8" />
-                <div className="deco-corner deco-corner--bl bottom-5 left-5 lg:bottom-8 lg:left-8" />
-                <div className="deco-corner deco-corner--br bottom-5 right-5 lg:bottom-8 lg:right-8" />
 
-                <div className="absolute top-0 left-0 bottom-0 w-8 bg-gradient-to-r from-black/60 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-0 bottom-0 w-8 bg-gradient-to-r from-[#0A1620]/60 to-transparent pointer-events-none" />
               </div>
 
               {/* Cover BACK (shows first project image when cover opens) */}
@@ -615,7 +521,7 @@ export default function FeaturedProjects() {
                     zIndex: total - i,
                   }}
                 >
-                  {renderPageFront(project, i)}
+                  {renderPageFront(project, i, total)}
                   {!isLast && renderPageBack(PROJECTS[i + 1], i + 2)}
                 </div>
               );
@@ -630,28 +536,16 @@ export default function FeaturedProjects() {
         </div>
       </div>
 
-      {/* ─── Scroll hint ─── */}
-      <div className="hidden md:flex absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex-col items-center gap-2 pointer-events-none">
-        <span
-          className="text-white/15 text-[9px] tracking-[0.3em] uppercase"
-          style={{ fontFamily: "var(--font-mono-custom)" }}
-        >
-          {activeProject < 0 ? "Scroll to Open" : "Scroll to Browse"}
-        </span>
-        <div
-          className="w-[1px] h-5 bg-gradient-to-b from-gold/30 to-transparent"
-          style={{ animation: "scroll-hint 2s ease-in-out infinite" }}
-        />
-      </div>
 
-      {/* ─── View all ─── */}
-      <div className="hidden md:block absolute bottom-4 right-6 md:right-10 z-30">
+      {/* ─── View All — centered button below brochure ─── */}
+      <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-30 justify-center">
         <a
           href="/project"
-          className="inline-flex items-center gap-2 text-white/20 text-[10px] tracking-[0.2em] uppercase hover:text-gold/50 transition-colors duration-300"
+          className="inline-flex items-center gap-2.5 px-8 py-3 border border-gold-dark/40 text-gold-contrast text-sm tracking-[0.15em] uppercase rounded-sm hover:bg-gold-contrast hover:text-cream transition-all duration-500 group"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
-          View All <ArrowRight size={10} />
+          View All Projects
+          <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-300" />
         </a>
       </div>
 
@@ -661,18 +555,18 @@ export default function FeaturedProjects() {
       <div className="md:hidden px-5 pt-24 pb-14">
         <div className="text-center mb-10">
           <span
-            className="fp-mob-sub text-gold/50 text-[10px] tracking-[0.35em] uppercase block mb-2"
+            className="fp-mob-sub text-gold-contrast text-xs tracking-[0.35em] uppercase block mb-2"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Portfolio
           </span>
           <h2
-            className="fp-mob-title text-2xl font-bold text-white tracking-tight"
+            className="fp-mob-title text-2xl font-bold text-navy tracking-tight"
             style={{ fontFamily: "var(--font-display-custom)" }}
           >
             Featured <span className="text-gold">Projects</span>
           </h2>
-          <DecoOrnament className="w-24 mx-auto mt-3 opacity-50" />
+          <div className="w-20 h-px bg-gold/40 mx-auto mt-3" />
         </div>
 
         <div className="mob-grid space-y-6">
@@ -688,29 +582,18 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/80 via-[#0A1620]/30 to-transparent" />
                   <div className="absolute inset-0 bg-gold/[0.02]" />
-                  <div className="absolute top-3 left-4">
-                    <span
-                      className="text-5xl font-bold"
-                      style={{
-                        fontFamily: "var(--font-display-custom)",
-                        color: "rgba(223,192,99,0.08)",
-                      }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
                   <div className="absolute top-3 right-3">
                     <span
-                      className="text-gold/50 text-[9px] tracking-[0.2em] uppercase border border-gold/15 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm"
+                      className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-[#0A1620]/40 backdrop-blur-sm"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {project.type}
                     </span>
                   </div>
                 </div>
-                <div className="p-5" style={{ background: "rgba(10,10,10,0.9)" }}>
+                <div className="p-5" style={{ background: "rgba(10,22,32,0.92)" }}>
                   <h3
                     className="text-xl font-bold text-white tracking-tight mb-2"
                     style={{ fontFamily: "var(--font-display-custom)" }}
@@ -718,7 +601,7 @@ export default function FeaturedProjects() {
                     {project.name}
                   </h3>
                   <div className="w-10 h-[1px] bg-gold/30 mb-3" />
-                  <div className="flex items-center gap-4 text-white/40 text-xs">
+                  <div className="flex items-center gap-4 text-white/40 text-[13px]">
                     <span className="flex items-center gap-1.5">
                       <MapPin size={11} className="text-gold/40" />
                       {project.location}
@@ -738,7 +621,7 @@ export default function FeaturedProjects() {
         <div className="text-center mt-8">
           <a
             href="/project"
-            className="inline-flex items-center gap-2 text-gold/60 text-xs tracking-[0.2em] uppercase hover:text-gold transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-gold-contrast text-sm tracking-[0.2em] uppercase hover:text-navy transition-colors duration-300"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             View All Projects <ArrowRight size={12} />

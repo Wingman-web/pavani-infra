@@ -147,14 +147,14 @@ export default function CtaBanner() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-28 md:py-40 overflow-hidden"
+      className="relative py-14 md:py-20 overflow-hidden"
       style={{ perspective: "1000px" }}
     >
       {/* Dark background */}
       <div className="absolute inset-0 bg-surface-primary" />
 
       {/* Animated gold glow — parallax */}
-      <div className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(223,192,99,0.08)_0%,transparent_55%)] pointer-events-none" />
+      <div className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(223,192,99,0.05)_0%,transparent_55%)] pointer-events-none" />
 
       {/* Gold sweep line — moves across on scroll */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -171,11 +171,6 @@ export default function CtaBanner() {
       <div className="cta-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent origin-center" />
       <div className="cta-line absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent origin-center" />
 
-      {/* Decorative corner accents */}
-      <div className="absolute top-6 left-6 w-12 h-12 border-t border-l border-gold/10 pointer-events-none" />
-      <div className="absolute top-6 right-6 w-12 h-12 border-t border-r border-gold/10 pointer-events-none" />
-      <div className="absolute bottom-6 left-6 w-12 h-12 border-b border-l border-gold/10 pointer-events-none" />
-      <div className="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-gold/10 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center">
@@ -236,14 +231,14 @@ export default function CtaBanner() {
           <div className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/contact-us"
-              className="cta-btn group relative px-10 py-4 bg-gold text-surface-primary font-semibold text-sm tracking-wider uppercase rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(223,192,99,0.3)]"
+              className="cta-btn group relative px-10 py-4 bg-gold text-surface-primary font-semibold text-[15px] tracking-wider uppercase rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(223,192,99,0.3)]"
             >
               <span className="relative z-10">Request a Call</span>
               <div className="absolute inset-0 bg-gold-light transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             </a>
             <a
               href="/project"
-              className="cta-btn px-10 py-4 border border-gold/30 text-gold font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-gold/10 transition-all duration-400"
+              className="cta-btn px-10 py-4 border border-gold/30 text-gold font-medium text-[15px] tracking-wider uppercase rounded-sm hover:bg-gold/10 transition-all duration-400"
             >
               Browse Projects
             </a>

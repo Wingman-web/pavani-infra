@@ -39,7 +39,7 @@ export default function Hero() {
       if (isTransitioning) return;
       setIsTransitioning(true);
       setCurrent(idx);
-      setTimeout(() => setIsTransitioning(false), 700);
+      setTimeout(() => setIsTransitioning(false), 1000);
     },
     [isTransitioning]
   );
@@ -95,11 +95,6 @@ export default function Hero() {
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power3.out", delay: 1.2 }
       );
-      gsap.fromTo(
-        ".hero-deco-corner",
-        { opacity: 0, scale: 0 },
-        { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.5)", delay: 0.8 }
-      );
     }, section);
 
     return () => ctx.revert();
@@ -120,17 +115,14 @@ export default function Hero() {
   }, [current]);
 
   return (
-    <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden">
-      {/* Background layer */}
-      <div className="absolute inset-0 bg-surface-primary" />
-
+    <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden rounded-b-[40px]">
       {/* Slider container */}
       <div className="hero-slider-container absolute inset-0">
         {/* Slides */}
         {SLIDES.map((slide, i) => (
           <div
             key={i}
-            className="absolute inset-0 transition-all duration-700 ease-in-out"
+            className="absolute inset-0 transition-all duration-1000 ease-in-out"
             style={{
               opacity: i === current ? 1 : 0,
               transform: i === current ? "scale(1)" : "scale(1.08)",
@@ -144,8 +136,8 @@ export default function Hero() {
               loading={i === 0 ? "eager" : "lazy"}
             />
             {/* Gradient overlays for depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0D1A26]/40 via-transparent to-[#0D1A26]/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0D1A26]/30 via-transparent to-[#0D1A26]/30" />
           </div>
         ))}
 
@@ -153,71 +145,50 @@ export default function Hero() {
         <div
           className="absolute inset-0 z-10 pointer-events-none"
           style={{
-            boxShadow: "inset 0 0 150px rgba(5,5,5,0.6), inset 0 0 60px rgba(5,5,5,0.3)",
+            boxShadow: "inset 0 0 150px rgba(13,26,38,0.6), inset 0 0 60px rgba(13,26,38,0.3)",
           }}
         />
       </div>
 
-      {/* Art Deco corner ornaments */}
-      <div className="hero-deco-corner absolute top-6 left-6 sm:top-10 sm:left-10 w-12 h-12 sm:w-16 sm:h-16 z-20 pointer-events-none opacity-0">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-gold/50 to-transparent" />
-        <div className="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-gold/50 to-transparent" />
-        <div className="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-gold/40" />
-      </div>
-      <div className="hero-deco-corner absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 sm:w-16 sm:h-16 z-20 pointer-events-none opacity-0">
-        <div className="absolute top-0 right-0 w-full h-px bg-gradient-to-l from-gold/50 to-transparent" />
-        <div className="absolute top-0 right-0 h-full w-px bg-gradient-to-b from-gold/50 to-transparent" />
-        <div className="absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-gold/40" />
-      </div>
-      <div className="hero-deco-corner absolute bottom-6 left-6 sm:bottom-10 sm:left-10 w-12 h-12 sm:w-16 sm:h-16 z-20 pointer-events-none opacity-0">
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-gold/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 h-full w-px bg-gradient-to-b from-transparent to-gold/50" />
-        <div className="absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-gold/40" />
-      </div>
-      <div className="hero-deco-corner absolute bottom-6 right-6 sm:bottom-10 sm:right-10 w-12 h-12 sm:w-16 sm:h-16 z-20 pointer-events-none opacity-0">
-        <div className="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-gold/50 to-transparent" />
-        <div className="absolute bottom-0 right-0 h-full w-px bg-gradient-to-b from-transparent to-gold/50" />
-        <div className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-gold/40" />
-      </div>
 
       {/* Navigation arrows */}
       <button
         onClick={() => handleNav(prevSlide)}
-        className="hero-nav-btn absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/15 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/60 hover:border-gold/50 hover:text-gold hover:bg-black/50 hover:shadow-[0_0_30px_rgba(223,192,99,0.15)] transition-all duration-400 group"
+        className="hero-nav-btn absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/15 bg-[#0D1A26]/40 backdrop-blur-sm flex items-center justify-center text-white/60 hover:border-gold/50 hover:text-gold hover:bg-[#0D1A26]/60 hover:shadow-[0_0_30px_rgba(223, 192, 99,0.15)] transition-all duration-400 group"
         aria-label="Previous slide"
       >
         <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform duration-300" />
       </button>
       <button
         onClick={() => handleNav(nextSlide)}
-        className="hero-nav-btn absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/15 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white/60 hover:border-gold/50 hover:text-gold hover:bg-black/50 hover:shadow-[0_0_30px_rgba(223,192,99,0.15)] transition-all duration-400 group"
+        className="hero-nav-btn absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/15 bg-[#0D1A26]/40 backdrop-blur-sm flex items-center justify-center text-white/60 hover:border-gold/50 hover:text-gold hover:bg-[#0D1A26]/60 hover:shadow-[0_0_30px_rgba(223, 192, 99,0.15)] transition-all duration-400 group"
         aria-label="Next slide"
       >
         <ChevronRight size={20} className="group-hover:translate-x-0.5 transition-transform duration-300" />
       </button>
 
       {/* Bottom indicators */}
-      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
         {SLIDES.map((_, i) => (
           <button
             key={i}
             onClick={() => handleNav(() => goTo(i))}
             className={`hero-dot group relative transition-all duration-500 ${
-              i === current ? "w-10 sm:w-14" : "w-2.5 sm:w-3"
-            } h-2.5 sm:h-3 rounded-full overflow-hidden`}
+              i === current ? "w-8 sm:w-10" : "w-2 sm:w-2.5"
+            } h-2 sm:h-2.5 rounded-full overflow-hidden`}
             aria-label={`Go to slide ${i + 1}`}
           >
             <div
               className={`absolute inset-0 rounded-full transition-all duration-500 ${
                 i === current
-                  ? "bg-gold/30 border border-gold/50"
-                  : "bg-white/20 border border-white/10 hover:bg-white/30 hover:border-gold/30"
+                  ? "bg-gold/25 border border-gold/40"
+                  : "bg-white/20 border border-white/10 hover:bg-gold/30 hover:border-gold/30"
               }`}
             />
             {i === current && (
               <div
                 ref={i === current ? progressRef : undefined}
-                className="absolute inset-0 rounded-full bg-gold/80"
+                className="absolute inset-0 rounded-full bg-gold/70"
                 style={{ width: "0%" }}
               />
             )}
