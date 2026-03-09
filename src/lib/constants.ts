@@ -1,8 +1,8 @@
 export const STATS = [
-  { label: "Years of Experience", value: 29, suffix: "+", icon: "expertise" },
-  { label: "Happy Families", value: 15000, suffix: "+", icon: "families" },
+  { label: "Years of Experience", value: 30, suffix: "+", icon: "expertise" },
+  { label: "Happy Families", value: 5000, suffix: "+", icon: "families" },
   { label: "Completed Projects", value: 50, suffix: "+", icon: "building" },
-  { label: "Sq.ft Delivered", value: 10, suffix: "M+", icon: "area" },
+  { label: "Delivered Area", value: 5, suffix: "M+", icon: "area" },
 ] as const;
 
 export const CITIES = [

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X, ArrowUpRight, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
+import { Phone, X, ArrowUpRight, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
 
 const SOCIAL_ICONS = {
@@ -19,20 +19,18 @@ const HERO_NAV = [
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [inHero, setInHero] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      const heroThreshold = window.innerHeight * 0.7;
-      setScrolled(y > 50);
-      setInHero(y < heroThreshold);
-      setHidden(y > 200 && y > lastScrollY.current && y >= heroThreshold);
-      lastScrollY.current = y;
+      const heroHeight = window.innerHeight;
+      const isInHero = y < heroHeight * 0.85;
+      setInHero(isInHero);
+      // Header visible only in hero area; hide once scrolled past hero
+      setVisible(isInHero);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -46,15 +44,10 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
-          hidden ? "-translate-y-full" : "translate-y-0"
-        } ${
-          inHero
-            ? "bg-transparent"
-            : "header-scrolled border-b border-white/[0.06]"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+          visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        } bg-transparent`}
       >
-        {/* ═══ UNIFIED HEADER: Logo left, 3 links + hamburger right ═══ */}
         <div className="w-full max-w-[1920px] mx-auto px-5 sm:px-8 md:px-10 lg:px-14 xl:px-20 2xl:px-24 flex items-center justify-between h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
           {/* Logo */}
           <a href="/" className="flex items-center group shrink-0">
@@ -96,11 +89,10 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ═══ FULL-SCREEN 3D SLIDE MENU ═══ */}
+      {/* Full-screen slide menu */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -110,7 +102,6 @@ export default function Header() {
               onClick={closeMenu}
             />
 
-            {/* Menu panel — 3D perspective slide from right */}
             <motion.div
               initial={{ x: "100%", rotateY: -15 }}
               animate={{ x: 0, rotateY: 0 }}
@@ -127,7 +118,6 @@ export default function Header() {
                 transformOrigin: "right center",
               }}
             >
-              {/* Panel background */}
               <div className="absolute inset-0 bg-[#0A0A0A]">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div
@@ -142,7 +132,6 @@ export default function Header() {
                 <div className="absolute bottom-[20%] left-[10%] w-[200px] h-[200px] bg-gold/[0.03] blur-[100px] rounded-full pointer-events-none" />
               </div>
 
-              {/* Close button */}
               <motion.button
                 initial={{ opacity: 0, rotate: -90 }}
                 animate={{ opacity: 1, rotate: 0 }}
@@ -157,9 +146,7 @@ export default function Header() {
                 />
               </motion.button>
 
-              {/* Content */}
               <div className="relative z-10 h-full flex flex-col justify-between px-8 sm:px-10 md:px-14 py-20 sm:py-24">
-                {/* Nav links */}
                 <nav className="flex flex-col gap-1 sm:gap-2">
                   {NAV_LINKS.map((link, i) => (
                     <motion.div
@@ -208,7 +195,6 @@ export default function Header() {
                   ))}
                 </nav>
 
-                {/* Bottom: Contact info */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -272,7 +258,6 @@ export default function Header() {
                 </motion.div>
               </div>
 
-              {/* Decorative gold line */}
               <motion.div
                 initial={{ scaleY: 0 }}
                 animate={{ scaleY: 1 }}

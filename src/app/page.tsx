@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/layout/ScrollProgress";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import Hero from "@/components/sections/Hero";
 import StatsCounter from "@/components/sections/StatsCounter";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -28,6 +29,7 @@ export default function HomePage() {
       <Preloader />
       <ScrollProgress />
       <Header />
+      <ScrollToTop />
       <main>
         <h1 className="sr-only">
           Pavani Infra - Premier Real Estate Developers Since 1995
