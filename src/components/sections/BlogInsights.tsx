@@ -23,7 +23,7 @@ const ArtDecoChevronBand = ({ className = "" }: { className?: string }) => (
       <polyline
         key={i}
         points={`${i * 60},40 ${i * 60 + 30},0 ${i * 60 + 60},40`}
-        stroke="rgba(223,192,99,0.08)"
+        stroke="rgba(207,162,79,0.08)"
         strokeWidth="1"
         fill="none"
       />
@@ -35,7 +35,7 @@ const ArtDecoChevronBand = ({ className = "" }: { className?: string }) => (
       width="12"
       height="12"
       transform="rotate(45 600 20)"
-      fill="rgba(223,192,99,0.15)"
+      fill="rgba(207,162,79,0.15)"
     />
   </svg>
 );
@@ -221,7 +221,7 @@ export default function BlogInsights() {
       className="relative py-24 md:py-36 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #080808 0%, #0A0A09 35%, #0B0A08 65%, #090909 100%)",
+          "linear-gradient(180deg, #0D1A26 0%, #112030 35%, #152536 65%, #0D1A26 100%)",
       }}
     >
       {/* ═══ Background Layers ═══ */}
@@ -267,8 +267,8 @@ export default function BlogInsights() {
             right: (p as { right?: string }).right,
             width: p.size,
             height: p.size,
-            background: `rgba(223, 192, 99, ${p.opacity})`,
-            boxShadow: `0 0 ${p.size * 3}px rgba(223, 192, 99, ${p.opacity * 0.4})`,
+            background: `rgba(207, 162, 79, ${p.opacity})`,
+            boxShadow: `0 0 ${p.size * 3}px rgba(207, 162, 79, ${p.opacity * 0.4})`,
             animation: `float ${4 + i * 0.3}s ease-in-out ${p.delay}s infinite`,
           }}
         />
@@ -317,7 +317,7 @@ export default function BlogInsights() {
 
                 <a
                   href={`/blogs/${blog.slug}`}
-                  className="blog-card group block rounded-lg overflow-hidden border border-white/[0.06] bg-white/[0.02] hover:border-gold/20 transition-all duration-500 relative"
+                  className="blog-card group block rounded-lg overflow-hidden border border-white/[0.08] bg-white/[0.04] hover:border-gold/20 transition-all duration-500 relative"
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   {/* Image area */}
@@ -328,7 +328,7 @@ export default function BlogInsights() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-surface-primary/70 via-surface-primary/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/20 to-transparent" />
                     <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.08] transition-colors duration-500" />
 
                     {/* Hover arrow */}
@@ -336,7 +336,7 @@ export default function BlogInsights() {
                       <div className="w-8 h-8 rounded-full bg-gold/90 flex items-center justify-center shadow-lg shadow-gold/20">
                         <ArrowUpRight
                           size={14}
-                          className="text-surface-primary"
+                          className="text-navy"
                         />
                       </div>
                     </div>
@@ -381,7 +381,7 @@ export default function BlogInsights() {
         <div className="blog-view-all text-center mt-12">
           <a
             href="/blogs"
-            className="inline-flex items-center gap-2 px-8 py-3.5 border border-gold/30 text-gold text-sm tracking-wider uppercase rounded-sm hover:bg-gold hover:text-surface-primary transition-all duration-500 group"
+            className="inline-flex items-center gap-2 px-8 py-3.5 border border-gold/30 text-gold text-sm tracking-wider uppercase rounded-sm hover:bg-gold hover:text-navy transition-all duration-500 group"
           >
             View All Insights
             <ArrowUpRight

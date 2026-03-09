@@ -12,6 +12,7 @@ import CityShowcase from "@/components/sections/CityShowcase";
 import Testimonials from "@/components/sections/Testimonials";
 import BlogInsights from "@/components/sections/BlogInsights";
 import ContactForm from "@/components/sections/ContactForm";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const Preloader = dynamic(() => import("@/components/sections/Preloader"), {
   ssr: false,
@@ -42,6 +43,7 @@ export default function HomePage() {
         <ContactForm />
       </main>
       <Footer />
+      <ScrollToTop />
     </SmoothScrollProvider>
   );
 }

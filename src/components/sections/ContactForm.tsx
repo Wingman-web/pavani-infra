@@ -30,7 +30,7 @@ const ArtDecoGateway = () => (
     <path
       className="contact-arch-outer"
       d="M60,260 L60,80 Q60,15 140,15 L660,15 Q740,15 740,80 L740,260"
-      stroke="rgba(223,192,99,0.2)"
+      stroke="rgba(207,162,79,0.2)"
       strokeWidth="1.5"
       fill="none"
       strokeDasharray="1800"
@@ -40,7 +40,7 @@ const ArtDecoGateway = () => (
     <path
       className="contact-arch-inner"
       d="M120,260 L120,100 Q120,45 190,45 L610,45 Q680,45 680,100 L680,260"
-      stroke="rgba(223,192,99,0.12)"
+      stroke="rgba(207,162,79,0.12)"
       strokeWidth="1"
       fill="none"
       strokeDasharray="1500"
@@ -54,7 +54,7 @@ const ArtDecoGateway = () => (
       width="16"
       height="16"
       transform="rotate(45 400 10)"
-      fill="rgba(223,192,99,0.3)"
+      fill="rgba(207,162,79,0.3)"
       opacity="0"
     />
     {/* Decorative horizontal lines */}
@@ -64,7 +64,7 @@ const ArtDecoGateway = () => (
       y1="30"
       x2="340"
       y2="30"
-      stroke="rgba(223,192,99,0.15)"
+      stroke="rgba(207,162,79,0.15)"
       strokeWidth="1"
       strokeDasharray="160"
       strokeDashoffset="160"
@@ -75,7 +75,7 @@ const ArtDecoGateway = () => (
       y1="30"
       x2="620"
       y2="30"
-      stroke="rgba(223,192,99,0.15)"
+      stroke="rgba(207,162,79,0.15)"
       strokeWidth="1"
       strokeDasharray="160"
       strokeDashoffset="160"
@@ -87,7 +87,7 @@ const ArtDecoGateway = () => (
       y1="200"
       x2="60"
       y2="260"
-      stroke="rgba(223,192,99,0.1)"
+      stroke="rgba(207,162,79,0.1)"
       strokeWidth="2"
       strokeDasharray="60"
       strokeDashoffset="60"
@@ -98,7 +98,7 @@ const ArtDecoGateway = () => (
       y1="200"
       x2="740"
       y2="260"
-      stroke="rgba(223,192,99,0.1)"
+      stroke="rgba(207,162,79,0.1)"
       strokeWidth="2"
       strokeDasharray="60"
       strokeDashoffset="60"
@@ -492,7 +492,7 @@ export default function ContactForm() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #060606 0%, #0A0908 40%, #080807 70%, #070707 100%)",
+            "linear-gradient(180deg, #EBDEC9 0%, #E5D7BF 40%, #E8DBBF 70%, #EBDEC9 100%)",
         }}
       />
 
@@ -504,8 +504,8 @@ export default function ContactForm() {
       </div>
 
       {/* Ambient golden glow */}
-      <div className="contact-ambient-glow absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/4 w-[700px] h-[500px] bg-gold/[0.04] blur-[180px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gold/[0.02] blur-[120px] rounded-full pointer-events-none" />
+      <div className="contact-ambient-glow absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/4 w-[700px] h-[500px] bg-gold/[0.08] blur-[180px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-gold/[0.05] blur-[120px] rounded-full pointer-events-none" />
 
       {/* Golden Floating Particles */}
       {PARTICLES.map((p, i) => (
@@ -518,8 +518,8 @@ export default function ContactForm() {
             right: (p as { right?: string }).right,
             width: p.size,
             height: p.size,
-            background: `rgba(223, 192, 99, ${p.opacity})`,
-            boxShadow: `0 0 ${p.size * 3}px rgba(223, 192, 99, ${p.opacity * 0.5})`,
+            background: `rgba(207, 162, 79, ${p.opacity})`,
+            boxShadow: `0 0 ${p.size * 3}px rgba(207, 162, 79, ${p.opacity * 0.5})`,
             animation: `float ${3 + p.speed}s ease-in-out ${p.delay}s infinite`,
           }}
         />
@@ -538,7 +538,7 @@ export default function ContactForm() {
           style={{ perspective: "800px" }}
         >
           <span
-            className="contact-label text-gold/60 text-[10px] md:text-xs tracking-[0.3em] uppercase block mb-5"
+            className="contact-label text-gold-dark/70 text-[10px] md:text-xs tracking-[0.3em] uppercase block mb-5"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             The Next Step
@@ -553,7 +553,7 @@ export default function ContactForm() {
             {titleWords.map((word, i) => (
               <span
                 key={i}
-                className="contact-title-word inline-block text-white mr-[0.3em]"
+                className="contact-title-word inline-block text-navy mr-[0.3em]"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {word}
@@ -593,7 +593,7 @@ export default function ContactForm() {
             <div className="contact-timeline hidden lg:block absolute left-0 top-[60px] bottom-[20px] w-px bg-gradient-to-b from-gold/30 via-gold/15 to-transparent origin-top" />
 
             {/* Description */}
-            <p className="contact-info-card text-white/50 text-base leading-relaxed max-w-md mb-8 lg:pl-8">
+            <p className="contact-info-card text-navy/60 text-base leading-relaxed max-w-md mb-8 lg:pl-8">
               Your dream home awaits. Reach out and let&apos;s craft something
               extraordinary together.
             </p>
@@ -605,26 +605,26 @@ export default function ContactForm() {
               </div>
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="contact-info-card group flex items-center gap-5 p-5 rounded-xl bg-gradient-to-r from-white/[0.04] to-transparent hover:from-gold/[0.08] hover:to-gold/[0.02] border-l-2 border-gold/20 hover:border-gold/60 transition-all duration-500 relative overflow-hidden"
+                className="contact-info-card group flex items-center gap-5 p-5 rounded-xl bg-gradient-to-r from-navy/[0.04] to-transparent hover:from-gold/[0.12] hover:to-gold/[0.02] border-l-2 border-gold/20 hover:border-gold/60 transition-all duration-500 relative overflow-hidden"
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_0%_50%,rgba(223,192,99,0.08)_0%,transparent_70%)]" />
-                <div className="relative w-13 h-13 rounded-xl bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 group-hover:shadow-[0_0_30px_rgba(223,192,99,0.2)] transition-all duration-500 shrink-0">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_0%_50%,rgba(207,162,79,0.08)_0%,transparent_70%)]" />
+                <div className="relative w-13 h-13 rounded-xl bg-gold/15 flex items-center justify-center group-hover:bg-gold/20 group-hover:shadow-[0_0_30px_rgba(207,162,79,0.2)] transition-all duration-500 shrink-0">
                   <Phone size={18} className="text-gold" />
                 </div>
                 <div className="relative flex-1">
                   <p
-                    className="text-white/40 text-[10px] uppercase tracking-[0.2em] mb-1"
+                    className="text-navy/40 text-[10px] uppercase tracking-[0.2em] mb-1"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Call Us
                   </p>
-                  <p className="text-white/80 group-hover:text-gold transition-colors text-base font-medium">
+                  <p className="text-navy/80 group-hover:text-gold transition-colors text-base font-medium">
                     {CONTACT_INFO.phone}
                   </p>
                 </div>
                 <ArrowUpRight
                   size={16}
-                  className="relative text-white/15 group-hover:text-gold/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+                  className="relative text-navy/20 group-hover:text-gold/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
                 />
               </a>
             </div>
@@ -636,26 +636,26 @@ export default function ContactForm() {
               </div>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="contact-info-card group flex items-center gap-5 p-5 rounded-xl bg-gradient-to-r from-white/[0.04] to-transparent hover:from-gold/[0.08] hover:to-gold/[0.02] border-l-2 border-gold/20 hover:border-gold/60 transition-all duration-500 relative overflow-hidden"
+                className="contact-info-card group flex items-center gap-5 p-5 rounded-xl bg-gradient-to-r from-navy/[0.04] to-transparent hover:from-gold/[0.12] hover:to-gold/[0.02] border-l-2 border-gold/20 hover:border-gold/60 transition-all duration-500 relative overflow-hidden"
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_0%_50%,rgba(223,192,99,0.08)_0%,transparent_70%)]" />
-                <div className="relative w-13 h-13 rounded-xl bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 group-hover:shadow-[0_0_30px_rgba(223,192,99,0.2)] transition-all duration-500 shrink-0">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_0%_50%,rgba(207,162,79,0.08)_0%,transparent_70%)]" />
+                <div className="relative w-13 h-13 rounded-xl bg-gold/15 flex items-center justify-center group-hover:bg-gold/20 group-hover:shadow-[0_0_30px_rgba(207,162,79,0.2)] transition-all duration-500 shrink-0">
                   <Mail size={18} className="text-gold" />
                 </div>
                 <div className="relative flex-1">
                   <p
-                    className="text-white/40 text-[10px] uppercase tracking-[0.2em] mb-1"
+                    className="text-navy/40 text-[10px] uppercase tracking-[0.2em] mb-1"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Email Us
                   </p>
-                  <p className="text-white/80 group-hover:text-gold transition-colors text-[15px] font-medium">
+                  <p className="text-navy/80 group-hover:text-gold transition-colors text-[15px] font-medium">
                     {CONTACT_INFO.email}
                   </p>
                 </div>
                 <ArrowUpRight
                   size={16}
-                  className="relative text-white/15 group-hover:text-gold/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+                  className="relative text-navy/20 group-hover:text-gold/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
                 />
               </a>
             </div>
@@ -665,31 +665,31 @@ export default function ContactForm() {
               <div className="contact-timeline-node hidden lg:flex absolute -left-[5px] top-8 w-[11px] h-[11px] items-center justify-center">
                 <div className="w-2 h-2 bg-gold/50 rotate-45" />
               </div>
-              <div className="contact-info-card group flex items-start gap-5 p-5 rounded-xl bg-gradient-to-r from-white/[0.04] to-transparent border-l-2 border-gold/20 relative overflow-hidden">
-                <div className="relative w-13 h-13 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="contact-info-card group flex items-start gap-5 p-5 rounded-xl bg-gradient-to-r from-navy/[0.04] to-transparent border-l-2 border-gold/20 relative overflow-hidden">
+                <div className="relative w-13 h-13 rounded-xl bg-gold/15 flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin size={18} className="text-gold" />
                 </div>
                 <div className="relative">
                   <p
-                    className="text-white/40 text-[10px] uppercase tracking-[0.2em] mb-3"
+                    className="text-navy/40 text-[10px] uppercase tracking-[0.2em] mb-3"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Visit Us
                   </p>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-gold/60 text-[10px] tracking-wider uppercase mb-0.5">
+                      <p className="text-gold-dark/70 text-[10px] tracking-wider uppercase mb-0.5">
                         Hyderabad
                       </p>
-                      <p className="text-white/60 text-sm leading-relaxed">
+                      <p className="text-navy/60 text-sm leading-relaxed">
                         {CONTACT_INFO.offices.hyderabad}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gold/60 text-[10px] tracking-wider uppercase mb-0.5">
+                      <p className="text-gold-dark/70 text-[10px] tracking-wider uppercase mb-0.5">
                         Bangalore
                       </p>
-                      <p className="text-white/60 text-sm leading-relaxed">
+                      <p className="text-navy/60 text-sm leading-relaxed">
                         {CONTACT_INFO.offices.bangalore}
                       </p>
                     </div>
@@ -719,9 +719,9 @@ export default function ContactForm() {
                 className="relative rounded-2xl overflow-hidden"
               >
                 {/* Multi-layer glassmorphism */}
-                <div className="absolute inset-0 bg-white/[0.04] backdrop-blur-2xl" />
-                <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.04] via-transparent to-gold/[0.02]" />
-                <div className="absolute inset-0 border border-white/[0.08] rounded-2xl" />
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.06] via-transparent to-gold/[0.02]" />
+                <div className="absolute inset-0 border border-navy/10 rounded-2xl" />
 
                 {/* Animated shimmer accent line at top */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] overflow-hidden">
@@ -741,12 +741,12 @@ export default function ContactForm() {
                   {/* Form header */}
                   <div className="contact-field mb-2">
                     <h3
-                      className="text-white/90 text-lg font-semibold tracking-wide mb-1"
+                      className="text-navy/90 text-lg font-semibold tracking-wide mb-1"
                       style={{ fontFamily: "var(--font-display-custom)" }}
                     >
                       Send Us A Message
                     </h3>
-                    <p className="text-white/40 text-sm">
+                    <p className="text-navy/50 text-sm">
                       We&apos;ll get back to you within 24 hours.
                     </p>
                   </div>
@@ -754,7 +754,7 @@ export default function ContactForm() {
                   {/* Name */}
                   <div className="contact-field">
                     <label
-                      className="text-gold/50 text-[10px] tracking-[0.2em] uppercase block mb-2"
+                      className="text-gold-dark/60 text-[10px] tracking-[0.2em] uppercase block mb-2"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       Full Name
@@ -762,7 +762,7 @@ export default function ContactForm() {
                     <input
                       type="text"
                       placeholder="John Doe"
-                      className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                      className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/25 outline-none focus:border-gold/50 transition-colors duration-500"
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -775,7 +775,7 @@ export default function ContactForm() {
                   <div className="contact-field grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label
-                        className="text-gold/50 text-[10px] tracking-[0.2em] uppercase block mb-2"
+                        className="text-gold-dark/60 text-[10px] tracking-[0.2em] uppercase block mb-2"
                         style={{ fontFamily: "var(--font-mono-custom)" }}
                       >
                         Email
@@ -783,7 +783,7 @@ export default function ContactForm() {
                       <input
                         type="email"
                         placeholder="you@example.com"
-                        className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                        className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/25 outline-none focus:border-gold/50 transition-colors duration-500"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
@@ -793,7 +793,7 @@ export default function ContactForm() {
                     </div>
                     <div>
                       <label
-                        className="text-gold/50 text-[10px] tracking-[0.2em] uppercase block mb-2"
+                        className="text-gold-dark/60 text-[10px] tracking-[0.2em] uppercase block mb-2"
                         style={{ fontFamily: "var(--font-mono-custom)" }}
                       >
                         Phone
@@ -801,7 +801,7 @@ export default function ContactForm() {
                       <input
                         type="tel"
                         placeholder="+91 98765 43210"
-                        className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                        className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/25 outline-none focus:border-gold/50 transition-colors duration-500"
                         value={formData.phone}
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
@@ -814,13 +814,13 @@ export default function ContactForm() {
                   {/* City */}
                   <div className="contact-field relative">
                     <label
-                      className="text-gold/50 text-[10px] tracking-[0.2em] uppercase block mb-2"
+                      className="text-gold-dark/60 text-[10px] tracking-[0.2em] uppercase block mb-2"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       Preferred City
                     </label>
                     <select
-                      className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base outline-none appearance-none pr-8 cursor-pointer focus:border-gold/50 transition-colors duration-500"
+                      className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base outline-none appearance-none pr-8 cursor-pointer focus:border-gold/50 transition-colors duration-500"
                       value={formData.city}
                       onChange={(e) =>
                         setFormData({ ...formData, city: e.target.value })
@@ -830,7 +830,7 @@ export default function ContactForm() {
                       <option
                         value=""
                         disabled
-                        className="bg-surface-primary"
+                        className="bg-cream"
                       >
                         Select City
                       </option>
@@ -844,7 +844,7 @@ export default function ContactForm() {
                         <option
                           key={city}
                           value={city}
-                          className="bg-surface-primary text-white"
+                          className="bg-cream text-navy"
                         >
                           {city}
                         </option>
@@ -852,14 +852,14 @@ export default function ContactForm() {
                     </select>
                     <ChevronDown
                       size={16}
-                      className="absolute right-0 bottom-3 text-white/20 pointer-events-none"
+                      className="absolute right-0 bottom-3 text-navy/25 pointer-events-none"
                     />
                   </div>
 
                   {/* Message */}
                   <div className="contact-field">
                     <label
-                      className="text-gold/50 text-[10px] tracking-[0.2em] uppercase block mb-2"
+                      className="text-gold-dark/60 text-[10px] tracking-[0.2em] uppercase block mb-2"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       Message
@@ -867,7 +867,7 @@ export default function ContactForm() {
                     <textarea
                       placeholder="Tell us about your dream home..."
                       rows={3}
-                      className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none resize-none focus:border-gold/50 transition-colors duration-500"
+                      className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/25 outline-none resize-none focus:border-gold/50 transition-colors duration-500"
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
@@ -885,8 +885,8 @@ export default function ContactForm() {
                       {/* Shimmer sweep */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-[-100%] group-hover:translate-x-[100%]" style={{ transition: "transform 0.8s ease, opacity 0.3s ease" }} />
                       {/* Gold glow on hover */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_40px_rgba(223,192,99,0.3)]" />
-                      <span className="relative z-10 flex items-center justify-center gap-2 text-surface-primary font-bold text-sm tracking-wider uppercase">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_40px_rgba(207,162,79,0.3)]" />
+                      <span className="relative z-10 flex items-center justify-center gap-2 text-navy font-bold text-sm tracking-wider uppercase">
                         <Send
                           size={16}
                           className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
@@ -913,16 +913,16 @@ export default function ContactForm() {
             {closingWords.map((word, i) => (
               <span
                 key={i}
-                className="contact-closing-word text-white/20 text-sm md:text-base lg:text-lg italic tracking-wide"
+                className="contact-closing-word text-navy/30 text-sm md:text-base lg:text-lg italic tracking-wide"
               >
                 {word}
               </span>
             ))}
           </div>
           <div className="flex items-center justify-center gap-3 mt-6">
-            <div className="w-8 h-px bg-gold/20" />
-            <div className="w-1.5 h-1.5 bg-gold/30 rotate-45" />
-            <div className="w-8 h-px bg-gold/20" />
+            <div className="w-8 h-px bg-gold/30" />
+            <div className="w-1.5 h-1.5 bg-gold/40 rotate-45" />
+            <div className="w-8 h-px bg-gold/30" />
           </div>
         </div>
       </div>

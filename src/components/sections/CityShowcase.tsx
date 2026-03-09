@@ -69,7 +69,7 @@ export default function CityShowcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-clip bg-surface-primary">
+    <section ref={sectionRef} className="relative overflow-clip bg-navy">
       {/* Header */}
       <div className="city-section-label absolute top-8 left-4 md:left-8 z-20 opacity-0">
         <span
@@ -102,7 +102,7 @@ export default function CityShowcase() {
             </div>
 
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-navy/10 z-10" />
             <div className="absolute inset-0 bg-gold/[0.03] z-10" />
 
             {/* Content */}

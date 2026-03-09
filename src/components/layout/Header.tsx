@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X, ArrowUpRight, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
+import { Phone, X, ArrowUpRight, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
 
 const SOCIAL_ICONS = {
@@ -19,41 +19,14 @@ const HERO_NAV = [
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [inHero, setInHero] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
-      const heroThreshold = window.innerHeight * 0.7;
-      setScrolled(y > 50);
-      setInHero(y < heroThreshold);
-      setHidden(y > 200 && y > lastScrollY.current && y >= heroThreshold);
-      lastScrollY.current = y;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const toggleMenu = useCallback(() => setMenuOpen((p) => !p), []);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
-          hidden ? "-translate-y-full" : "translate-y-0"
-        } ${
-          inHero
-            ? "bg-transparent"
-            : "header-scrolled border-b border-white/[0.06]"
-        }`}
-      >
+      <header className="absolute top-0 left-0 right-0 z-[100] bg-transparent">
         {/* ═══ UNIFIED HEADER: Logo left, 3 links + hamburger right ═══ */}
         <div className="w-full max-w-[1920px] mx-auto px-5 sm:px-8 md:px-10 lg:px-14 xl:px-20 2xl:px-24 flex items-center justify-between h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
           {/* Logo */}

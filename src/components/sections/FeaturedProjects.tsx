@@ -14,22 +14,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const DecoOrnament = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 120 12" fill="none" className={className}>
-    <line x1="0" y1="6" x2="45" y2="6" stroke="rgba(223,192,99,0.3)" strokeWidth="0.5" />
-    <polygon points="52,1 60,6 52,11" fill="rgba(223,192,99,0.25)" />
-    <polygon points="68,1 60,6 68,11" fill="rgba(223,192,99,0.25)" />
-    <line x1="75" y1="6" x2="120" y2="6" stroke="rgba(223,192,99,0.3)" strokeWidth="0.5" />
+    <line x1="0" y1="6" x2="45" y2="6" stroke="rgba(207,162,79,0.3)" strokeWidth="0.5" />
+    <polygon points="52,1 60,6 52,11" fill="rgba(207,162,79,0.25)" />
+    <polygon points="68,1 60,6 68,11" fill="rgba(207,162,79,0.25)" />
+    <line x1="75" y1="6" x2="120" y2="6" stroke="rgba(207,162,79,0.3)" strokeWidth="0.5" />
   </svg>
 );
 
 const DecoCoverPattern = () => (
   <svg viewBox="0 0 200 200" fill="none" className="w-28 h-28 lg:w-36 lg:h-36">
-    <rect x="50" y="50" width="100" height="100" stroke="rgba(223,192,99,0.4)" strokeWidth="0.5" transform="rotate(45 100 100)" />
-    <rect x="65" y="65" width="70" height="70" stroke="rgba(223,192,99,0.25)" strokeWidth="0.5" transform="rotate(45 100 100)" />
-    <rect x="80" y="80" width="40" height="40" stroke="rgba(223,192,99,0.15)" strokeWidth="0.5" transform="rotate(45 100 100)" />
-    <line x1="100" y1="15" x2="100" y2="185" stroke="rgba(223,192,99,0.1)" strokeWidth="0.5" />
-    <line x1="15" y1="100" x2="185" y2="100" stroke="rgba(223,192,99,0.1)" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="55" stroke="rgba(223,192,99,0.08)" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="35" stroke="rgba(223,192,99,0.06)" strokeWidth="0.5" />
+    <rect x="50" y="50" width="100" height="100" stroke="rgba(207,162,79,0.4)" strokeWidth="0.5" transform="rotate(45 100 100)" />
+    <rect x="65" y="65" width="70" height="70" stroke="rgba(207,162,79,0.25)" strokeWidth="0.5" transform="rotate(45 100 100)" />
+    <rect x="80" y="80" width="40" height="40" stroke="rgba(207,162,79,0.15)" strokeWidth="0.5" transform="rotate(45 100 100)" />
+    <line x1="100" y1="15" x2="100" y2="185" stroke="rgba(207,162,79,0.1)" strokeWidth="0.5" />
+    <line x1="15" y1="100" x2="185" y2="100" stroke="rgba(207,162,79,0.1)" strokeWidth="0.5" />
+    <circle cx="100" cy="100" r="55" stroke="rgba(207,162,79,0.08)" strokeWidth="0.5" />
+    <circle cx="100" cy="100" r="35" stroke="rgba(207,162,79,0.06)" strokeWidth="0.5" />
   </svg>
 );
 
@@ -280,10 +280,10 @@ export default function FeaturedProjects() {
       className="absolute inset-0 overflow-hidden rounded-r-sm paper-texture"
       style={{
         backfaceVisibility: "hidden",
-        background: "linear-gradient(150deg, #0d0d0d 0%, #090909 50%, #0b0b0b 100%)",
+        background: "linear-gradient(150deg, #0F1E2D 0%, #0D1A26 50%, #112030 100%)",
       }}
     >
-      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-black/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-navy/80 to-transparent pointer-events-none z-10" />
 
       <div className="absolute top-4 left-4 lg:top-6 lg:left-6 w-8 lg:w-10 h-8 lg:h-10 border-t border-l border-gold/20" />
       <div className="absolute top-4 right-4 lg:top-6 lg:right-6 w-8 lg:w-10 h-8 lg:h-10 border-t border-r border-gold/20" />
@@ -331,7 +331,7 @@ export default function FeaturedProjects() {
           >
             Explore Project
           </span>
-          <div className="w-10 h-10 rounded-full border border-gold/25 flex items-center justify-center group-hover:bg-gold/10 group-hover:border-gold/50 group-hover:shadow-[0_0_25px_rgba(223,192,99,0.2)] transition-all duration-300">
+          <div className="w-10 h-10 rounded-full border border-gold/25 flex items-center justify-center group-hover:bg-gold/10 group-hover:border-gold/50 group-hover:shadow-[0_0_25px_rgba(207,162,79,0.2)] transition-all duration-300">
             <ArrowRight
               size={15}
               className="text-gold group-hover:translate-x-0.5 transition-transform duration-300"
@@ -345,7 +345,7 @@ export default function FeaturedProjects() {
           className="text-[80px] lg:text-[130px] font-bold leading-none"
           style={{
             fontFamily: "var(--font-display-custom)",
-            color: "rgba(223, 192, 99, 0.025)",
+            color: "rgba(207, 162, 79, 0.025)",
           }}
         >
           {String(idx + 1).padStart(2, "0")}
@@ -374,8 +374,8 @@ export default function FeaturedProjects() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${nextProject.image})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy/25 via-transparent to-navy/80" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-navy/25" />
       <div className="absolute inset-0 bg-gold/[0.02]" />
 
       <div className="absolute top-5 left-6 select-none pointer-events-none">
@@ -383,7 +383,7 @@ export default function FeaturedProjects() {
           className="text-[100px] lg:text-[160px] font-bold leading-none"
           style={{
             fontFamily: "var(--font-display-custom)",
-            color: "rgba(223, 192, 99, 0.06)",
+            color: "rgba(207, 162, 79, 0.06)",
           }}
         >
           {String(num).padStart(2, "0")}
@@ -409,7 +409,7 @@ export default function FeaturedProjects() {
         </h4>
       </div>
 
-      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-black/50 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-navy/50 to-transparent pointer-events-none" />
     </div>
   );
 
@@ -419,7 +419,7 @@ export default function FeaturedProjects() {
       className="relative overflow-hidden"
       style={{
         background:
-          "radial-gradient(ellipse at 50% 40%, rgba(223,192,99,0.04) 0%, #050505 50%)",
+          "radial-gradient(ellipse at 50% 40%, rgba(207,162,79,0.04) 0%, #0D1A26 50%)",
       }}
     >
       <GoldParticles />
@@ -466,7 +466,7 @@ export default function FeaturedProjects() {
             <div
               className={`w-2 h-2 rotate-45 border transition-all duration-500 ${
                 i === Math.max(0, activeProject)
-                  ? "border-gold bg-gold/30 scale-125 shadow-[0_0_12px_rgba(223,192,99,0.3)]"
+                  ? "border-gold bg-gold/30 scale-125 shadow-[0_0_12px_rgba(207,162,79,0.3)]"
                   : "border-white/15"
               }`}
             />
@@ -501,9 +501,9 @@ export default function FeaturedProjects() {
               style={{
                 zIndex: 200,
                 background:
-                  "linear-gradient(to bottom, transparent 3%, rgba(223,192,99,0.35) 15%, rgba(223,192,99,0.35) 85%, transparent 97%)",
+                  "linear-gradient(to bottom, transparent 3%, rgba(207,162,79,0.35) 15%, rgba(207,162,79,0.35) 85%, transparent 97%)",
                 boxShadow:
-                  "0 0 20px rgba(223,192,99,0.15), 0 0 50px rgba(223,192,99,0.05)",
+                  "0 0 20px rgba(207,162,79,0.15), 0 0 50px rgba(207,162,79,0.05)",
               }}
             />
 
@@ -515,7 +515,7 @@ export default function FeaturedProjects() {
                   className="absolute left-0 right-0 h-[1px]"
                   style={{
                     bottom: i,
-                    background: `rgba(223,192,99,${0.04 - i * 0.004})`,
+                    background: `rgba(207,162,79,${0.04 - i * 0.004})`,
                   }}
                 />
               ))}
@@ -524,10 +524,10 @@ export default function FeaturedProjects() {
             {/* ── LEFT BASE PANEL (visible behind flipped pages) ── */}
             <div
               className="absolute top-0 left-0 w-1/2 h-full overflow-hidden rounded-l-sm"
-              style={{ zIndex: 1, background: "#080808" }}
+              style={{ zIndex: 1, background: "#0D1A26" }}
             >
               <div className="absolute inset-0 bg-gold/[0.01]" />
-              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-black/60 to-transparent pointer-events-none" />
+              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-navy/80 to-transparent pointer-events-none" />
             </div>
 
             {/* ── COVER ── */}
@@ -544,7 +544,7 @@ export default function FeaturedProjects() {
                 className="absolute inset-0 overflow-hidden rounded-r-sm"
                 style={{
                   backfaceVisibility: "hidden",
-                  background: "linear-gradient(145deg, #0f0f0f 0%, #090909 40%, #0c0c0c 100%)",
+                  background: "linear-gradient(145deg, #152536 0%, #0D1A26 40%, #0F1E2D 100%)",
                 }}
               >
                 <div className="absolute inset-2 border border-gold/20 rounded-sm" />
@@ -595,7 +595,7 @@ export default function FeaturedProjects() {
                 <div className="deco-corner deco-corner--bl bottom-5 left-5 lg:bottom-8 lg:left-8" />
                 <div className="deco-corner deco-corner--br bottom-5 right-5 lg:bottom-8 lg:right-8" />
 
-                <div className="absolute top-0 left-0 bottom-0 w-8 bg-gradient-to-r from-black/60 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-0 bottom-0 w-8 bg-gradient-to-r from-navy/80 to-transparent pointer-events-none" />
               </div>
 
               {/* Cover BACK (shows first project image when cover opens) */}
@@ -688,14 +688,14 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
                   <div className="absolute inset-0 bg-gold/[0.02]" />
                   <div className="absolute top-3 left-4">
                     <span
                       className="text-5xl font-bold"
                       style={{
                         fontFamily: "var(--font-display-custom)",
-                        color: "rgba(223,192,99,0.08)",
+                        color: "rgba(207,162,79,0.08)",
                       }}
                     >
                       {String(i + 1).padStart(2, "0")}
@@ -703,14 +703,14 @@ export default function FeaturedProjects() {
                   </div>
                   <div className="absolute top-3 right-3">
                     <span
-                      className="text-gold/50 text-[9px] tracking-[0.2em] uppercase border border-gold/15 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm"
+                      className="text-gold/50 text-[9px] tracking-[0.2em] uppercase border border-gold/15 px-2 py-0.5 rounded-full bg-navy/60 backdrop-blur-sm"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {project.type}
                     </span>
                   </div>
                 </div>
-                <div className="p-5" style={{ background: "rgba(10,10,10,0.9)" }}>
+                <div className="p-5" style={{ background: "rgba(13,26,38,0.9)" }}>
                   <h3
                     className="text-xl font-bold text-white tracking-tight mb-2"
                     style={{ fontFamily: "var(--font-display-custom)" }}

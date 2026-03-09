@@ -9,7 +9,6 @@ import {
   Facebook,
   Youtube,
   Linkedin,
-  ArrowUp,
   Phone,
   Mail,
 } from "lucide-react";
@@ -342,10 +341,6 @@ export default function Footer() {
     return () => ctx.revert();
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const closingWords = "Where Dreams Find Their Address".split(" ");
 
   return (
@@ -399,28 +394,6 @@ export default function Footer() {
               Premier Real Estate Developers crafting quality spaces since 1995.
             </p>
           </div>
-
-          {/* Back to top — with animated golden arrow */}
-          <button
-            onClick={scrollToTop}
-            className="footer-top-el group flex flex-col items-center gap-2"
-            aria-label="Back to top"
-          >
-            <div className="relative w-11 h-11 rounded-full border border-white/15 flex items-center justify-center group-hover:border-gold/50 group-hover:bg-gold/10 group-hover:shadow-[0_0_25px_rgba(223,192,99,0.2)] transition-all duration-400">
-              <ArrowUp
-                size={16}
-                className="text-white/40 group-hover:text-gold group-hover:-translate-y-0.5 transition-all duration-300"
-              />
-              {/* Pulsing ring on hover */}
-              <div className="absolute inset-0 rounded-full border border-gold/0 group-hover:border-gold/20 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700" />
-            </div>
-            <span
-              className="text-white/25 text-[9px] tracking-[0.2em] uppercase group-hover:text-gold/50 transition-colors"
-              style={{ fontFamily: "var(--font-mono-custom)" }}
-            >
-              Top
-            </span>
-          </button>
         </div>
 
         {/* Gold separator with diamond */}
