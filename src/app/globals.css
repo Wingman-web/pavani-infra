@@ -188,6 +188,17 @@ body::before {
   background: rgba(223, 192, 99, 0.6);
 }
 
+/* === City Connection Dot Pulse === */
+@keyframes dot-pulse-ring {
+  0% { r: 5; opacity: 0.4; }
+  70% { r: 14; opacity: 0; }
+  100% { r: 14; opacity: 0; }
+}
+
+.city-dot-ring {
+  animation: dot-pulse-ring 2.5s ease-out infinite;
+}
+
 /* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
   *,
