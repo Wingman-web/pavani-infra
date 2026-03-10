@@ -75,6 +75,24 @@ export const PROJECTS = [
     slug: "pavani-northstar",
     type: "Premium Residences",
   },
+  {
+    name: "Pavani Heights",
+    area: "1.2 Acres",
+    location: "Horamavu, Bangalore",
+    image:
+      "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FBackground_3ce9601f4a.jpg&w=3840&q=75",
+    slug: "pavani-heights",
+    type: "Premium Apartments",
+  },
+  {
+    name: "Pavani Mirai",
+    area: "2.46 Acres",
+    location: "Financial District, Hyderabad",
+    image:
+      "http://d3p1hokpi6aqc3.cloudfront.net/night_view.png",
+    slug: "pavani-mirai",
+    type: "Premium Residences",
+  },
 ] as const;
 
 export const TESTIMONIALS = [
