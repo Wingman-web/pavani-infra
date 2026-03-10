@@ -115,7 +115,7 @@ export default function Hero() {
   }, [current]);
 
   return (
-    <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden rounded-b-[40px]">
+    <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden">
       {/* Slider container */}
       <div className="hero-slider-container absolute inset-0">
         {/* Slides */}
