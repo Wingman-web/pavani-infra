@@ -25,30 +25,29 @@ interface CitySlide {
   };
 }
 
-/* Images kept well inside the viewport — no overflow */
 const SLIDES: CitySlide[] = [
   {
-    city: CITIES[0], // Hyderabad
+    city: CITIES[0],
     back: { top: "10%", left: "50%", width: "22vw", height: "28vw", rotate: 8 },
     front: { top: "40%", left: "14%", width: "17vw", height: "22vw", rotate: -7 },
   },
   {
-    city: CITIES[1], // Bangalore
+    city: CITIES[1],
     back: { top: "12%", left: "12%", width: "20vw", height: "26vw", rotate: -6 },
     front: { top: "38%", left: "52%", width: "19vw", height: "24vw", rotate: 10 },
   },
   {
-    city: CITIES[2], // Chennai
+    city: CITIES[2],
     back: { top: "10%", left: "52%", width: "22vw", height: "26vw", rotate: 10 },
     front: { top: "42%", left: "10%", width: "16vw", height: "20vw", rotate: -9 },
   },
   {
-    city: CITIES[3], // Vijayawada
+    city: CITIES[3],
     back: { top: "14%", left: "10%", width: "18vw", height: "24vw", rotate: -8 },
     front: { top: "36%", left: "54%", width: "21vw", height: "26vw", rotate: 6 },
   },
   {
-    city: CITIES[4], // Nellore
+    city: CITIES[4],
     back: { top: "10%", left: "48%", width: "20vw", height: "26vw", rotate: 7 },
     front: { top: "42%", left: "16%", width: "18vw", height: "22vw", rotate: -7 },
   },
@@ -78,7 +77,14 @@ export default function CityShowcase() {
         },
       });
 
-      /* line extends across the full scroll */
+      /* Title fades out quickly in the first 15% of scroll */
+      tl.to(
+        ".city-title-block",
+        { opacity: 0, y: -40, ease: "power2.in", duration: 0.15 },
+        0
+      );
+
+      /* Line extends across the full scroll */
       tl.fromTo(
         line,
         { scaleX: 0 },
@@ -92,30 +98,34 @@ export default function CityShowcase() {
         const frontImg = slide.querySelector(".img-front");
         const desc = slide.querySelector(".city-desc");
 
+        const enterTime = i * 1;
+        const holdEnd = enterTime + 0.7;
+
         if (i === 0) {
+          // First slide enters immediately as title fades
           tl.fromTo(
             slide,
             { xPercent: 30, opacity: 0 },
             { xPercent: 0, opacity: 1, ease: "power2.out", duration: 0.3 },
-            0
+            0.05
           );
           tl.fromTo(
             backImg,
             { scale: 0.8, rotateY: -15, opacity: 0 },
             { scale: 1, rotateY: 0, opacity: 1, ease: "power2.out", duration: 0.4 },
-            0
+            0.05
           );
           tl.fromTo(
             frontImg,
             { scale: 0.7, rotateY: 20, opacity: 0 },
             { scale: 1, rotateY: 0, opacity: 1, ease: "power2.out", duration: 0.5 },
-            0.05
+            0.1
           );
           tl.fromTo(
             cityText,
             { x: 60, opacity: 0 },
             { x: 0, opacity: 1, ease: "power2.out", duration: 0.4 },
-            0.05
+            0.1
           );
           tl.fromTo(
             desc,
@@ -127,22 +137,19 @@ export default function CityShowcase() {
           tl.to(
             slide,
             { xPercent: -110, ease: "power2.inOut", duration: 0.8 },
-            0.7
+            holdEnd
           );
           tl.to(
             backImg,
             { rotateY: 15, scale: 0.9, ease: "power2.in", duration: 0.6 },
-            0.7
+            holdEnd
           );
           tl.to(
             frontImg,
             { rotateY: -20, scale: 0.85, ease: "power2.in", duration: 0.6 },
-            0.7
+            holdEnd
           );
         } else {
-          const enterTime = i * 1;
-          const holdEnd = enterTime + 0.7;
-
           tl.fromTo(
             slide,
             { xPercent: 110, opacity: 1 },
@@ -203,17 +210,35 @@ export default function CityShowcase() {
       ref={sectionRef}
       className="relative h-screen overflow-hidden bg-cream"
     >
-      {/* ── Horizontal line at ~58% — navy/dark color ── */}
+      {/* ── Title (top area, fades out quickly as first city enters) ── */}
+      <div className="city-title-block absolute top-0 left-0 right-0 pt-10 md:pt-14 text-center z-[15] pointer-events-none">
+        <span
+          className="text-gold-contrast text-sm tracking-[0.3em] uppercase block mb-3"
+          style={{ fontFamily: "var(--font-mono-custom)" }}
+        >
+          Our Presence
+        </span>
+        <h2
+          className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight"
+          style={{ fontFamily: "var(--font-display-custom)" }}
+        >
+          <span className="text-navy mr-[0.25em]">ACROSS</span>
+          <span className="text-gold-contrast">5 CITIES</span>
+        </h2>
+        <div className="w-12 h-px bg-gold/30 mx-auto" />
+      </div>
+
+      {/* ── Horizontal line ── */}
       <div
-        className="absolute left-0 w-full pointer-events-none z-[6]"
+        className="absolute left-0 w-full pointer-events-none z-0"
         style={{ top: "58%" }}
       >
         <div
           ref={lineRef}
-          className="h-[1px] w-full origin-left"
+          className="h-px w-full origin-left"
           style={{
             background:
-              "linear-gradient(90deg, transparent 2%, #0D1A2630 10%, #0D1A2630 90%, transparent 98%)",
+              "linear-gradient(90deg, transparent 2%, #C4A44D 10%, #C4A44D 90%, transparent 98%)",
           }}
         />
       </div>
@@ -225,10 +250,11 @@ export default function CityShowcase() {
           className="city-slide absolute inset-0"
           style={{
             perspective: "1200px",
-            opacity: i === 0 ? 1 : 0,
+            opacity: 0,
+            zIndex: 2,
           }}
         >
-          {/* BACK image — behind the text (z-[3]) */}
+          {/* BACK image */}
           <div
             className="img-back absolute"
             style={{
@@ -254,13 +280,12 @@ export default function CityShowcase() {
                 className="w-full h-full bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${slide.city.image})`,
-                  filter: "grayscale(0.85) contrast(1.08)",
                 }}
               />
             </div>
           </div>
 
-          {/* CITY NAME — center, dark navy color (z-[5]) */}
+          {/* CITY NAME */}
           <div
             className="city-name-text absolute inset-0 flex items-center justify-center pointer-events-none select-none"
             style={{ zIndex: 5 }}
@@ -276,7 +301,7 @@ export default function CityShowcase() {
             </h2>
           </div>
 
-          {/* FRONT image — in front of the text (z-[8]) */}
+          {/* FRONT image */}
           <div
             className="img-front absolute"
             style={{
@@ -302,13 +327,12 @@ export default function CityShowcase() {
                 className="w-full h-full bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${slide.city.image})`,
-                  filter: "grayscale(0.85) contrast(1.08)",
                 }}
               />
             </div>
           </div>
 
-          {/* City description — bottom right */}
+          {/* City description */}
           <div
             className="city-desc absolute text-right"
             style={{

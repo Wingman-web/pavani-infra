@@ -113,16 +113,18 @@ export default function LegacySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 md:py-20 bg-cream overflow-hidden"
+      className="relative py-14 md:py-20 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #0B1C2B 0%, #0D2536 50%, #0B1C2B 100%)" }}
     >
       {/* Ambient background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gold/[0.025] blur-[130px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/[0.02] blur-[150px] rounded-full" />
+        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/[0.02] blur-[120px] rounded-full" />
       </div>
 
       {/* Subtle side accents */}
-      <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-emerald/10 to-transparent pointer-events-none" />
-      <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-emerald/10 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-gold/[0.06] to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-gold/[0.06] to-transparent pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 text-center relative">
         {/* Top decorative line */}
@@ -160,7 +162,7 @@ export default function LegacySection() {
 
         {/* Section label */}
         <span
-          className="legacy-label text-gold-contrast text-sm tracking-[0.3em] uppercase block mb-4 opacity-0"
+          className="legacy-label text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4 opacity-0"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           Our Vision
@@ -174,13 +176,13 @@ export default function LegacySection() {
           {"A LEGACY OF".split(" ").map((word, i) => (
             <span
               key={i}
-              className="legacy-title-word inline-block text-navy mr-[0.25em] opacity-0"
+              className="legacy-title-word inline-block text-white mr-[0.25em] opacity-0"
             >
               {word}
             </span>
           ))}
           <br className="hidden sm:block" />
-          <span className="legacy-title-word inline-block text-gold-contrast opacity-0 mt-1 sm:mt-0">
+          <span className="legacy-title-word inline-block text-gold opacity-0 mt-1 sm:mt-0">
             EXCELLENCE
           </span>
         </h2>
@@ -189,7 +191,7 @@ export default function LegacySection() {
         <div className="w-16 h-px bg-gold/20 mx-auto mb-8" />
 
         {/* Description */}
-        <p className="legacy-desc opacity-0 text-navy/60 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+        <p className="legacy-desc opacity-0 text-white/50 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-12">
           A home is a foundation for dreams, a space where generations create
           memories and build their future. With this vision, Pavani Infra is
           dedicated to helping people find their perfect home, crafting spaces
@@ -201,13 +203,13 @@ export default function LegacySection() {
           href="/about"
           className="legacy-cta opacity-0 inline-flex items-center gap-3 group"
         >
-          <span className="text-gold-contrast text-[15px] tracking-[0.2em] uppercase font-medium group-hover:tracking-[0.25em] transition-all duration-500">
+          <span className="text-gold text-[15px] tracking-[0.2em] uppercase font-medium group-hover:tracking-[0.25em] transition-all duration-500">
             Read More
           </span>
-          <div className="w-10 h-px bg-gold-dark group-hover:w-16 transition-all duration-500" />
+          <div className="w-10 h-px bg-gold/60 group-hover:w-16 transition-all duration-500" />
           <ArrowRight
             size={16}
-            className="text-gold-dark group-hover:translate-x-1 group-hover:text-gold-contrast transition-all duration-300"
+            className="text-gold/60 group-hover:translate-x-1 group-hover:text-gold transition-all duration-300"
           />
         </a>
 
