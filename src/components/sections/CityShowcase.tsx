@@ -50,7 +50,7 @@ const CITY_CARDS = [
  * Y-offsets for zigzag: down, up, down, up, down
  * Values are % of (containerHeight - cardHeight)
  */
-const Y_PATTERN = [0.55, 0.05, 0.65, 0.0, 0.5];
+const Y_PATTERN = [0.45, 0.0, 0.55, 0.05, 0.4];
 const ROTATIONS = [-4, 3, -2, 4, -3];
 
 /* Sequential chain: 1→2→3→4→5 */
@@ -273,11 +273,13 @@ function DesktopLayout() {
         });
       });
 
+      const pathLengths: number[] = [];
       paths.forEach((path, i) => {
         const from = centerPoints[ROUTE_SEGMENTS[i][0]];
         const to = centerPoints[ROUTE_SEGMENTS[i][1]];
         path.setAttribute("d", buildCurvedPath(from.cx, from.cy, to.cx, to.cy));
         const length = path.getTotalLength();
+        pathLengths.push(length);
         gsap.set(path, { strokeDasharray: length, strokeDashoffset: length, opacity: 0 });
       });
 
@@ -320,10 +322,19 @@ function DesktopLayout() {
         tl.to(dot, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, `dotsStart+=${i * 0.08}`);
       });
 
-      /* Phase 4 — curved paths draw 1→2→3→4→5 */
+      /* Phase 4 — curved paths draw 1→2→3→4→5, then become dotted */
       tl.addLabel("pathsStart", "dotsStart+=0.2");
       paths.forEach((path, i) => {
-        tl.to(path, { strokeDashoffset: 0, opacity: 1, duration: 0.9, ease: "power2.inOut" }, `pathsStart+=${i * 0.22}`);
+        tl.to(path, {
+          strokeDashoffset: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power2.inOut",
+          onComplete: () => {
+            // Swap to dotted pattern after draw completes
+            gsap.set(path, { strokeDasharray: "6 5", strokeDashoffset: 0 });
+          },
+        }, `pathsStart+=${i * 0.25}`);
       });
 
       /* Phase 5 — pulse rings */
@@ -367,25 +378,15 @@ function DesktopLayout() {
       {/* Cards container — full width, no max-w so cards reach edges */}
       <div
         ref={containerRef}
-        className="relative w-full h-[55vh] md:h-[58vh] lg:h-[68vh] mt-16 md:mt-20 px-4 md:px-8 lg:px-12 xl:px-16"
+        className="relative w-full max-w-7xl mx-auto h-[55vh] md:h-[58vh] lg:h-[68vh] mt-16 md:mt-20 px-6 md:px-12 lg:px-20"
       >
         {/* SVG lines & dots */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-          <defs>
-            <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="2" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
           {ROUTE_SEGMENTS.map((_seg, i) => (
             <path
               key={`route-${i}`}
               ref={(el: SVGPathElement | null) => { pathsRef.current[i] = el; }}
-              d="" fill="none" stroke="#C0392B" strokeWidth="1.5" opacity="0" filter="url(#lineGlow)"
+              d="" fill="none" stroke="#C0392B" strokeWidth="1.5" opacity="0"
             />
           ))}
 
