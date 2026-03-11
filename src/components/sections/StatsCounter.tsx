@@ -1,11 +1,41 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { STATS } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const ICONS: Record<string, React.ReactNode> = {
+  expertise: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+    </svg>
+  ),
+  families: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  ),
+  building: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="2" width="16" height="20" rx="1" />
+      <path d="M9 22V18H15V22" />
+      <path d="M8 6H10" /><path d="M14 6H16" />
+      <path d="M8 10H10" /><path d="M14 10H16" />
+      <path d="M8 14H10" /><path d="M14 14H16" />
+    </svg>
+  ),
+  area: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="1" />
+      <path d="M3 9H21" /><path d="M3 15H21" />
+      <path d="M9 3V21" /><path d="M15 3V21" />
+    </svg>
+  ),
+};
 
 export default function StatsCounter() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,9 +45,9 @@ export default function StatsCounter() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Header reveal — plays once when in viewport
+      // Stat cards stagger in
       gsap.fromTo(
-        ".stats-header > *",
+        ".stat-card",
         { opacity: 0, y: 40 },
         {
           opacity: 1,
@@ -27,81 +57,35 @@ export default function StatsCounter() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-
-      // Each stat row slides in from its side (alternating left/right)
-      const statRows = section.querySelectorAll<HTMLElement>(".stat-row");
-      statRows.forEach((row, i) => {
-        const isLeft = i % 2 === 0;
-        gsap.fromTo(
-          row,
-          {
-            opacity: 0,
-            x: isLeft ? -120 : 120,
-            filter: "blur(8px)",
-          },
-          {
-            opacity: 1,
-            x: 0,
-            filter: "blur(0px)",
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: row,
-              start: "top 90%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      });
-
-      // Gold connecting lines expand
-      gsap.fromTo(
-        ".stat-gold-line",
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: ".stats-container",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-
-      // Ghost background numbers fade in
-      gsap.fromTo(
-        ".stat-ghost",
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".stats-container",
             start: "top 80%",
             toggleActions: "play none none none",
           },
         }
       );
 
-      // Counter animations — play once, no reverse on scroll back
+      // Gold dividers expand
+      gsap.fromTo(
+        ".stat-divider",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      // Counter animations
       const numberEls = section.querySelectorAll<HTMLElement>(".stat-number");
-      const ghostEls = section.querySelectorAll<HTMLElement>(".stat-ghost-num");
       const targets = STATS.map((s) => s.value);
       const suffixes = STATS.map((s) => s.suffix);
       const objs = targets.map(() => ({ value: 0 }));
 
-      // Use a stepped approach for low numbers to make counting visible
       const getCountDuration = (target: number) => {
         if (target <= 10) return 2.5;
         if (target <= 100) return 2;
@@ -110,7 +94,7 @@ export default function StatsCounter() {
 
       const counterTl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".stats-container",
+          trigger: section,
           start: "top 75%",
           toggleActions: "play none none none",
         },
@@ -129,7 +113,6 @@ export default function StatsCounter() {
                 (targets[i] >= 1000 ? val.toLocaleString() : String(val)) +
                 suffixes[i];
               if (numberEls[i]) numberEls[i].textContent = text;
-              if (ghostEls[i]) ghostEls[i].textContent = text;
             },
           },
           i * 0.2
@@ -146,89 +129,59 @@ export default function StatsCounter() {
       className="relative py-14 md:py-20 overflow-hidden"
       style={{ background: "linear-gradient(180deg, #0B1C2B 0%, #0D2536 50%, #0B1C2B 100%)" }}
     >
-      {/* Ambient effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/[0.02] blur-[150px] rounded-full" />
-        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/[0.02] blur-[120px] rounded-full" />
-      </div>
+      {/* Top/bottom accent lines */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/15 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/15 to-transparent" />
 
-      {/* Decorative vertical line running through the center */}
-      <div className="absolute top-0 left-1/2 -translate-x-px w-px h-full bg-gradient-to-b from-transparent via-gold/[0.06] to-transparent pointer-events-none hidden lg:block" />
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/[0.02] blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="stats-header text-center mb-10 md:mb-14">
-          <span
-            className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4"
-            style={{ fontFamily: "var(--font-mono-custom)" }}
-          >
-            Our Achievements
-          </span>
-          <h2
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6"
-            style={{ fontFamily: "var(--font-display-custom)" }}
-          >
-            Numbers That Speak
-            <br />
-            <span className="text-gold">For Themselves</span>
-          </h2>
-          <div className="w-20 h-px bg-gold/40 mx-auto" />
-        </div>
-
-        {/* Stats — vertical stacked, alternating left/right alignment */}
-        <div className="stats-container space-y-16 md:space-y-20">
-          {STATS.map((stat, i) => {
-            const isLeft = i % 2 === 0;
-            return (
-              <div key={stat.label} className="relative">
-                {/* Giant ghost number in background */}
+        {/* Stats row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0">
+          {STATS.map((stat, i) => (
+            <div key={stat.label} className="relative flex">
+              {/* Gold vertical divider (between items on desktop) */}
+              {i > 0 && (
                 <div
-                  className={`stat-ghost absolute top-1/2 -translate-y-1/2 opacity-0 pointer-events-none select-none ${
-                    isLeft ? "right-0 lg:right-[5%]" : "left-0 lg:left-[5%]"
+                  className={`stat-divider absolute left-0 top-[15%] bottom-[15%] w-px bg-linear-to-b from-transparent via-gold/20 to-transparent origin-center ${
+                    i === 2 ? "hidden lg:block" : ""
                   }`}
-                >
-                  <span
-                    className="stat-ghost-num text-[100px] sm:text-[140px] md:text-[180px] lg:text-[220px] font-bold text-white/[0.025] leading-none"
-                    style={{ fontFamily: "var(--font-mono-custom)" }}
-                  >
-                    0{stat.suffix}
-                  </span>
+                />
+              )}
+
+              {/* Horizontal divider for mobile (between row 1 and row 2) */}
+              {i >= 2 && (
+                <div className="absolute top-0 left-[10%] right-[10%] h-px bg-linear-to-r from-transparent via-gold/15 to-transparent lg:hidden" />
+              )}
+
+              <div className="stat-card flex-1 flex flex-col items-center text-center py-6 md:py-8 px-3">
+                {/* Icon */}
+                <div className="w-10 h-10 rounded-full border border-gold/20 bg-gold/[0.05] flex items-center justify-center text-gold/50 mb-4">
+                  {ICONS[stat.icon]}
                 </div>
 
-                {/* Stat content */}
-                <div
-                  className={`stat-row relative flex flex-col ${
-                    isLeft
-                      ? "items-start text-left"
-                      : "items-end text-right"
-                  }`}
+                {/* Number */}
+                <span
+                  className="stat-number text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-none tracking-tight"
+                  style={{ fontFamily: "var(--font-display-custom)" }}
                 >
-                  {/* Number */}
-                  <span
-                    className="stat-number text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-none tracking-tight"
-                    style={{ fontFamily: "var(--font-mono-custom)" }}
-                  >
-                    0{stat.suffix}
-                  </span>
+                  0{stat.suffix}
+                </span>
 
-                  {/* Gold expanding line */}
-                  <div
-                    className={`stat-gold-line w-16 sm:w-24 md:w-40 lg:w-56 h-[2px] bg-gradient-to-r from-gold via-gold/80 to-gold/30 mt-4 mb-3 ${
-                      isLeft ? "origin-left" : "origin-right"
-                    }`}
-                  />
+                {/* Gold accent */}
+                <div className="w-8 h-px bg-linear-to-r from-transparent via-gold/40 to-transparent mt-3 mb-2.5" />
 
-                  {/* Label */}
-                  <p
-                    className="text-white/30 text-xs sm:text-sm tracking-[0.25em] uppercase"
-                    style={{ fontFamily: "var(--font-mono-custom)" }}
-                  >
-                    {stat.label}
-                  </p>
-                </div>
+                {/* Label */}
+                <p
+                  className="text-white/35 text-[10px] sm:text-xs tracking-[0.2em] uppercase leading-tight"
+                  style={{ fontFamily: "var(--font-mono-custom)" }}
+                >
+                  {stat.label}
+                </p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

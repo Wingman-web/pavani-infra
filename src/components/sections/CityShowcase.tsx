@@ -4,364 +4,247 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CITIES } from "@/lib/constants";
+import { MapPin } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface CitySlide {
-  city: (typeof CITIES)[number];
-  back: {
-    top: string;
-    left: string;
-    width: string;
-    height: string;
-    rotate: number;
-  };
-  front: {
-    top: string;
-    left: string;
-    width: string;
-    height: string;
-    rotate: number;
-  };
-}
-
-const SLIDES: CitySlide[] = [
-  {
-    city: CITIES[0],
-    back: { top: "10%", left: "50%", width: "22vw", height: "28vw", rotate: 8 },
-    front: { top: "40%", left: "14%", width: "17vw", height: "22vw", rotate: -7 },
-  },
-  {
-    city: CITIES[1],
-    back: { top: "12%", left: "12%", width: "20vw", height: "26vw", rotate: -6 },
-    front: { top: "38%", left: "52%", width: "19vw", height: "24vw", rotate: 10 },
-  },
-  {
-    city: CITIES[2],
-    back: { top: "10%", left: "52%", width: "22vw", height: "26vw", rotate: 10 },
-    front: { top: "42%", left: "10%", width: "16vw", height: "20vw", rotate: -9 },
-  },
-  {
-    city: CITIES[3],
-    back: { top: "14%", left: "10%", width: "18vw", height: "24vw", rotate: -8 },
-    front: { top: "36%", left: "54%", width: "21vw", height: "26vw", rotate: 6 },
-  },
-  {
-    city: CITIES[4],
-    back: { top: "10%", left: "48%", width: "20vw", height: "26vw", rotate: 7 },
-    front: { top: "42%", left: "16%", width: "18vw", height: "22vw", rotate: -7 },
-  },
-];
-
 export default function CityShowcase() {
   const sectionRef = useRef<HTMLElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const line = lineRef.current;
-    if (!section || !line) return;
+    if (!section) return;
 
     const ctx = gsap.context(() => {
-      const slides = section.querySelectorAll<HTMLElement>(".city-slide");
-      const totalSlides = slides.length;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          pin: true,
-          scrub: 0.8,
-          start: "top top",
-          end: `+=${totalSlides * 100}%`,
-          anticipatePin: 1,
-        },
-      });
-
-      /* Title fades out quickly in the first 15% of scroll */
-      tl.to(
-        ".city-title-block",
-        { opacity: 0, y: -40, ease: "power2.in", duration: 0.15 },
-        0
-      );
-
-      /* Line extends across the full scroll */
-      tl.fromTo(
-        line,
-        { scaleX: 0 },
-        { scaleX: 1, ease: "none", duration: totalSlides },
-        0
-      );
-
-      slides.forEach((slide, i) => {
-        const cityText = slide.querySelector(".city-name-text");
-        const backImg = slide.querySelector(".img-back");
-        const frontImg = slide.querySelector(".img-front");
-        const desc = slide.querySelector(".city-desc");
-
-        const enterTime = i * 1;
-        const holdEnd = enterTime + 0.7;
-
-        if (i === 0) {
-          // First slide enters immediately as title fades
-          tl.fromTo(
-            slide,
-            { xPercent: 30, opacity: 0 },
-            { xPercent: 0, opacity: 1, ease: "power2.out", duration: 0.3 },
-            0.05
-          );
-          tl.fromTo(
-            backImg,
-            { scale: 0.8, rotateY: -15, opacity: 0 },
-            { scale: 1, rotateY: 0, opacity: 1, ease: "power2.out", duration: 0.4 },
-            0.05
-          );
-          tl.fromTo(
-            frontImg,
-            { scale: 0.7, rotateY: 20, opacity: 0 },
-            { scale: 1, rotateY: 0, opacity: 1, ease: "power2.out", duration: 0.5 },
-            0.1
-          );
-          tl.fromTo(
-            cityText,
-            { x: 60, opacity: 0 },
-            { x: 0, opacity: 1, ease: "power2.out", duration: 0.4 },
-            0.1
-          );
-          tl.fromTo(
-            desc,
-            { y: 15, opacity: 0 },
-            { y: 0, opacity: 1, ease: "power2.out", duration: 0.3 },
-            0.15
-          );
-
-          tl.to(
-            slide,
-            { xPercent: -110, ease: "power2.inOut", duration: 0.8 },
-            holdEnd
-          );
-          tl.to(
-            backImg,
-            { rotateY: 15, scale: 0.9, ease: "power2.in", duration: 0.6 },
-            holdEnd
-          );
-          tl.to(
-            frontImg,
-            { rotateY: -20, scale: 0.85, ease: "power2.in", duration: 0.6 },
-            holdEnd
-          );
-        } else {
-          tl.fromTo(
-            slide,
-            { xPercent: 110, opacity: 1 },
-            { xPercent: 0, ease: "power2.out", duration: 0.8 },
-            enterTime
-          );
-          tl.fromTo(
-            backImg,
-            { scale: 0.75, rotateY: -20, opacity: 0 },
-            { scale: 1, rotateY: 0, opacity: 1, ease: "power2.out", duration: 0.7 },
-            enterTime + 0.1
-          );
-          tl.fromTo(
-            frontImg,
-            { scale: 0.65, rotateY: 25, opacity: 0 },
-            { scale: 1, rotateY: 0, opacity: 1, ease: "power2.out", duration: 0.8 },
-            enterTime + 0.15
-          );
-          tl.fromTo(
-            cityText,
-            { x: 80, opacity: 0 },
-            { x: 0, opacity: 1, ease: "power2.out", duration: 0.6 },
-            enterTime + 0.1
-          );
-          tl.fromTo(
-            desc,
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, ease: "power2.out", duration: 0.4 },
-            enterTime + 0.25
-          );
-
-          if (i < totalSlides - 1) {
-            tl.to(
-              slide,
-              { xPercent: -110, ease: "power2.inOut", duration: 0.8 },
-              holdEnd
-            );
-            tl.to(
-              backImg,
-              { rotateY: 15, scale: 0.9, ease: "power2.in", duration: 0.6 },
-              holdEnd
-            );
-            tl.to(
-              frontImg,
-              { rotateY: -20, scale: 0.85, ease: "power2.in", duration: 0.6 },
-              holdEnd
-            );
-          }
+      gsap.fromTo(
+        ".city-head > *",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
         }
-      });
+      );
+
+      gsap.fromTo(
+        ".city-card-top",
+        { opacity: 0, y: 60, scale: 0.97 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".city-grid",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".city-card-bottom",
+        { opacity: 0, y: 50, scale: 0.97 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".city-grid-bottom",
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".city-accent-line",
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 0.6,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }, section);
 
     return () => ctx.revert();
   }, []);
 
+  const primaryCities = CITIES.slice(0, 3);
+  const secondaryCities = CITIES.slice(3);
+
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-cream"
+      className="relative bg-cream py-14 md:py-20 overflow-hidden"
     >
-      {/* ── Title (top area, fades out quickly as first city enters) ── */}
-      <div className="city-title-block absolute top-0 left-0 right-0 pt-10 md:pt-14 text-center z-[15] pointer-events-none">
-        <span
-          className="text-gold-contrast text-sm tracking-[0.3em] uppercase block mb-3"
-          style={{ fontFamily: "var(--font-mono-custom)" }}
-        >
-          Our Presence
-        </span>
-        <h2
-          className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight"
-          style={{ fontFamily: "var(--font-display-custom)" }}
-        >
-          <span className="text-navy mr-[0.25em]">ACROSS</span>
-          <span className="text-gold-contrast">5 CITIES</span>
-        </h2>
-        <div className="w-12 h-px bg-gold/30 mx-auto" />
-      </div>
-
-      {/* ── Horizontal line ── */}
+      {/* Subtle texture */}
       <div
-        className="absolute left-0 w-full pointer-events-none z-0"
-        style={{ top: "58%" }}
-      >
-        <div
-          ref={lineRef}
-          className="h-px w-full origin-left"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 2%, #C4A44D 10%, #C4A44D 90%, transparent 98%)",
-          }}
-        />
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        {/* Header */}
+        <div className="city-head text-center mb-10 md:mb-14">
+          <span
+            className="text-gold-contrast text-sm tracking-[0.3em] uppercase block mb-3"
+            style={{ fontFamily: "var(--font-mono-custom)" }}
+          >
+            Our Presence
+          </span>
+          <h2
+            className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight"
+            style={{ fontFamily: "var(--font-display-custom)" }}
+          >
+            <span className="text-navy mr-[0.25em]">ACROSS</span>
+            <span className="text-gold-contrast">5 CITIES</span>
+          </h2>
+          <div className="city-accent-line w-16 h-px bg-gold/40 mx-auto origin-center" />
+        </div>
+
+        {/* Primary Cities - 3 columns */}
+        <div className="city-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-4 md:mb-5">
+          {primaryCities.map((city, i) => (
+            <div
+              key={city.name}
+              className="city-card-top group relative overflow-hidden rounded-sm cursor-pointer"
+              style={{ aspectRatio: "4 / 5" }}
+            >
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ backgroundImage: `url(${city.image})` }}
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-navy/90 via-navy/30 to-transparent" />
+
+              {/* Corner accents */}
+              <div className="absolute top-3 left-3 w-6 h-6 border-t border-l border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-3 right-3 w-6 h-6 border-t border-r border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-3 left-3 w-6 h-6 border-b border-l border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                {/* City number */}
+                <span
+                  className="text-[10px] tracking-[0.4em] uppercase text-white/30 block mb-2"
+                  style={{ fontFamily: "var(--font-mono-custom)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* City name */}
+                <h3
+                  className="text-xl md:text-2xl font-bold text-white tracking-wide uppercase mb-2"
+                  style={{ fontFamily: "var(--font-display-custom)" }}
+                >
+                  {city.name}
+                </h3>
+
+                {/* Description */}
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3 h-3 text-gold/70 shrink-0" />
+                  <span
+                    className="text-xs tracking-[0.15em] uppercase text-white/50"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {city.description}
+                  </span>
+                </div>
+
+                {/* Gold line on hover */}
+                <div className="mt-3 h-px w-0 group-hover:w-full bg-gold/50 transition-all duration-500 ease-out" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Secondary Cities - 2 columns */}
+        <div className="city-grid-bottom grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+          {secondaryCities.map((city, i) => (
+            <div
+              key={city.name}
+              className="city-card-bottom group relative overflow-hidden rounded-sm cursor-pointer"
+              style={{ aspectRatio: "16 / 9" }}
+            >
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ backgroundImage: `url(${city.image})` }}
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-navy/90 via-navy/30 to-transparent" />
+
+              {/* Corner accents */}
+              <div className="absolute top-3 left-3 w-6 h-6 border-t border-l border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-3 right-3 w-6 h-6 border-t border-r border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-3 left-3 w-6 h-6 border-b border-l border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                {/* City number */}
+                <span
+                  className="text-[10px] tracking-[0.4em] uppercase text-white/30 block mb-2"
+                  style={{ fontFamily: "var(--font-mono-custom)" }}
+                >
+                  {String(i + 4).padStart(2, "0")}
+                </span>
+
+                {/* City name */}
+                <h3
+                  className="text-xl md:text-2xl font-bold text-white tracking-wide uppercase mb-2"
+                  style={{ fontFamily: "var(--font-display-custom)" }}
+                >
+                  {city.name}
+                </h3>
+
+                {/* Description */}
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3 h-3 text-gold/70 shrink-0" />
+                  <span
+                    className="text-xs tracking-[0.15em] uppercase text-white/50"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {city.description}
+                  </span>
+                </div>
+
+                {/* Gold line on hover */}
+                <div className="mt-3 h-px w-0 group-hover:w-full bg-gold/50 transition-all duration-500 ease-out" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* ── City slides ── */}
-      {SLIDES.map((slide, i) => (
-        <div
-          key={slide.city.name}
-          className="city-slide absolute inset-0"
-          style={{
-            perspective: "1200px",
-            opacity: 0,
-            zIndex: 2,
-          }}
-        >
-          {/* BACK image */}
-          <div
-            className="img-back absolute"
-            style={{
-              top: slide.back.top,
-              left: slide.back.left,
-              width: slide.back.width,
-              height: slide.back.height,
-              maxWidth: "calc(100vw - 80px)",
-              transform: `rotate(${slide.back.rotate}deg)`,
-              transformStyle: "preserve-3d",
-              zIndex: 3,
-            }}
-          >
-            <div
-              className="w-full h-full rounded-sm overflow-hidden"
-              style={{
-                boxShadow:
-                  "0 14px 45px rgba(0,0,0,0.14), 0 3px 14px rgba(0,0,0,0.08)",
-                border: "5px solid rgba(255,255,255,0.85)",
-              }}
-            >
-              <div
-                className="w-full h-full bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${slide.city.image})`,
-                }}
-              />
-            </div>
-          </div>
-
-          {/* CITY NAME */}
-          <div
-            className="city-name-text absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-            style={{ zIndex: 5 }}
-          >
-            <h2
-              className="text-[13vw] md:text-[12vw] leading-none font-bold tracking-[0.06em] uppercase whitespace-nowrap"
-              style={{
-                fontFamily: "var(--font-display-custom)",
-                color: "#C4A44D",
-              }}
-            >
-              {slide.city.name}
-            </h2>
-          </div>
-
-          {/* FRONT image */}
-          <div
-            className="img-front absolute"
-            style={{
-              top: slide.front.top,
-              left: slide.front.left,
-              width: slide.front.width,
-              height: slide.front.height,
-              maxWidth: "calc(100vw - 80px)",
-              transform: `rotate(${slide.front.rotate}deg)`,
-              transformStyle: "preserve-3d",
-              zIndex: 8,
-            }}
-          >
-            <div
-              className="w-full h-full rounded-sm overflow-hidden"
-              style={{
-                boxShadow:
-                  "0 18px 55px rgba(0,0,0,0.18), 0 5px 18px rgba(0,0,0,0.1)",
-                border: "5px solid rgba(255,255,255,0.85)",
-              }}
-            >
-              <div
-                className="w-full h-full bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${slide.city.image})`,
-                }}
-              />
-            </div>
-          </div>
-
-          {/* City description */}
-          <div
-            className="city-desc absolute text-right"
-            style={{
-              bottom: "8%",
-              right: "6%",
-              zIndex: 10,
-            }}
-          >
-            <span
-              className="text-[10px] tracking-[0.4em] uppercase block mb-1"
-              style={{
-                fontFamily: "var(--font-mono-custom)",
-                color: "#0D1A2650",
-              }}
-            >
-              {String(i + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
-            </span>
-            <span
-              className="text-xs md:text-sm tracking-[0.25em] uppercase block"
-              style={{
-                fontFamily: "var(--font-display-custom)",
-                color: "#0D1A2670",
-              }}
-            >
-              {slide.city.description}
-            </span>
-          </div>
-        </div>
-      ))}
+      {/* Bottom gold line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/20 to-transparent" />
     </section>
   );
 }

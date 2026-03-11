@@ -455,7 +455,7 @@ export default function FeaturedProjects() {
     >
 
       {/* ─── Desktop section header ─── */}
-      <div ref={desktopHeaderRef} className="hidden md:block text-center pt-6 lg:pt-8 pb-2 z-30 relative">
+      <div ref={desktopHeaderRef} className="hidden md:block text-center pt-4 lg:pt-5 pb-1 z-30 relative">
         <span
           className="fp-dk-sub text-gold-contrast text-xs md:text-sm tracking-[0.35em] uppercase block mb-1"
           style={{ fontFamily: "var(--font-mono-custom)" }}
@@ -492,7 +492,7 @@ export default function FeaturedProjects() {
       {/* ══════════════════════════════════════════════════════
           DESKTOP — 3D Brochure Book with button-driven page flips
          ══════════════════════════════════════════════════════ */}
-      <div className="hidden md:flex items-center justify-center py-4 lg:py-6">
+      <div className="hidden md:flex items-center justify-center py-2 lg:py-3">
         <div
           style={{ perspective: "1800px", perspectiveOrigin: "50% 45%" }}
           className="w-full mx-auto px-4 lg:px-6 flex items-center justify-center"
@@ -501,8 +501,8 @@ export default function FeaturedProjects() {
             ref={bookRef}
             className="relative mx-auto opacity-0"
             style={{
-              width: "min(90vw, 1100px)",
-              height: "clamp(420px, 62vh, 620px)",
+              width: "min(92vw, 1200px)",
+              height: "clamp(480px, 72vh, 780px)",
               transformStyle: "preserve-3d",
             }}
           >
@@ -628,7 +628,7 @@ export default function FeaturedProjects() {
       </div>
 
       {/* ─── Minimal Navigation ─── */}
-      <div className="fp-nav-buttons hidden md:flex items-center justify-center gap-5 pb-6 lg:pb-8 opacity-0 relative z-30">
+      <div className="fp-nav-buttons hidden md:flex items-center justify-center gap-5 pb-3 lg:pb-4 opacity-0 relative z-30">
         {/* Prev arrow */}
         <button
           onClick={flipPrev}
@@ -681,7 +681,7 @@ export default function FeaturedProjects() {
       </div>
 
       {/* ─── View All — subtle text link ─── */}
-      <div className="hidden md:flex justify-center pb-8 relative z-30">
+      <div className="hidden md:flex justify-center pb-4 lg:pb-5 relative z-30">
         <a
           href="/project"
           className="inline-flex items-center gap-2 text-gold-contrast/50 text-xs tracking-[0.2em] uppercase hover:text-gold-contrast transition-colors duration-400 group"
