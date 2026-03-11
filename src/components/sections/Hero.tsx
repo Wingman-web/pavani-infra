@@ -1,199 +1,181 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const SLIDES = [
-  {
-    src: "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FWeb_Banner_Home_Page_c6c53d52eb.webp&w=1920&q=75",
-    alt: "Pavani Infra - Luxury Residences",
-  },
-  {
-    src: "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2F12_dc3232c7c2.png&w=3840&q=75",
-    alt: "Modern Architecture",
-  },
-  {
-    src: "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2F4_8bb5abfb88.png&w=3840&q=75",
-    alt: "Premium Living Spaces",
-  },
-  {
-    src: "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2F5_bc8a2d829c.png&w=3840&q=75",
-    alt: "Luxury Villas",
-  },
-];
-
-const AUTO_SLIDE_MS = 5000;
+const VIDEO_URL =
+  "https://backend.pavaniinfra.com/uploads/1920_by_1080_8e415f658b.mp4";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [current, setCurrent] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
-  const total = SLIDES.length;
-
-  const goTo = useCallback(
-    (idx: number) => {
-      if (isTransitioning) return;
-      setIsTransitioning(true);
-      setCurrent(idx);
-      setTimeout(() => setIsTransitioning(false), 1000);
-    },
-    [isTransitioning]
-  );
-
-  const nextSlide = useCallback(() => {
-    goTo((current + 1) % total);
-  }, [current, total, goTo]);
-
-  const prevSlide = useCallback(() => {
-    goTo((current - 1 + total) % total);
-  }, [current, total, goTo]);
-
-  // Auto-advance
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % total);
-    }, AUTO_SLIDE_MS);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [total]);
-
-  // Reset timer on manual navigation
-  const handleNav = useCallback(
-    (fn: () => void) => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      fn();
-      timerRef.current = setInterval(() => {
-        setCurrent((prev) => (prev + 1) % total);
-      }, AUTO_SLIDE_MS);
-    },
-    [total]
-  );
-
-  // Entry animation
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".hero-slider-container",
-        { scale: 1.05, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.4, ease: "power3.out", delay: 0.3 }
-      );
-      gsap.fromTo(
-        ".hero-nav-btn",
-        { opacity: 0, scale: 0.5 },
-        { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1, ease: "back.out(1.7)", delay: 1 }
-      );
-      gsap.fromTo(
-        ".hero-dot",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power3.out", delay: 1.2 }
-      );
-    }, section);
+    let ctx: gsap.Context | undefined;
+    let fallbackTimer: ReturnType<typeof setTimeout>;
 
-    return () => ctx.revert();
+    const runAnimation = () => {
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
+
+      ctx = gsap.context(() => {
+        const entry = gsap.timeline();
+        entry
+          .fromTo(
+            ".hero-video-frame",
+            { scale: 0.85, opacity: 0, rotateX: 6 },
+            {
+              scale: 1,
+              opacity: 1,
+              rotateX: 0,
+              duration: 1.6,
+              ease: "power3.out",
+            },
+          )
+          .fromTo(
+            ".hero-frame-glow",
+            { opacity: 0 },
+            { opacity: 1, duration: 1, ease: "power2.out" },
+            "-=0.8",
+          )
+          .fromTo(
+            ".hero-frame-ornament",
+            { scale: 0, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              stagger: 0.08,
+              duration: 0.5,
+              ease: "back.out(1.7)",
+            },
+            "-=0.5",
+          )
+          .fromTo(
+            ".hero-scroll-indicator",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+            "-=0.3",
+          );
+      }, section);
+    };
+
+    const handler = () => runAnimation();
+    window.addEventListener("preloader-complete", handler);
+    const alreadySeen = document.cookie.includes("preloaderSeen=true");
+    fallbackTimer = setTimeout(runAnimation, alreadySeen ? 700 : 4500);
+
+    return () => {
+      window.removeEventListener("preloader-complete", handler);
+      clearTimeout(fallbackTimer);
+      ctx?.revert();
+    };
   }, []);
 
-  // Progress bar animation
-  useEffect(() => {
-    const bar = progressRef.current;
-    if (!bar) return;
-    bar.style.transition = "none";
-    bar.style.width = "0%";
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        bar.style.transition = `width ${AUTO_SLIDE_MS}ms linear`;
-        bar.style.width = "100%";
-      });
-    });
-  }, [current]);
-
   return (
-    <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden">
-      {/* Slider container */}
-      <div className="hero-slider-container absolute inset-0">
-        {/* Slides */}
-        {SLIDES.map((slide, i) => (
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          transformStyle: "preserve-3d",
+          transformOrigin: "center top",
+        }}
+      >
+        <div className="absolute inset-0 bg-surface-primary" />
+
+        <div className="absolute inset-0 flex items-center justify-center pt-6 pb-8 md:pt-8 md:pb-10 px-6 md:px-12 lg:px-20">
           <div
-            key={i}
-            className="absolute inset-0 transition-all duration-1000 ease-in-out"
+            className="hero-video-frame relative w-full h-full overflow-hidden opacity-0"
             style={{
-              opacity: i === current ? 1 : 0,
-              transform: i === current ? "scale(1)" : "scale(1.08)",
-              zIndex: i === current ? 2 : 1,
+              borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
+              transformStyle: "preserve-3d",
             }}
           >
-            <img
-              src={slide.src}
-              alt={slide.alt}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
               className="absolute inset-0 w-full h-full object-cover"
-              loading={i === 0 ? "eager" : "lazy"}
+              style={{ transform: "scale(1.05)" }}
+            >
+              <source src={VIDEO_URL} type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-b from-surface-primary/30 via-transparent to-surface-primary/50 pointer-events-none" />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, transparent 40%, rgba(5,5,5,0.55) 100%)",
+              }}
             />
-            {/* Gradient overlays for depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0D1A26]/40 via-transparent to-[#0D1A26]/60" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0D1A26]/30 via-transparent to-[#0D1A26]/30" />
+            <div
+              className="hero-frame-glow absolute inset-[5px] pointer-events-none opacity-0"
+              style={{
+                borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
+                border: "1px solid rgba(223,192,99,0.2)",
+                boxShadow:
+                  "inset 0 0 80px rgba(5,5,5,0.4), 0 0 40px rgba(223,192,99,0.04)",
+              }}
+            />
+            <div className="hero-frame-ornament absolute bottom-5 left-5 w-8 h-8 border-b border-l border-gold/25 opacity-0" />
+            <div className="hero-frame-ornament absolute bottom-5 right-5 w-8 h-8 border-b border-r border-gold/25 opacity-0" />
+            <div className="hero-frame-ornament absolute top-[40%] left-5 w-5 h-10 border-l border-gold/15 opacity-0" />
+            <div className="hero-frame-ornament absolute top-[40%] right-5 w-5 h-10 border-r border-gold/15 opacity-0" />
           </div>
-        ))}
+        </div>
 
-        {/* Gold vignette frame */}
         <div
-          className="absolute inset-0 z-10 pointer-events-none"
+          className="hero-frame-glow absolute inset-0 pointer-events-none opacity-0"
           style={{
-            boxShadow: "inset 0 0 150px rgba(13,26,38,0.6), inset 0 0 60px rgba(13,26,38,0.3)",
+            margin: "24px 24px 40px 24px",
+            borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
+            boxShadow:
+              "0 0 60px rgba(223,192,99,0.06), 0 0 120px rgba(223,192,99,0.03)",
           }}
         />
-      </div>
 
+        <div className="absolute inset-0 z-[3] pointer-events-none opacity-[0.015]">
+          <div className="absolute top-0 left-[25%] w-px h-full bg-gold" />
+          <div className="absolute top-0 left-[50%] w-px h-full bg-gold" />
+          <div className="absolute top-0 left-[75%] w-px h-full bg-gold" />
+        </div>
 
-      {/* Navigation arrows */}
-      <button
-        onClick={() => handleNav(prevSlide)}
-        className="hero-nav-btn absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/15 bg-[#0D1A26]/40 backdrop-blur-sm flex items-center justify-center text-white/60 hover:border-gold/50 hover:text-gold hover:bg-[#0D1A26]/60 hover:shadow-[0_0_30px_rgba(223, 192, 99,0.15)] transition-all duration-400 group"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform duration-300" />
-      </button>
-      <button
-        onClick={() => handleNav(nextSlide)}
-        className="hero-nav-btn absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/15 bg-[#0D1A26]/40 backdrop-blur-sm flex items-center justify-center text-white/60 hover:border-gold/50 hover:text-gold hover:bg-[#0D1A26]/60 hover:shadow-[0_0_30px_rgba(223, 192, 99,0.15)] transition-all duration-400 group"
-        aria-label="Next slide"
-      >
-        <ChevronRight size={20} className="group-hover:translate-x-0.5 transition-transform duration-300" />
-      </button>
-
-      {/* Bottom indicators */}
-      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => handleNav(() => goTo(i))}
-            className={`hero-dot group relative transition-all duration-500 ${
-              i === current ? "w-8 sm:w-10" : "w-2 sm:w-2.5"
-            } h-2 sm:h-2.5 rounded-full overflow-hidden`}
-            aria-label={`Go to slide ${i + 1}`}
+        {/* Scroll indicator */}
+        <div className="hero-scroll-indicator absolute bottom-3 sm:bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center opacity-0">
+          <span
+            className="hero-scroll-text text-white/25 text-[9px] tracking-[0.4em] uppercase mb-4"
+            style={{ fontFamily: "var(--font-mono-custom)" }}
           >
+            Scroll
+          </span>
+          <div className="relative flex items-center justify-center w-14 h-14">
             <div
-              className={`absolute inset-0 rounded-full transition-all duration-500 ${
-                i === current
-                  ? "bg-gold/25 border border-gold/40"
-                  : "bg-white/20 border border-white/10 hover:bg-gold/30 hover:border-gold/30"
-              }`}
+              className="hero-pulse-ring absolute inset-0 rounded-full border border-gold/20"
+              style={{ animation: "hero-ring-pulse 2.5s ease-out infinite" }}
             />
-            {i === current && (
-              <div
-                ref={i === current ? progressRef : undefined}
-                className="absolute inset-0 rounded-full bg-gold/70"
-                style={{ width: "0%" }}
-              />
-            )}
-          </button>
-        ))}
+            <div
+              className="hero-pulse-ring absolute inset-1 rounded-full border border-gold/10"
+              style={{
+                animation: "hero-ring-pulse 2.5s ease-out 0.8s infinite",
+              }}
+            />
+            <div className="relative z-10">
+              <svg width="24" height="14" viewBox="0 0 24 14" fill="none">
+                <path
+                  d="M2 2L12 12L22 2"
+                  stroke="rgba(223,192,99,0.85)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Subtle gold line at bottom */}
