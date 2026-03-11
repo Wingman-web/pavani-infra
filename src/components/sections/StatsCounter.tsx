@@ -15,21 +15,20 @@ export default function StatsCounter() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Header reveal
+      // Header reveal — plays once when in viewport
       gsap.fromTo(
         ".stats-header > *",
         { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.5,
-          stagger: 0.1,
+          duration: 0.6,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
             start: "top 85%",
-            end: "top 60%",
-            scrub: 0.6,
+            toggleActions: "play none none none",
           },
         }
       );
@@ -54,8 +53,7 @@ export default function StatsCounter() {
             scrollTrigger: {
               trigger: row,
               start: "top 90%",
-              end: "top 55%",
-              scrub: 0.7,
+              toggleActions: "play none none none",
             },
           }
         );
@@ -67,14 +65,13 @@ export default function StatsCounter() {
         { scaleX: 0 },
         {
           scaleX: 1,
-          duration: 0.6,
+          duration: 0.8,
           stagger: 0.15,
           ease: "power2.inOut",
           scrollTrigger: {
             trigger: ".stats-container",
             start: "top 75%",
-            end: "bottom 60%",
-            scrub: 0.8,
+            toggleActions: "play none none none",
           },
         }
       );
@@ -86,31 +83,36 @@ export default function StatsCounter() {
         {
           opacity: 1,
           scale: 1,
-          duration: 0.6,
+          duration: 0.8,
           stagger: 0.15,
           ease: "power2.out",
           scrollTrigger: {
             trigger: ".stats-container",
             start: "top 80%",
-            end: "bottom 65%",
-            scrub: 0.8,
+            toggleActions: "play none none none",
           },
         }
       );
 
-      // Scroll-driven counters
+      // Counter animations — play once, no reverse on scroll back
       const numberEls = section.querySelectorAll<HTMLElement>(".stat-number");
       const ghostEls = section.querySelectorAll<HTMLElement>(".stat-ghost-num");
       const targets = STATS.map((s) => s.value);
       const suffixes = STATS.map((s) => s.suffix);
       const objs = targets.map(() => ({ value: 0 }));
 
+      // Use a stepped approach for low numbers to make counting visible
+      const getCountDuration = (target: number) => {
+        if (target <= 10) return 2.5;
+        if (target <= 100) return 2;
+        return 1.8;
+      };
+
       const counterTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".stats-container",
           start: "top 75%",
-          end: "bottom 55%",
-          scrub: 1,
+          toggleActions: "play none none none",
         },
       });
 
@@ -119,7 +121,7 @@ export default function StatsCounter() {
           obj,
           {
             value: targets[i],
-            duration: 1,
+            duration: getCountDuration(targets[i]),
             ease: "power2.out",
             onUpdate: () => {
               const val = Math.round(obj.value);
@@ -130,7 +132,7 @@ export default function StatsCounter() {
               if (ghostEls[i]) ghostEls[i].textContent = text;
             },
           },
-          i * 0.12
+          i * 0.2
         );
       });
     }, section);
