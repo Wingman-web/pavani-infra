@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "@/lib/constants";
-import { MapPin, Maximize2, ArrowRight, BookOpen } from "lucide-react";
+import { MapPin, Maximize2, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,162 +34,95 @@ export default function FeaturedProjects() {
   const desktopHeaderRef = useRef<HTMLDivElement>(null);
   const desktopDotsRef = useRef<HTMLDivElement>(null);
 
-  const [activeProject, setActiveProject] = useState(-1);
+  // -1 = cover visible (closed book), 0..total-1 = that project page is visible
+  const [currentPage, setCurrentPage] = useState(-1);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
   const total = PROJECTS.length;
 
+  /* ═══════════════════════════════════════════════════
+     ENTRANCE ANIMATION — plays once on scroll into view
+     ═══════════════════════════════════════════════════ */
   useEffect(() => {
     const section = sectionRef.current;
     const book = bookRef.current;
     if (!section || !book) return;
 
-    // Small delay to ensure layout is settled after dynamic imports
-    const setupTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 300);
-
     const mm = gsap.matchMedia();
 
-    /* ═══════════════════════════════════════════════════
-       DESKTOP — Full 3D Brochure with real page flips
-       ═══════════════════════════════════════════════════ */
     mm.add("(min-width: 768px)", () => {
       const ctx = gsap.context(() => {
-        const vh = window.innerHeight;
-        const entranceScroll = vh * 0.6;
-        const flipScroll = vh * 1.5;
-        const holdScroll = vh * 0.5;
-        const totalScroll = entranceScroll + total * flipScroll + holdScroll;
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            pin: true,
-            scrub: 0.6,
-            start: "top top",
-            end: `+=${totalScroll}`,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-            onUpdate: (self) => {
-              const p = self.progress;
-              const entP = entranceScroll / totalScroll;
-              const fP = flipScroll / totalScroll;
-              if (p < entP + fP * 0.6) {
-                setActiveProject(-1);
-              } else {
-                const after = p - entP;
-                setActiveProject(
-                  Math.min(total - 1, Math.floor(after / fP))
-                );
-              }
-            },
-          },
-        });
-
-        const entP = entranceScroll / totalScroll;
-        const fP = flipScroll / totalScroll;
-
-        /* ── Phase 0: Book entrance ── */
-        tl.fromTo(
+        // Book entrance animation
+        gsap.fromTo(
           book,
           { scale: 0.65, opacity: 0, rotateX: 12 },
-          { scale: 1, opacity: 1, rotateX: 0, duration: entP, ease: "power3.out" },
-          0
+          {
+            scale: 1,
+            opacity: 1,
+            rotateX: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 75%",
+              once: true,
+            },
+            onComplete: () => setHasEntered(true),
+          }
         );
 
-        // Desktop header animations — use refs to avoid matching mobile elements
+        // Desktop header animations
         const dHeader = desktopHeaderRef.current;
-        const dDots = desktopDotsRef.current;
-
         if (dHeader) {
           const titleEl = dHeader.querySelector(".fp-dk-title");
           const subEl = dHeader.querySelector(".fp-dk-sub");
           if (titleEl) {
-            tl.fromTo(titleEl, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: entP * 0.5, ease: "power3.out" }, 0);
+            gsap.fromTo(
+              titleEl,
+              { opacity: 0, y: 30 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: { trigger: section, start: "top 75%", once: true },
+              }
+            );
           }
           if (subEl) {
-            tl.fromTo(subEl, { opacity: 0 }, { opacity: 1, duration: entP * 0.5, ease: "power2.out" }, entP * 0.3);
-          }
-        }
-
-        /* ── Phase 1: Cover flip ── */
-        const coverStart = entP;
-        tl.to(".fp-cover", {
-          rotateY: -180,
-          duration: fP * 0.75,
-          ease: "power2.inOut",
-        }, coverStart);
-
-        tl.set(".fp-cover", { zIndex: total + 10 }, coverStart + fP * 0.375);
-
-        tl.fromTo(
-          ".fp-page-0 .pg-shadow",
-          { opacity: 0, x: "80%" },
-          { opacity: 0.7, x: "0%", duration: fP * 0.375, ease: "power2.in" },
-          coverStart
-        );
-        tl.to(
-          ".fp-page-0 .pg-shadow",
-          { opacity: 0, x: "-50%", duration: fP * 0.375, ease: "power2.out" },
-          coverStart + fP * 0.375
-        );
-
-        tl.fromTo(
-          ".fp-spine",
-          { opacity: 0 },
-          { opacity: 1, duration: fP * 0.3, ease: "power2.out" },
-          coverStart + fP * 0.4
-        );
-
-        // Dots — use refs
-        if (dDots) {
-          tl.fromTo(dDots, { opacity: 0 }, { opacity: 1, duration: fP * 0.3, ease: "power2.out" }, coverStart + fP * 0.5);
-        }
-
-        /* ── Phase 2: Page flips (page 0 → page N-2) ── */
-        for (let i = 0; i < total - 1; i++) {
-          const pageStart = entP + (i + 1) * fP;
-          const pageEl = `.fp-page-${i}`;
-          const nextShadow = `.fp-page-${i + 1} .pg-shadow`;
-
-          tl.to(pageEl, {
-            rotateY: -180,
-            duration: fP * 0.75,
-            ease: "power2.inOut",
-          }, pageStart);
-
-          tl.set(pageEl, { zIndex: total + 11 + i }, pageStart + fP * 0.375);
-
-          if (i < total - 2) {
-            tl.fromTo(
-              nextShadow,
-              { opacity: 0, x: "80%" },
-              { opacity: 0.6, x: "0%", duration: fP * 0.375, ease: "power2.in" },
-              pageStart
-            );
-            tl.to(
-              nextShadow,
-              { opacity: 0, x: "-50%", duration: fP * 0.375, ease: "power2.out" },
-              pageStart + fP * 0.375
+            gsap.fromTo(
+              subEl,
+              { opacity: 0 },
+              {
+                opacity: 1,
+                duration: 0.8,
+                delay: 0.3,
+                ease: "power2.out",
+                scrollTrigger: { trigger: section, start: "top 75%", once: true },
+              }
             );
           }
         }
 
-        /* ── Phase 3: Last page content entrance ── */
-        const lastStart = entP + total * fP;
-        tl.fromTo(
-          `.fp-page-${total - 1} .pg-detail`,
-          { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, stagger: 0.015, duration: fP * 0.25, ease: "power3.out" },
-          lastStart - fP * 0.25
+        // Nav buttons entrance
+        gsap.fromTo(
+          ".fp-nav-buttons",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.5,
+            ease: "power3.out",
+            scrollTrigger: { trigger: section, start: "top 75%", once: true },
+          }
         );
       }, section);
 
       return () => ctx.revert();
     });
 
-    /* ═══════════════════════════════════════════════════
-       MOBILE — Card stack
-       ═══════════════════════════════════════════════════ */
+    // Mobile animations
     mm.add("(max-width: 767px)", () => {
       const ctx = gsap.context(() => {
         gsap.fromTo(
@@ -219,11 +152,172 @@ export default function FeaturedProjects() {
       return () => ctx.revert();
     });
 
-    return () => {
-      clearTimeout(setupTimer);
-      mm.revert();
-    };
+    return () => mm.revert();
   }, [total]);
+
+  /* ═══════════════════════════════════════════════════
+     BUTTON-DRIVEN PAGE FLIP ANIMATIONS
+     ═══════════════════════════════════════════════════ */
+
+  const flipNext = useCallback(() => {
+    if (isAnimating || currentPage >= total - 1) return;
+    setIsAnimating(true);
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setCurrentPage((prev) => prev + 1);
+        setIsAnimating(false);
+      },
+    });
+
+    if (currentPage === -1) {
+      // Flip the cover open
+      tl.to(".fp-cover", {
+        rotateY: -180,
+        duration: 0.8,
+        ease: "power2.inOut",
+      }, 0);
+
+      // Cover z-index swap at midpoint
+      tl.set(".fp-cover", { zIndex: total + 10 }, 0.4);
+
+      // Shadow on first page
+      tl.fromTo(
+        ".fp-page-0 .pg-shadow",
+        { opacity: 0, x: "80%" },
+        { opacity: 0.7, x: "0%", duration: 0.4, ease: "power2.in" },
+        0
+      );
+      tl.to(
+        ".fp-page-0 .pg-shadow",
+        { opacity: 0, x: "-50%", duration: 0.4, ease: "power2.out" },
+        0.4
+      );
+
+      // Spine appears
+      tl.fromTo(
+        ".fp-spine",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: "power2.out" },
+        0.35
+      );
+
+      // Dots appear
+      const dDots = desktopDotsRef.current;
+      if (dDots) {
+        tl.fromTo(dDots, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.45);
+      }
+
+      // Page 0 content entrance
+      tl.fromTo(
+        ".fp-page-0 .pg-detail",
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, stagger: 0.02, duration: 0.4, ease: "power3.out" },
+        0.5
+      );
+    } else {
+      // Flip the current project page
+      const pageEl = `.fp-page-${currentPage}`;
+      const nextIdx = currentPage + 1;
+      const nextShadow = `.fp-page-${nextIdx} .pg-shadow`;
+
+      tl.to(pageEl, {
+        rotateY: -180,
+        duration: 0.8,
+        ease: "power2.inOut",
+      }, 0);
+
+      tl.set(pageEl, { zIndex: total + 11 + currentPage }, 0.4);
+
+      // Shadow on next page
+      if (nextIdx < total) {
+        tl.fromTo(
+          nextShadow,
+          { opacity: 0, x: "80%" },
+          { opacity: 0.6, x: "0%", duration: 0.4, ease: "power2.in" },
+          0
+        );
+        tl.to(
+          nextShadow,
+          { opacity: 0, x: "-50%", duration: 0.4, ease: "power2.out" },
+          0.4
+        );
+      }
+
+      // Next page content entrance
+      tl.fromTo(
+        `.fp-page-${nextIdx} .pg-detail`,
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, stagger: 0.02, duration: 0.4, ease: "power3.out" },
+        0.5
+      );
+    }
+  }, [currentPage, isAnimating, total]);
+
+  const flipPrev = useCallback(() => {
+    if (isAnimating || currentPage < 0) return;
+    setIsAnimating(true);
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setCurrentPage((prev) => prev - 1);
+        setIsAnimating(false);
+      },
+    });
+
+    if (currentPage === 0) {
+      // Flip the cover back closed
+      tl.to(".fp-cover", {
+        rotateY: 0,
+        duration: 0.8,
+        ease: "power2.inOut",
+      }, 0);
+
+      tl.set(".fp-cover", { zIndex: total + 1 }, 0.4);
+
+      // Hide spine
+      tl.to(".fp-spine", { opacity: 0, duration: 0.3, ease: "power2.in" }, 0);
+
+      // Hide dots
+      const dDots = desktopDotsRef.current;
+      if (dDots) {
+        tl.to(dDots, { opacity: 0, duration: 0.3, ease: "power2.in" }, 0);
+      }
+    } else {
+      // Flip the previous page back
+      const prevIdx = currentPage - 1;
+      const pageEl = `.fp-page-${prevIdx}`;
+
+      tl.to(pageEl, {
+        rotateY: 0,
+        duration: 0.8,
+        ease: "power2.inOut",
+      }, 0);
+
+      tl.set(pageEl, { zIndex: total - prevIdx }, 0.4);
+
+      // Shadow on current page (the one being revealed again)
+      tl.fromTo(
+        `.fp-page-${currentPage} .pg-shadow`,
+        { opacity: 0, x: "-50%" },
+        { opacity: 0.6, x: "0%", duration: 0.4, ease: "power2.in" },
+        0
+      );
+      tl.to(
+        `.fp-page-${currentPage} .pg-shadow`,
+        { opacity: 0, x: "80%", duration: 0.4, ease: "power2.out" },
+        0.4
+      );
+
+      // Re-animate current page content
+      tl.fromTo(
+        `.fp-page-${prevIdx} .pg-detail`,
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, stagger: 0.02, duration: 0.4, ease: "power3.out" },
+        0.5
+      );
+    }
+  }, [currentPage, isAnimating, total]);
 
   /* ─── Render helpers ─── */
 
@@ -236,8 +330,6 @@ export default function FeaturedProjects() {
       }}
     >
       <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-[#0A1620]/60 to-transparent pointer-events-none z-10" />
-
-
 
       {/* Page number — top right */}
       <div className="absolute top-6 right-8 lg:top-8 lg:right-10 z-10 flex items-baseline gap-1 select-none pointer-events-none">
@@ -301,7 +393,6 @@ export default function FeaturedProjects() {
         </a>
       </div>
 
-
       <div
         className="pg-shadow absolute inset-0 pointer-events-none z-20 opacity-0"
         style={{
@@ -328,7 +419,6 @@ export default function FeaturedProjects() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/60 via-transparent to-[#0A1620]/25" />
       <div className="absolute inset-0 bg-gold/[0.02]" />
 
-
       <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2">
         <div className="w-8 h-[1px] bg-gold/30" />
         <span
@@ -352,6 +442,9 @@ export default function FeaturedProjects() {
     </div>
   );
 
+  // Active project index for the diamond indicators (matches the visible page)
+  const activeProject = currentPage;
+
   return (
     <section
       ref={sectionRef}
@@ -361,8 +454,8 @@ export default function FeaturedProjects() {
       }}
     >
 
-      {/* ─── Desktop section header (unique class names to avoid mobile collision) ─── */}
-      <div ref={desktopHeaderRef} className="hidden md:block absolute top-4 md:top-7 left-0 right-0 z-30 text-center pointer-events-none">
+      {/* ─── Desktop section header ─── */}
+      <div ref={desktopHeaderRef} className="hidden md:block text-center pt-6 lg:pt-8 pb-2 z-30 relative">
         <span
           className="fp-dk-sub text-gold-contrast text-xs md:text-sm tracking-[0.35em] uppercase block mb-1"
           style={{ fontFamily: "var(--font-mono-custom)" }}
@@ -397,20 +490,19 @@ export default function FeaturedProjects() {
       </div>
 
       {/* ══════════════════════════════════════════════════════
-          DESKTOP — 3D Brochure Book with real page flips
+          DESKTOP — 3D Brochure Book with button-driven page flips
          ══════════════════════════════════════════════════════ */}
-      <div className="hidden md:flex h-screen items-center justify-center pt-8">
+      <div className="hidden md:flex items-center justify-center py-4 lg:py-6">
         <div
           style={{ perspective: "1800px", perspectiveOrigin: "50% 45%" }}
-          className="w-full max-w-[1500px] mx-auto px-4 lg:px-6"
+          className="w-full mx-auto px-4 lg:px-6 flex items-center justify-center"
         >
           <div
             ref={bookRef}
-            className="relative mx-auto"
+            className="relative mx-auto opacity-0"
             style={{
-              width: "100%",
-              height: "70vh",
-              maxHeight: "650px",
+              width: "min(90vw, 1100px)",
+              height: "clamp(420px, 62vh, 620px)",
               transformStyle: "preserve-3d",
             }}
           >
@@ -500,7 +592,6 @@ export default function FeaturedProjects() {
                   <div className="w-[1px] h-10 lg:h-16 bg-gradient-to-t from-transparent via-gold/40 to-gold/10 mt-5" />
                 </div>
 
-
                 <div className="absolute top-0 left-0 bottom-0 w-8 bg-gradient-to-r from-[#0A1620]/60 to-transparent pointer-events-none" />
               </div>
 
@@ -536,16 +627,68 @@ export default function FeaturedProjects() {
         </div>
       </div>
 
+      {/* ─── Minimal Navigation ─── */}
+      <div className="fp-nav-buttons hidden md:flex items-center justify-center gap-5 pb-6 lg:pb-8 opacity-0 relative z-30">
+        {/* Prev arrow */}
+        <button
+          onClick={flipPrev}
+          disabled={isAnimating || currentPage < 0}
+          className={`group flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-400 ${
+            currentPage < 0
+              ? "border-navy/15 text-navy/20 cursor-not-allowed"
+              : "border-gold/25 text-gold/50 hover:border-gold/50 hover:text-gold hover:bg-gold/5 cursor-pointer"
+          }`}
+          aria-label="Previous page"
+        >
+          <ChevronLeft
+            size={16}
+            className={`transition-transform duration-300 ${currentPage >= 0 ? "group-hover:-translate-x-0.5" : ""}`}
+          />
+        </button>
 
-      {/* ─── View All — centered button below brochure ─── */}
-      <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-30 justify-center">
+        {/* Dots */}
+        <div className="flex items-center gap-2">
+          {PROJECTS.map((_, i) => (
+            <div
+              key={i}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
+                i === currentPage
+                  ? "bg-gold scale-125"
+                  : i < currentPage
+                    ? "bg-gold/30"
+                    : "bg-navy/20"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Next arrow */}
+        <button
+          onClick={flipNext}
+          disabled={isAnimating || currentPage >= total - 1}
+          className={`group flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-400 ${
+            currentPage >= total - 1
+              ? "border-navy/15 text-navy/20 cursor-not-allowed"
+              : "border-gold/25 text-gold/50 hover:border-gold/50 hover:text-gold hover:bg-gold/5 cursor-pointer"
+          }`}
+          aria-label="Next page"
+        >
+          <ChevronRight
+            size={16}
+            className={`transition-transform duration-300 ${currentPage < total - 1 ? "group-hover:translate-x-0.5" : ""}`}
+          />
+        </button>
+      </div>
+
+      {/* ─── View All — subtle text link ─── */}
+      <div className="hidden md:flex justify-center pb-8 relative z-30">
         <a
           href="/project"
-          className="inline-flex items-center gap-2.5 px-8 py-3 border border-gold-dark/40 text-gold-contrast text-sm tracking-[0.15em] uppercase rounded-sm hover:bg-gold-contrast hover:text-cream transition-all duration-500 group"
+          className="inline-flex items-center gap-2 text-gold-contrast/50 text-xs tracking-[0.2em] uppercase hover:text-gold-contrast transition-colors duration-400 group"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           View All Projects
-          <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-300" />
+          <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform duration-300" />
         </a>
       </div>
 
