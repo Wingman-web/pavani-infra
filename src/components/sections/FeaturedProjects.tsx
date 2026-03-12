@@ -238,21 +238,21 @@ export default function FeaturedProjects() {
       className="absolute inset-0 overflow-hidden rounded-r-sm paper-texture"
       style={{
         backfaceVisibility: "hidden",
-        background: "linear-gradient(150deg, #191613 0%, #231F1B 50%, #151210 100%)",
+        background: "linear-gradient(150deg, #F1E4CF 0%, #E8D9BD 50%, #F1E4CF 100%)",
       }}
     >
-      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-surface-void/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-[#E8D9BD]/60 to-transparent pointer-events-none z-10" />
 
       {/* Page number — top right */}
       <div className="absolute top-6 right-6 lg:top-8 lg:right-10 z-10 flex items-baseline gap-1 select-none pointer-events-none">
         <span
-          className="pg-detail text-gold/40 text-lg lg:text-2xl font-bold tabular-nums"
+          className="pg-detail text-emerald/50 text-lg lg:text-2xl font-bold tabular-nums"
           style={{ fontFamily: "var(--font-display-custom)" }}
         >
           {String(idx + 1).padStart(2, "0")}
         </span>
         <span
-          className="pg-detail text-white/12 text-[10px] lg:text-xs"
+          className="pg-detail text-navy/20 text-[10px] lg:text-xs"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           / {String(total).padStart(2, "0")}
@@ -261,44 +261,44 @@ export default function FeaturedProjects() {
 
       <div className="absolute inset-0 p-8 lg:p-14 xl:p-16 flex flex-col justify-center" style={{ zIndex: 5 }}>
         <span
-          className="pg-detail inline-block text-gold/60 text-[10px] lg:text-xs tracking-[0.3em] uppercase mb-4 lg:mb-5 border border-gold/20 px-3 py-1 rounded-full w-fit"
+          className="pg-detail inline-block text-emerald/70 text-[10px] lg:text-xs tracking-[0.3em] uppercase mb-4 lg:mb-5 border border-emerald/20 px-3 py-1 rounded-full w-fit"
           style={{ fontFamily: "var(--font-mono-custom)" }}
         >
           {project.type}
         </span>
 
         <h3
-          className="pg-detail text-[1.75rem] lg:text-[2.75rem] xl:text-[3.25rem] font-bold text-white tracking-tight mb-4 lg:mb-5 leading-[1]"
+          className="pg-detail text-[1.75rem] lg:text-[2.75rem] xl:text-[3.25rem] font-bold text-navy tracking-tight mb-4 lg:mb-5 leading-[1]"
           style={{ fontFamily: "var(--font-display-custom)" }}
         >
           {project.name}
         </h3>
 
-        <div className="pg-detail w-12 lg:w-20 h-[1px] bg-gradient-to-r from-gold/60 to-transparent mb-5 lg:mb-6 origin-left" />
+        <div className="pg-detail w-12 lg:w-20 h-[1px] bg-gradient-to-r from-emerald/40 to-transparent mb-5 lg:mb-6 origin-left" />
 
-        <div className="pg-detail flex items-center gap-2 text-white/45 text-sm lg:text-[15px] mb-2">
-          <MapPin size={13} className="text-gold/50 shrink-0" />
+        <div className="pg-detail flex items-center gap-2 text-navy/50 text-sm lg:text-[15px] mb-2">
+          <MapPin size={13} className="text-emerald/50 shrink-0" />
           <span>{project.location}</span>
         </div>
 
-        <div className="pg-detail flex items-center gap-2 text-white/45 text-sm lg:text-[15px] mb-8 lg:mb-10">
-          <Maximize2 size={13} className="text-gold/50 shrink-0" />
+        <div className="pg-detail flex items-center gap-2 text-navy/50 text-sm lg:text-[15px] mb-8 lg:mb-10">
+          <Maximize2 size={13} className="text-emerald/50 shrink-0" />
           <span>{project.area}</span>
         </div>
 
         <a
           href={`/project/${project.slug}`}
-          className="pg-detail inline-flex items-center gap-2.5 group w-fit px-5 py-2.5 rounded-full border border-gold/20 hover:border-gold/50 hover:bg-gold/6 transition-all duration-300"
+          className="pg-detail inline-flex items-center gap-2.5 group w-fit px-5 py-2.5 rounded-full border border-emerald/20 hover:border-emerald/50 hover:bg-emerald/6 transition-all duration-300"
         >
           <span
-            className="text-gold text-xs lg:text-[13px] tracking-[0.15em] uppercase"
+            className="text-emerald text-xs lg:text-[13px] tracking-[0.15em] uppercase"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Explore Project
           </span>
           <ArrowRight
             size={14}
-            className="text-gold group-hover:translate-x-0.5 transition-transform duration-300"
+            className="text-emerald group-hover:translate-x-0.5 transition-transform duration-300"
           />
         </a>
       </div>
@@ -307,7 +307,7 @@ export default function FeaturedProjects() {
         className="pg-shadow absolute inset-0 pointer-events-none z-20 opacity-0"
         style={{
           background:
-            "linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)",
+            "linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 40%, transparent 100%)",
         }}
       />
     </div>
@@ -356,7 +356,7 @@ export default function FeaturedProjects() {
     <section
       ref={sectionRef}
       className="relative py-14 md:py-20 overflow-hidden"
-      style={{ background: "#F1E4CF" }}
+      style={{ background: "#FAFAFA" }}
     >
       {/* ─── Desktop section header ─── */}
       <div ref={desktopHeaderRef} className="hidden md:block text-center pb-4 lg:pb-6 z-30 relative">
@@ -580,28 +580,28 @@ export default function FeaturedProjects() {
                   <div className="absolute inset-0 bg-gold/2" />
                   <div className="absolute top-3 right-3">
                     <span
-                      className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-surface-void/40 backdrop-blur-sm"
+                      className="text-white/80 text-[11px] tracking-[0.2em] uppercase border border-white/20 px-2.5 py-1 rounded-full bg-navy/40 backdrop-blur-sm"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {project.type}
                     </span>
                   </div>
                 </div>
-                <div className="p-5" style={{ background: "rgba(25,22,19,0.94)" }}>
+                <div className="p-5 bg-white">
                   <h3
-                    className="text-xl font-bold text-white tracking-tight mb-2"
+                    className="text-xl font-bold text-navy tracking-tight mb-2"
                     style={{ fontFamily: "var(--font-display-custom)" }}
                   >
                     {project.name}
                   </h3>
                   <div className="w-10 h-[1px] bg-gold/30 mb-3" />
-                  <div className="flex items-center gap-4 text-white/40 text-[13px]">
+                  <div className="flex items-center gap-4 text-navy/40 text-[13px]">
                     <span className="flex items-center gap-1.5">
-                      <MapPin size={11} className="text-gold/40" />
+                      <MapPin size={11} className="text-emerald/50" />
                       {project.location}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Maximize2 size={11} className="text-gold/40" />
+                      <Maximize2 size={11} className="text-emerald/50" />
                       {project.area}
                     </span>
                   </div>

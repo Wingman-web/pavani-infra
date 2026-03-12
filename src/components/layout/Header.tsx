@@ -118,7 +118,7 @@ export default function Header() {
                 transformOrigin: "right center",
               }}
             >
-              <div className="absolute inset-0 bg-surface-primary">
+              <div className="absolute inset-0 bg-cream">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div
                     className="absolute inset-0"
@@ -128,8 +128,6 @@ export default function Header() {
                     }}
                   />
                 </div>
-                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold/4 blur-[120px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-[20%] left-[10%] w-[200px] h-[200px] bg-gold/3 blur-[100px] rounded-full pointer-events-none" />
               </div>
 
               <motion.button
@@ -137,12 +135,12 @@ export default function Header() {
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ delay: 0.3, duration: 0.4 }}
                 onClick={closeMenu}
-                className="absolute top-5 right-5 sm:top-6 sm:right-6 z-20 w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/10 hover:border-gold/40 hover:bg-gold/5 transition-all duration-300 group"
+                className="absolute top-5 right-5 sm:top-6 sm:right-6 z-20 w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-navy/10 hover:border-emerald/40 hover:bg-emerald/5 transition-all duration-300 group"
                 aria-label="Close menu"
               >
                 <X
                   size={18}
-                  className="text-white/60 group-hover:text-gold transition-colors duration-300"
+                  className="text-navy/50 group-hover:text-emerald transition-colors duration-300"
                 />
               </motion.button>
 
@@ -164,11 +162,11 @@ export default function Header() {
                       <a
                         href={link.href}
                         onClick={closeMenu}
-                        className="group relative flex items-center justify-between py-3 sm:py-4 border-b border-white/4 hover:border-gold/20 transition-all duration-500"
+                        className="group relative flex items-center justify-between py-3 sm:py-4 border-b border-navy/6 hover:border-emerald/20 transition-all duration-500"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
                           <span
-                            className="text-[10px] sm:text-xs text-white/20 group-hover:text-gold/50 tracking-widest transition-colors duration-300"
+                            className="text-[10px] sm:text-xs text-navy/25 group-hover:text-emerald/50 tracking-widest transition-colors duration-300"
                             style={{
                               fontFamily: "var(--font-mono-custom)",
                             }}
@@ -176,7 +174,7 @@ export default function Header() {
                             {String(i + 1).padStart(2, "0")}
                           </span>
                           <span
-                            className="text-xl sm:text-2xl md:text-3xl text-white/70 group-hover:text-white tracking-[0.05em] uppercase transition-all duration-500 group-hover:translate-x-2"
+                            className="text-xl sm:text-2xl md:text-3xl text-navy/70 group-hover:text-navy tracking-[0.05em] uppercase transition-all duration-500 group-hover:translate-x-2"
                             style={{
                               fontFamily: "var(--font-display-custom)",
                               transformStyle: "preserve-3d",
@@ -187,9 +185,9 @@ export default function Header() {
                         </div>
                         <ArrowUpRight
                           size={16}
-                          className="text-white/0 group-hover:text-gold opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all duration-400"
+                          className="text-navy/0 group-hover:text-emerald opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all duration-400"
                         />
-                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-gold/60 to-transparent group-hover:w-full transition-all duration-600" />
+                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-emerald/60 to-transparent group-hover:w-full transition-all duration-600" />
                       </a>
                     </motion.div>
                   ))}
@@ -202,12 +200,12 @@ export default function Header() {
                   transition={{ delay: 0.6, duration: 0.5 }}
                   className="space-y-5 sm:space-y-6"
                 >
-                  <div className="w-10 sm:w-12 h-px bg-gold/30" />
+                  <div className="w-10 sm:w-12 h-px bg-emerald/30" />
 
                   <div className="space-y-2.5 sm:space-y-3">
                     <a
                       href={`tel:${CONTACT_INFO.phone}`}
-                      className="flex items-center gap-2.5 sm:gap-3 text-gold/80 hover:text-gold transition-colors duration-300"
+                      className="flex items-center gap-2.5 sm:gap-3 text-emerald/80 hover:text-emerald transition-colors duration-300"
                     >
                       <Phone size={13} />
                       <span
@@ -219,7 +217,7 @@ export default function Header() {
                     </a>
                     <a
                       href={`mailto:${CONTACT_INFO.email}`}
-                      className="block text-white/40 hover:text-white/70 text-xs sm:text-sm tracking-wider transition-colors duration-300"
+                      className="block text-navy/40 hover:text-navy/70 text-xs sm:text-sm tracking-wider transition-colors duration-300"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {CONTACT_INFO.email}
@@ -245,11 +243,11 @@ export default function Header() {
                               stiffness: 300,
                               damping: 15,
                             }}
-                            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/8 bg-white/3 flex items-center justify-center text-white/40 hover:border-gold/40 hover:text-gold hover:bg-gold/8 hover:shadow-[0_0_20px_rgba(211,185,115,0.2)] transition-all duration-400 group"
+                            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-navy/10 bg-navy/4 flex items-center justify-center text-navy/40 hover:border-emerald/40 hover:text-emerald hover:bg-emerald/8 hover:shadow-[0_0_20px_rgba(151,8,30,0.15)] transition-all duration-400 group"
                             aria-label={name}
                           >
                             <Icon size={15} className="relative z-10" />
-                            <div className="absolute inset-0 rounded-full border border-gold/0 group-hover:border-gold/15 group-hover:scale-[1.6] group-hover:opacity-0 transition-all duration-600 pointer-events-none" />
+                            <div className="absolute inset-0 rounded-full border border-emerald/0 group-hover:border-emerald/15 group-hover:scale-[1.6] group-hover:opacity-0 transition-all duration-600 pointer-events-none" />
                           </motion.a>
                         );
                       }
@@ -263,7 +261,7 @@ export default function Header() {
                 animate={{ scaleY: 1 }}
                 exit={{ scaleY: 0 }}
                 transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-                className="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-transparent via-gold/30 to-transparent origin-top"
+                className="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-transparent via-emerald/20 to-transparent origin-top"
               />
             </motion.div>
           </>

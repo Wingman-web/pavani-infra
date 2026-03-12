@@ -106,7 +106,7 @@ export default function Footer() {
 
       /* ── Office dots pulse ── */
       gsap.to(".footer-office-dot", {
-        boxShadow: "0 0 10px rgba(211,185,115,0.6)",
+        boxShadow: "0 0 10px rgba(151,8,30,0.4)",
         duration: 1.5,
         repeat: -1,
         yoyo: true,
@@ -138,17 +138,10 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #151210 0%, #191613 50%, #100E0C 100%)",
-      }}
+      className="relative overflow-hidden bg-cream"
     >
       {/* Top accent line */}
-      <div className="footer-divider absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent origin-center" />
-
-      {/* Subtle warm glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="footer-divider absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald/20 to-transparent origin-center" />
 
       {/* ═══ Main Content ═══ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-14">
@@ -164,23 +157,23 @@ export default function Footer() {
                 className="h-12 sm:h-14 md:h-16 w-auto"
               />
             </a>
-            <p className="text-white/50 text-sm leading-relaxed max-w-[280px] mt-3">
+            <p className="text-navy/50 text-sm leading-relaxed max-w-[280px] mt-3">
               Premier Real Estate Developers crafting quality spaces since 1995.
             </p>
             {/* Contact row */}
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-2 text-white/50 text-sm hover:text-gold transition-colors group"
+                className="flex items-center gap-2 text-navy/50 text-sm hover:text-emerald transition-colors group"
               >
-                <Phone size={12} className="text-gold/50 group-hover:text-gold transition-colors" />
+                <Phone size={12} className="text-emerald/50 group-hover:text-emerald transition-colors" />
                 {CONTACT_INFO.phone}
               </a>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-2 text-white/50 text-sm hover:text-gold transition-colors group"
+                className="flex items-center gap-2 text-navy/50 text-sm hover:text-emerald transition-colors group"
               >
-                <Mail size={12} className="text-gold/50 group-hover:text-gold transition-colors" />
+                <Mail size={12} className="text-emerald/50 group-hover:text-emerald transition-colors" />
                 {CONTACT_INFO.email}
               </a>
             </div>
@@ -189,7 +182,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="md:col-span-2 md:col-start-6">
             <h4
-              className="text-gold/70 text-xs tracking-[0.25em] uppercase mb-4"
+              className="text-gold-dark text-xs tracking-[0.25em] uppercase mb-4"
               style={{ fontFamily: "var(--font-mono-custom)" }}
             >
               Quick Links
@@ -199,7 +192,7 @@ export default function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-white/50 text-sm hover:text-gold hover:pl-1 transition-all duration-300 block"
+                  className="text-navy/50 text-sm hover:text-emerald hover:pl-1 transition-all duration-300 block"
                 >
                   {link.label}
                 </a>
@@ -212,7 +205,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <MapPin size={13} className="text-emerald" />
               <h4
-                className="text-gold/70 text-xs tracking-[0.25em] uppercase"
+                className="text-gold-dark text-xs tracking-[0.25em] uppercase"
                 style={{ fontFamily: "var(--font-mono-custom)" }}
               >
                 Our Offices
@@ -223,24 +216,24 @@ export default function Footer() {
               <div className="relative pl-4 border-l border-emerald/30">
                 <div className="footer-office-dot absolute top-1.5 -left-[3px] w-1.5 h-1.5 rounded-full bg-emerald" />
                 <p
-                  className="text-gold/60 text-[11px] tracking-[0.2em] uppercase mb-1"
+                  className="text-gold-dark text-[11px] tracking-[0.2em] uppercase mb-1"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Hyderabad
                 </p>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-navy/50 text-sm leading-relaxed">
                   {CONTACT_INFO.offices.hyderabad}
                 </p>
               </div>
               <div className="relative pl-4 border-l border-emerald/30">
                 <div className="footer-office-dot absolute top-1.5 -left-[3px] w-1.5 h-1.5 rounded-full bg-emerald" />
                 <p
-                  className="text-gold/60 text-[11px] tracking-[0.2em] uppercase mb-1"
+                  className="text-gold-dark text-[11px] tracking-[0.2em] uppercase mb-1"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Bangalore
                 </p>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-navy/50 text-sm leading-relaxed">
                   {CONTACT_INFO.offices.bangalore}
                 </p>
               </div>
@@ -249,7 +242,7 @@ export default function Footer() {
         </div>
 
         {/* ── Divider ── */}
-        <div className="footer-divider h-px bg-gradient-to-r from-transparent via-white/6 to-transparent origin-center" />
+        <div className="footer-divider h-px bg-gradient-to-r from-transparent via-navy/10 to-transparent origin-center" />
 
         {/* ── Row 2: Social + Legal links in one line ── */}
         <div className="footer-bottom-bar py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -263,7 +256,7 @@ export default function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer-social-icon w-8 h-8 rounded-full border border-white/8 bg-white/2 flex items-center justify-center text-white/35 hover:border-gold/40 hover:text-gold hover:bg-gold/6 transition-all duration-300"
+                  className="footer-social-icon w-8 h-8 rounded-full border border-navy/10 bg-navy/4 flex items-center justify-center text-navy/40 hover:border-emerald/40 hover:text-emerald hover:bg-emerald/8 transition-all duration-300"
                   aria-label={key}
                 >
                   <Icon size={13} className="relative z-10" />
@@ -273,25 +266,25 @@ export default function Footer() {
           </div>
 
           {/* Legal links */}
-          <div className="flex items-center gap-4 text-white/40 text-xs tracking-wider">
-            <a href="/privacypolicy" className="hover:text-gold transition-colors duration-300">
+          <div className="flex items-center gap-4 text-navy/40 text-xs tracking-wider">
+            <a href="/privacypolicy" className="hover:text-emerald transition-colors duration-300">
               Privacy Policy
             </a>
-            <span className="text-white/10">|</span>
-            <a href="/Terms" className="hover:text-gold transition-colors duration-300">
+            <span className="text-navy/15">|</span>
+            <a href="/Terms" className="hover:text-emerald transition-colors duration-300">
               Terms
             </a>
           </div>
         </div>
 
         {/* ── Row 3: Copyright ── */}
-        <div className="footer-bottom py-5 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-white/30 text-xs text-center sm:text-left tracking-wider">
+        <div className="footer-bottom py-5 border-t border-navy/8 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-navy/30 text-xs text-center sm:text-left tracking-wider">
             &copy; {new Date().getFullYear()} SAI SRAVANTHI INFRA PROJECTS
             PRIVATE LIMITED. All Rights Reserved.
           </p>
           <p
-            className="text-white/20 text-xs tracking-wider"
+            className="text-navy/20 text-xs tracking-wider"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Designed & Developed by Lokesh Bavandla

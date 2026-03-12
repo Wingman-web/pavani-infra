@@ -107,17 +107,10 @@ export default function ContactForm() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #191613 0%, #231F1B 50%, #151210 100%)",
-      }}
+      className="relative py-16 md:py-24 overflow-hidden bg-cream-dark"
     >
-      {/* Top gold accent line */}
-      <div className="cta-top-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent origin-center" />
-
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/3 left-1/4 w-[350px] h-[250px] bg-gold/5 blur-[140px] rounded-full pointer-events-none" />
+      {/* Top accent line */}
+      <div className="cta-top-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald/20 to-transparent origin-center" />
 
       {/* ═══ Content ═══ */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
@@ -126,25 +119,25 @@ export default function ContactForm() {
           {/* ── LEFT: CTA Content ── */}
           <div className="cta-left lg:pt-4">
             <span
-              className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4"
+              className="text-gold-dark text-sm tracking-[0.3em] uppercase block mb-4"
               style={{ fontFamily: "var(--font-mono-custom)" }}
             >
               The Next Step
             </span>
 
             <h2
-              className="text-3xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight mb-6 leading-[1.1]"
+              className="text-3xl md:text-5xl lg:text-5xl font-bold text-navy tracking-tight mb-6 leading-[1.1]"
               style={{ fontFamily: "var(--font-display-custom)" }}
             >
               Begin Your
               <br />
-              <span className="text-gold">Dream Together</span>
+              <span className="text-emerald">Dream Together</span>
             </h2>
 
-            <div className="w-16 h-[1px] bg-gold/40 mb-7" />
+            <div className="w-16 h-[1px] bg-emerald/30 mb-7" />
 
             <p
-              className="text-white/50 text-base md:text-lg leading-relaxed mb-10 max-w-sm"
+              className="text-navy/60 text-base md:text-lg leading-relaxed mb-10 max-w-sm"
               style={{ fontFamily: "var(--font-body)" }}
             >
               A home is more than walls — it&apos;s the foundation for
@@ -155,16 +148,16 @@ export default function ContactForm() {
             <div className="space-y-4">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-3 text-white/50 text-sm hover:text-gold transition-colors duration-300 group"
+                className="flex items-center gap-3 text-navy/50 text-sm hover:text-emerald transition-colors duration-300 group"
               >
-                <Phone size={15} className="text-gold/50 group-hover:text-gold transition-colors" />
+                <Phone size={15} className="text-emerald/50 group-hover:text-emerald transition-colors" />
                 {CONTACT_INFO.phone}
               </a>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-3 text-white/50 text-sm hover:text-gold transition-colors duration-300 group"
+                className="flex items-center gap-3 text-navy/50 text-sm hover:text-emerald transition-colors duration-300 group"
               >
-                <Mail size={15} className="text-gold/50 group-hover:text-gold transition-colors" />
+                <Mail size={15} className="text-emerald/50 group-hover:text-emerald transition-colors" />
                 {CONTACT_INFO.email}
               </a>
             </div>
@@ -174,19 +167,19 @@ export default function ContactForm() {
           <div className="cta-right">
             {/* Form heading */}
             <h3
-              className="text-white font-semibold text-lg md:text-xl tracking-wide mb-2"
+              className="text-navy font-semibold text-lg md:text-xl tracking-wide mb-2"
               style={{ fontFamily: "var(--font-display-custom)" }}
             >
               Send Us A Message
             </h3>
-            <div className="form-accent-line w-14 h-[1px] bg-gradient-to-r from-gold/50 to-transparent mb-8 origin-left" />
+            <div className="form-accent-line w-14 h-[1px] bg-gradient-to-r from-emerald/50 to-transparent mb-8 origin-left" />
 
             <form onSubmit={handleSubmit}>
               {/* Row 1: Full Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-7">
                 <div>
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-navy/40 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Full Name
@@ -194,7 +187,7 @@ export default function ContactForm() {
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/30 outline-none focus:border-emerald/50 transition-colors duration-500"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -204,7 +197,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-navy/40 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Email
@@ -212,7 +205,7 @@ export default function ContactForm() {
                   <input
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/30 outline-none focus:border-emerald/50 transition-colors duration-500"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -226,7 +219,7 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-9">
                 <div>
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-navy/40 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Phone
@@ -234,7 +227,7 @@ export default function ContactForm() {
                   <input
                     type="tel"
                     placeholder="+91 98765 43210"
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/30 outline-none focus:border-emerald/50 transition-colors duration-500"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -244,20 +237,20 @@ export default function ContactForm() {
                 </div>
                 <div className="relative">
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-navy/40 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Preferred City
                   </label>
                   <select
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base outline-none appearance-none pr-8 cursor-pointer focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base outline-none appearance-none pr-8 cursor-pointer focus:border-emerald/50 transition-colors duration-500"
                     value={formData.city}
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
                     }
                     required
                   >
-                    <option value="" disabled className="bg-surface-primary">
+                    <option value="" disabled className="bg-cream-dark">
                       Select City
                     </option>
                     {["Hyderabad", "Bangalore", "Chennai", "Vijayawada", "Nellore"].map(
@@ -265,7 +258,7 @@ export default function ContactForm() {
                         <option
                           key={city}
                           value={city}
-                          className="bg-surface-primary text-white"
+                          className="bg-cream-dark text-navy"
                         >
                           {city}
                         </option>
@@ -274,7 +267,7 @@ export default function ContactForm() {
                   </select>
                   <ChevronDown
                     size={14}
-                    className="absolute right-0 bottom-3 text-white/20 pointer-events-none"
+                    className="absolute right-0 bottom-3 text-navy/30 pointer-events-none"
                   />
                 </div>
               </div>
@@ -282,7 +275,7 @@ export default function ContactForm() {
               {/* Message */}
               <div className="mb-9">
                 <label
-                  className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                  className="text-navy/40 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Message
@@ -290,7 +283,7 @@ export default function ContactForm() {
                 <textarea
                   rows={3}
                   placeholder="Tell us about your requirements..."
-                  className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500 resize-none"
+                  className="w-full bg-transparent border-b border-navy/15 pb-3 text-navy text-base placeholder:text-navy/30 outline-none focus:border-emerald/50 transition-colors duration-500 resize-none"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -301,7 +294,7 @@ export default function ContactForm() {
               {/* Submit */}
               <button
                 type="submit"
-                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 border border-emerald/40 text-white text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:bg-emerald hover:text-white hover:border-emerald hover:shadow-[0_0_30px_rgba(151,8,30,0.25)]"
+                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 border border-emerald/40 text-navy text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:bg-emerald hover:text-white hover:border-emerald hover:shadow-[0_0_30px_rgba(151,8,30,0.25)]"
                 style={{ fontFamily: "var(--font-mono-custom)" }}
               >
                 <span className="relative z-10 flex items-center gap-2.5">

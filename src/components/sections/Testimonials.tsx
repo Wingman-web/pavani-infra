@@ -196,8 +196,6 @@ export default function Testimonials() {
         <div className="testi-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald/20 to-transparent origin-center" />
         <div className="testi-line absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald/20 to-transparent origin-center" />
 
-        {/* Ambient gold glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold/3 blur-[160px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           {/* ── Header ── */}

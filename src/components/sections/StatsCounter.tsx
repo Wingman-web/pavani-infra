@@ -145,14 +145,6 @@ export default function StatsCounter() {
       ref={sectionRef}
       className="relative py-14 md:py-20 overflow-hidden bg-cream-dark"
     >
-      {/* Ambient effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/6 blur-[150px] rounded-full" />
-        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/3 blur-[120px] rounded-full" />
-      </div>
-
-      {/* Decorative vertical line running through the center */}
-      <div className="absolute top-0 left-1/2 -translate-x-px w-px h-full bg-gradient-to-b from-transparent via-emerald/8 to-transparent pointer-events-none hidden lg:block" />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}

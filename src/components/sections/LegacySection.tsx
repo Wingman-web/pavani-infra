@@ -113,17 +113,8 @@ export default function LegacySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 md:py-20 overflow-hidden bg-cream"
+      className="relative py-14 md:py-20 overflow-hidden bg-cream-dark"
     >
-      {/* Ambient background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/6 blur-[150px] rounded-full" />
-        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/3 blur-[120px] rounded-full" />
-      </div>
-
-      {/* Subtle side accents */}
-      <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-emerald/8 to-transparent pointer-events-none" />
-      <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-emerald/8 to-transparent pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 text-center relative">
         {/* Top decorative line */}
