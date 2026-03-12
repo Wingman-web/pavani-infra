@@ -130,7 +130,7 @@ function MobileLayout() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-cream py-14 px-5">
+    <section ref={sectionRef} className="relative overflow-hidden bg-cream pt-14 pb-6 px-5">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-full h-full opacity-[0.12]">
           <Image src="/images/india-topographic-map.png" alt="" fill className="object-contain object-center" sizes="100vw" />
@@ -359,7 +359,7 @@ function DesktopLayout() {
   }, [computeLayout, applyPositions]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-cream py-16 md:py-24">
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-cream pt-16 pb-8 md:pt-24 md:pb-12">
       {/* Background map */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-full h-full max-w-5xl mx-auto opacity-[0.18]">
