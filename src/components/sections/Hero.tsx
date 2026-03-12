@@ -83,7 +83,14 @@ export default function Hero() {
           transformOrigin: "center top",
         }}
       >
-        <div className="absolute inset-0 bg-surface-primary" />
+        {/* Rich gold background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(160deg, #D3B973 0%, #B89D56 40%, #A08A45 70%, #8B7738 100%)",
+          }}
+        />
+
 
         <div className="absolute inset-0 flex items-center justify-center pt-6 pb-8 md:pt-8 md:pb-10 px-6 md:px-12 lg:px-20">
           <div
@@ -104,61 +111,42 @@ export default function Hero() {
             >
               <source src={VIDEO_URL} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-surface-primary/30 via-transparent to-surface-primary/50 pointer-events-none" />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at center, transparent 40%, rgba(5,5,5,0.55) 100%)",
-              }}
-            />
             <div
               className="hero-frame-glow absolute inset-[5px] pointer-events-none opacity-0"
               style={{
                 borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
-                border: "1px solid rgba(223,192,99,0.2)",
-                boxShadow:
-                  "inset 0 0 80px rgba(5,5,5,0.4), 0 0 40px rgba(223,192,99,0.04)",
+                border: "1px solid rgba(255,255,255,0.25)",
               }}
             />
-            <div className="hero-frame-ornament absolute bottom-5 left-5 w-8 h-8 border-b border-l border-gold/25 opacity-0" />
-            <div className="hero-frame-ornament absolute bottom-5 right-5 w-8 h-8 border-b border-r border-gold/25 opacity-0" />
-            <div className="hero-frame-ornament absolute top-[40%] left-5 w-5 h-10 border-l border-gold/15 opacity-0" />
-            <div className="hero-frame-ornament absolute top-[40%] right-5 w-5 h-10 border-r border-gold/15 opacity-0" />
+            <div className="hero-frame-ornament absolute bottom-5 left-5 w-8 h-8 border-b border-l border-white/30 opacity-0" />
+            <div className="hero-frame-ornament absolute bottom-5 right-5 w-8 h-8 border-b border-r border-white/30 opacity-0" />
+            <div className="hero-frame-ornament absolute top-[40%] left-5 w-5 h-10 border-l border-white/20 opacity-0" />
+            <div className="hero-frame-ornament absolute top-[40%] right-5 w-5 h-10 border-r border-white/20 opacity-0" />
           </div>
         </div>
 
-        <div
-          className="hero-frame-glow absolute inset-0 pointer-events-none opacity-0"
-          style={{
-            margin: "24px 24px 40px 24px",
-            borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
-            boxShadow:
-              "0 0 60px rgba(223,192,99,0.06), 0 0 120px rgba(223,192,99,0.03)",
-          }}
-        />
 
-        <div className="absolute inset-0 z-[3] pointer-events-none opacity-[0.015]">
-          <div className="absolute top-0 left-[25%] w-px h-full bg-gold" />
-          <div className="absolute top-0 left-[50%] w-px h-full bg-gold" />
-          <div className="absolute top-0 left-[75%] w-px h-full bg-gold" />
+        <div className="absolute inset-0 z-[3] pointer-events-none opacity-[0.04]">
+          <div className="absolute top-0 left-[25%] w-px h-full bg-white" />
+          <div className="absolute top-0 left-[50%] w-px h-full bg-white" />
+          <div className="absolute top-0 left-[75%] w-px h-full bg-white" />
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator with crimson accent */}
         <div className="hero-scroll-indicator absolute bottom-3 sm:bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center opacity-0">
           <span
-            className="hero-scroll-text text-white/25 text-[9px] tracking-[0.4em] uppercase mb-4"
+            className="hero-scroll-text text-navy/40 text-[9px] tracking-[0.4em] uppercase mb-4"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Scroll
           </span>
           <div className="relative flex items-center justify-center w-14 h-14">
             <div
-              className="hero-pulse-ring absolute inset-0 rounded-full border border-gold/20"
+              className="hero-pulse-ring absolute inset-0 rounded-full border border-emerald/25"
               style={{ animation: "hero-ring-pulse 2.5s ease-out infinite" }}
             />
             <div
-              className="hero-pulse-ring absolute inset-1 rounded-full border border-gold/10"
+              className="hero-pulse-ring absolute inset-1 rounded-full border border-emerald/15"
               style={{
                 animation: "hero-ring-pulse 2.5s ease-out 0.8s infinite",
               }}
@@ -167,7 +155,7 @@ export default function Hero() {
               <svg width="24" height="14" viewBox="0 0 24 14" fill="none">
                 <path
                   d="M2 2L12 12L22 2"
-                  stroke="rgba(223,192,99,0.85)"
+                  stroke="rgba(151,8,30,0.85)"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -178,8 +166,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Subtle gold line at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent z-20" />
+      {/* Crimson accent line at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald/40 to-transparent z-20" />
     </section>
   );
 }

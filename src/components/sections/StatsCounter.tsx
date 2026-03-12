@@ -143,36 +143,35 @@ export default function StatsCounter() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 md:py-20 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0B1C2B 0%, #0D2536 50%, #0B1C2B 100%)" }}
+      className="relative py-14 md:py-20 overflow-hidden bg-cream-dark"
     >
       {/* Ambient effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/[0.02] blur-[150px] rounded-full" />
-        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/[0.02] blur-[120px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/6 blur-[150px] rounded-full" />
+        <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-emerald/3 blur-[120px] rounded-full" />
       </div>
 
       {/* Decorative vertical line running through the center */}
-      <div className="absolute top-0 left-1/2 -translate-x-px w-px h-full bg-gradient-to-b from-transparent via-gold/[0.06] to-transparent pointer-events-none hidden lg:block" />
+      <div className="absolute top-0 left-1/2 -translate-x-px w-px h-full bg-gradient-to-b from-transparent via-emerald/8 to-transparent pointer-events-none hidden lg:block" />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="stats-header text-center mb-10 md:mb-14">
           <span
-            className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4"
+            className="text-emerald/70 text-sm tracking-[0.3em] uppercase block mb-4"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Our Achievements
           </span>
           <h2
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-navy tracking-tight mb-6"
             style={{ fontFamily: "var(--font-display-custom)" }}
           >
             Numbers That Speak
             <br />
-            <span className="text-gold">For Themselves</span>
+            <span className="text-emerald">For Themselves</span>
           </h2>
-          <div className="w-20 h-px bg-gold/40 mx-auto" />
+          <div className="w-20 h-px bg-emerald/40 mx-auto" />
         </div>
 
         {/* Stats — vertical stacked, alternating left/right alignment */}
@@ -188,7 +187,7 @@ export default function StatsCounter() {
                   }`}
                 >
                   <span
-                    className="stat-ghost-num text-[100px] sm:text-[140px] md:text-[180px] lg:text-[220px] font-bold text-white/[0.025] leading-none"
+                    className="stat-ghost-num text-[100px] sm:text-[140px] md:text-[180px] lg:text-[220px] font-bold text-navy/4 leading-none"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     0{stat.suffix}
@@ -205,22 +204,22 @@ export default function StatsCounter() {
                 >
                   {/* Number */}
                   <span
-                    className="stat-number text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-none tracking-tight"
+                    className="stat-number text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-navy leading-none tracking-tight"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     0{stat.suffix}
                   </span>
 
-                  {/* Gold expanding line */}
+                  {/* Crimson expanding line */}
                   <div
-                    className={`stat-gold-line w-16 sm:w-24 md:w-40 lg:w-56 h-[2px] bg-gradient-to-r from-gold via-gold/80 to-gold/30 mt-4 mb-3 ${
+                    className={`stat-gold-line w-16 sm:w-24 md:w-40 lg:w-56 h-[2px] bg-gradient-to-r from-emerald via-emerald/80 to-emerald/30 mt-4 mb-3 ${
                       isLeft ? "origin-left" : "origin-right"
                     }`}
                   />
 
                   {/* Label */}
                   <p
-                    className="text-white/30 text-xs sm:text-sm tracking-[0.25em] uppercase"
+                    className="text-navy/40 text-xs sm:text-sm tracking-[0.25em] uppercase"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     {stat.label}

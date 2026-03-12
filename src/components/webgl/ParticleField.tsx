@@ -66,7 +66,7 @@ function GoldParticles({ count = 3000 }: { count?: number }) {
     <points ref={points} geometry={geometry}>
       <pointsMaterial
         size={0.025}
-        color="#DFC063"
+        color="#D3B973"
         transparent
         opacity={0.5}
         sizeAttenuation
@@ -92,7 +92,7 @@ function FloatingDiamond() {
     <mesh ref={meshRef}>
       <octahedronGeometry args={[0.8, 0]} />
       <meshBasicMaterial
-        color="#DFC063"
+        color="#D3B973"
         wireframe
         transparent
         opacity={0.12}

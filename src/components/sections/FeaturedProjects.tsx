@@ -238,10 +238,10 @@ export default function FeaturedProjects() {
       className="absolute inset-0 overflow-hidden rounded-r-sm paper-texture"
       style={{
         backfaceVisibility: "hidden",
-        background: "linear-gradient(150deg, #0E1924 0%, #101F2D 50%, #0A1620 100%)",
+        background: "linear-gradient(150deg, #191613 0%, #231F1B 50%, #151210 100%)",
       }}
     >
-      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-[#0A1620]/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-surface-void/60 to-transparent pointer-events-none z-10" />
 
       {/* Page number — top right */}
       <div className="absolute top-6 right-6 lg:top-8 lg:right-10 z-10 flex items-baseline gap-1 select-none pointer-events-none">
@@ -288,7 +288,7 @@ export default function FeaturedProjects() {
 
         <a
           href={`/project/${project.slug}`}
-          className="pg-detail inline-flex items-center gap-2.5 group w-fit px-5 py-2.5 rounded-full border border-gold/20 hover:border-gold/50 hover:bg-gold/[0.06] transition-all duration-300"
+          className="pg-detail inline-flex items-center gap-2.5 group w-fit px-5 py-2.5 rounded-full border border-gold/20 hover:border-gold/50 hover:bg-gold/6 transition-all duration-300"
         >
           <span
             className="text-gold text-xs lg:text-[13px] tracking-[0.15em] uppercase"
@@ -325,9 +325,9 @@ export default function FeaturedProjects() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${nextProject.image})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/25 via-transparent to-[#0A1620]/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/60 via-transparent to-[#0A1620]/25" />
-      <div className="absolute inset-0 bg-gold/[0.02]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-surface-void/25 via-transparent to-surface-void/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-surface-void/60 via-transparent to-surface-void/25" />
+      <div className="absolute inset-0 bg-gold/2" />
 
       <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2">
         <div className="w-8 h-[1px] bg-gold/30" />
@@ -348,7 +348,7 @@ export default function FeaturedProjects() {
         </h4>
       </div>
 
-      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-[#0A1620]/50 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-surface-void/50 to-transparent pointer-events-none" />
     </div>
   );
 
@@ -356,7 +356,7 @@ export default function FeaturedProjects() {
     <section
       ref={sectionRef}
       className="relative py-14 md:py-20 overflow-hidden"
-      style={{ background: "#EBDEC9" }}
+      style={{ background: "#F1E4CF" }}
     >
       {/* ─── Desktop section header ─── */}
       <div ref={desktopHeaderRef} className="hidden md:block text-center pb-4 lg:pb-6 z-30 relative">
@@ -386,7 +386,7 @@ export default function FeaturedProjects() {
           className={`fp-side-nav absolute left-3 lg:left-6 xl:left-10 top-1/2 -translate-y-1/2 z-40 flex items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full border-2 transition-all duration-400 ${
             currentPage <= 0
               ? "border-navy/10 text-navy/15 cursor-not-allowed"
-              : "border-gold-contrast/40 text-gold-contrast/60 hover:border-gold-contrast hover:text-gold-contrast hover:bg-gold-contrast/10 hover:shadow-[0_0_20px_rgba(122,91,21,0.15)] cursor-pointer"
+              : "border-gold-contrast/40 text-gold-contrast/60 hover:border-gold-contrast hover:text-gold-contrast hover:bg-gold-contrast/10 hover:shadow-[0_0_20px_rgba(139,109,42,0.15)] cursor-pointer"
           }`}
           aria-label="Previous project"
         >
@@ -400,7 +400,7 @@ export default function FeaturedProjects() {
           className={`fp-side-nav absolute right-3 lg:right-6 xl:right-10 top-1/2 -translate-y-1/2 z-40 flex items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full border-2 transition-all duration-400 ${
             currentPage >= total - 1
               ? "border-navy/10 text-navy/15 cursor-not-allowed"
-              : "border-gold-contrast/40 text-gold-contrast/60 hover:border-gold-contrast hover:text-gold-contrast hover:bg-gold-contrast/10 hover:shadow-[0_0_20px_rgba(122,91,21,0.15)] cursor-pointer"
+              : "border-gold-contrast/40 text-gold-contrast/60 hover:border-gold-contrast hover:text-gold-contrast hover:bg-gold-contrast/10 hover:shadow-[0_0_20px_rgba(139,109,42,0.15)] cursor-pointer"
           }`}
           aria-label="Next project"
         >
@@ -427,9 +427,9 @@ export default function FeaturedProjects() {
               style={{
                 zIndex: 200,
                 background:
-                  "linear-gradient(to bottom, transparent 3%, rgba(223, 192, 99,0.35) 15%, rgba(223, 192, 99,0.35) 85%, transparent 97%)",
+                  "linear-gradient(to bottom, transparent 3%, rgba(211, 185, 115,0.35) 15%, rgba(211, 185, 115,0.35) 85%, transparent 97%)",
                 boxShadow:
-                  "0 0 20px rgba(223, 192, 99,0.15), 0 0 50px rgba(223, 192, 99,0.05)",
+                  "0 0 20px rgba(211, 185, 115,0.15), 0 0 50px rgba(211, 185, 115,0.05)",
               }}
             />
 
@@ -441,7 +441,7 @@ export default function FeaturedProjects() {
                   className="absolute left-0 right-0 h-[1px]"
                   style={{
                     bottom: i,
-                    background: `rgba(223, 192, 99,${0.04 - i * 0.004})`,
+                    background: `rgba(211, 185, 115,${0.04 - i * 0.004})`,
                   }}
                 />
               ))}
@@ -462,8 +462,8 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/30 via-transparent to-[#0A1620]/60" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/60 via-transparent to-[#0A1620]/30" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-surface-void/30 via-transparent to-surface-void/60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface-void/60 via-transparent to-surface-void/30" />
 
                   {/* Project name & type on left image */}
                   <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2 z-10">
@@ -485,7 +485,7 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
               ))}
-              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-[#0A1620]/60 to-transparent pointer-events-none z-10" />
+              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-surface-void/60 to-transparent pointer-events-none z-10" />
             </div>
 
             {/* ── PROJECT PAGES ── */}
@@ -509,7 +509,7 @@ export default function FeaturedProjects() {
 
             {/* ── Book outer frame ── */}
             <div
-              className="absolute inset-0 border border-gold/[0.06] rounded-sm pointer-events-none"
+              className="absolute inset-0 border border-gold/6 rounded-sm pointer-events-none"
               style={{ zIndex: 201 }}
             />
           </div>
@@ -576,18 +576,18 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/80 via-[#0A1620]/30 to-transparent" />
-                  <div className="absolute inset-0 bg-gold/[0.02]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface-void/80 via-surface-void/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gold/2" />
                   <div className="absolute top-3 right-3">
                     <span
-                      className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-[#0A1620]/40 backdrop-blur-sm"
+                      className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-surface-void/40 backdrop-blur-sm"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {project.type}
                     </span>
                   </div>
                 </div>
-                <div className="p-5" style={{ background: "rgba(10,22,32,0.92)" }}>
+                <div className="p-5" style={{ background: "rgba(25,22,19,0.94)" }}>
                   <h3
                     className="text-xl font-bold text-white tracking-tight mb-2"
                     style={{ fontFamily: "var(--font-display-custom)" }}

@@ -110,14 +110,14 @@ export default function ContactForm() {
       className="relative py-16 md:py-24 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #0F1923 0%, #111D2B 50%, #0D1720 100%)",
+          "linear-gradient(180deg, #191613 0%, #231F1B 50%, #151210 100%)",
       }}
     >
       {/* Top gold accent line */}
       <div className="cta-top-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent origin-center" />
 
       {/* Subtle ambient glow */}
-      <div className="absolute top-1/3 left-1/4 w-[350px] h-[250px] bg-gold/[0.02] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[350px] h-[250px] bg-gold/5 blur-[140px] rounded-full pointer-events-none" />
 
       {/* ═══ Content ═══ */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
@@ -301,7 +301,7 @@ export default function ContactForm() {
               {/* Submit */}
               <button
                 type="submit"
-                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 border border-gold/30 text-gold text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:bg-gold hover:text-surface-primary hover:border-gold hover:shadow-[0_0_30px_rgba(223,192,99,0.15)]"
+                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 border border-emerald/40 text-white text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:bg-emerald hover:text-white hover:border-emerald hover:shadow-[0_0_30px_rgba(151,8,30,0.25)]"
                 style={{ fontFamily: "var(--font-mono-custom)" }}
               >
                 <span className="relative z-10 flex items-center gap-2.5">

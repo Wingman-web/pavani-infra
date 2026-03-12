@@ -139,11 +139,11 @@ export default function BlogInsights() {
           {BLOGS.slice(0, 3).map((blog) => (
             <div key={blog.slug} className="relative">
               {/* Landing shadow */}
-              <div className="blog-card-shadow absolute -bottom-2 left-4 right-4 h-6 bg-gold/[0.04] blur-[12px] rounded-full opacity-0" />
+              <div className="blog-card-shadow absolute -bottom-2 left-4 right-4 h-6 bg-gold/4 blur-md rounded-full opacity-0" />
 
               <a
                 href={`/blogs/${blog.slug}`}
-                className="blog-card group block rounded-lg overflow-hidden border border-[#0D1A26]/10 bg-white/60 hover:border-gold/40 transition-all duration-500 relative"
+                className="blog-card group block rounded-lg overflow-hidden border border-navy/10 bg-white/60 hover:border-gold/40 transition-all duration-500 relative"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {/* Image area */}
@@ -154,8 +154,8 @@ export default function BlogInsights() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1A26]/60 via-[#0D1A26]/15 to-transparent" />
-                  <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.08] transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/15 to-transparent" />
+                  <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/8 transition-colors duration-500" />
 
                   {/* Hover arrow */}
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">

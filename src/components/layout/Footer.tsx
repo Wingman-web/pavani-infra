@@ -106,7 +106,7 @@ export default function Footer() {
 
       /* ── Office dots pulse ── */
       gsap.to(".footer-office-dot", {
-        boxShadow: "0 0 10px rgba(42,107,90,0.6)",
+        boxShadow: "0 0 10px rgba(211,185,115,0.6)",
         duration: 1.5,
         repeat: -1,
         yoyo: true,
@@ -141,14 +141,14 @@ export default function Footer() {
       className="relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #0A141E 0%, #0C1820 50%, #080F18 100%)",
+          "linear-gradient(180deg, #151210 0%, #191613 50%, #100E0C 100%)",
       }}
     >
       {/* Top accent line */}
       <div className="footer-divider absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent origin-center" />
 
       {/* Subtle warm glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px] bg-gold/[0.02] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
 
       {/* ═══ Main Content ═══ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-14">
@@ -249,7 +249,7 @@ export default function Footer() {
         </div>
 
         {/* ── Divider ── */}
-        <div className="footer-divider h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent origin-center" />
+        <div className="footer-divider h-px bg-gradient-to-r from-transparent via-white/6 to-transparent origin-center" />
 
         {/* ── Row 2: Social + Legal links in one line ── */}
         <div className="footer-bottom-bar py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -263,7 +263,7 @@ export default function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer-social-icon w-8 h-8 rounded-full border border-white/[0.08] bg-white/[0.02] flex items-center justify-center text-white/35 hover:border-gold/40 hover:text-gold hover:bg-gold/[0.06] transition-all duration-300"
+                  className="footer-social-icon w-8 h-8 rounded-full border border-white/8 bg-white/2 flex items-center justify-center text-white/35 hover:border-gold/40 hover:text-gold hover:bg-gold/6 transition-all duration-300"
                   aria-label={key}
                 >
                   <Icon size={13} className="relative z-10" />
@@ -285,7 +285,7 @@ export default function Footer() {
         </div>
 
         {/* ── Row 3: Copyright ── */}
-        <div className="footer-bottom py-5 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="footer-bottom py-5 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-white/30 text-xs text-center sm:text-left tracking-wider">
             &copy; {new Date().getFullYear()} SAI SRAVANTHI INFRA PROJECTS
             PRIVATE LIMITED. All Rights Reserved.

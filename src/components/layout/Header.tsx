@@ -118,18 +118,18 @@ export default function Header() {
                 transformOrigin: "right center",
               }}
             >
-              <div className="absolute inset-0 bg-[#0D1A26]">
+              <div className="absolute inset-0 bg-surface-primary">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div
                     className="absolute inset-0"
                     style={{
                       backgroundImage:
-                        "repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(223, 192, 99,1) 60px, rgba(223, 192, 99,1) 61px)",
+                        "repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(211, 185, 115,1) 60px, rgba(211, 185, 115,1) 61px)",
                     }}
                   />
                 </div>
-                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold/[0.04] blur-[120px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-[20%] left-[10%] w-[200px] h-[200px] bg-gold/[0.03] blur-[100px] rounded-full pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold/4 blur-[120px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-[20%] left-[10%] w-[200px] h-[200px] bg-gold/3 blur-[100px] rounded-full pointer-events-none" />
               </div>
 
               <motion.button
@@ -164,7 +164,7 @@ export default function Header() {
                       <a
                         href={link.href}
                         onClick={closeMenu}
-                        className="group relative flex items-center justify-between py-3 sm:py-4 border-b border-white/[0.04] hover:border-gold/20 transition-all duration-500"
+                        className="group relative flex items-center justify-between py-3 sm:py-4 border-b border-white/4 hover:border-gold/20 transition-all duration-500"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
                           <span
@@ -245,7 +245,7 @@ export default function Header() {
                               stiffness: 300,
                               damping: 15,
                             }}
-                            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/8 bg-white/3 flex items-center justify-center text-white/40 hover:border-gold/40 hover:text-gold hover:bg-gold/8 hover:shadow-[0_0_20px_rgba(223, 192, 99,0.2)] transition-all duration-400 group"
+                            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/8 bg-white/3 flex items-center justify-center text-white/40 hover:border-gold/40 hover:text-gold hover:bg-gold/8 hover:shadow-[0_0_20px_rgba(211,185,115,0.2)] transition-all duration-400 group"
                             aria-label={name}
                           >
                             <Icon size={15} className="relative z-10" />

@@ -29,15 +29,15 @@ export default function ScrollToTop() {
           : "translate-y-4 opacity-0 pointer-events-none"
       }`}
       style={{
-        background: "linear-gradient(135deg, #DFC063 0%, #C4A44D 100%)",
+        background: "linear-gradient(135deg, #D3B973 0%, #B89D56 100%)",
         boxShadow:
-          "0 4px 20px rgba(223, 192, 99, 0.35), 0 2px 8px rgba(0, 0, 0, 0.15)",
+          "0 4px 20px rgba(211, 185, 115, 0.35), 0 2px 8px rgba(0, 0, 0, 0.15)",
       }}
       aria-label="Scroll to top"
     >
       <ArrowUp
         size={18}
-        className="text-[#0D1A26] group-hover:-translate-y-1 transition-transform duration-300"
+        className="text-navy group-hover:-translate-y-1 transition-transform duration-300"
         strokeWidth={2.5}
       />
       {/* Glow ring on hover */}
