@@ -40,13 +40,13 @@ export const CITIES = [
 
 export const PROJECTS = [
   {
-    name: "Pavani Solitaire",
-    area: "1.5 Acres",
-    location: "Ganguru, Vijayawada",
+    name: "Pavani Mirai",
+    area: "2.46 Acres",
+    location: "Financial District, Hyderabad",
     image:
-      "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FPavani_Solitaire_aaa5e8c629.jpg&w=1080&q=75",
-    slug: "pavani-solitaire",
-    type: "Premium Apartments",
+      "http://d3p1hokpi6aqc3.cloudfront.net/night_view.png",
+    slug: "pavani-mirai",
+    type: "Premium Residences",
   },
   {
     name: "Pavani Felicity",
@@ -56,6 +56,15 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FPavani_Felicity_ea55966d27.jpg&w=1080&q=75",
     slug: "pavani-felicity",
     type: "Luxury Living",
+  },
+  {
+    name: "Pavani Solitaire",
+    area: "1.5 Acres",
+    location: "Ganguru, Vijayawada",
+    image:
+      "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FPavani_Solitaire_aaa5e8c629.jpg&w=1080&q=75",
+    slug: "pavani-solitaire",
+    type: "Premium Apartments",
   },
   {
     name: "Pavani Mirabilia",
@@ -83,15 +92,6 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FBackground_3ce9601f4a.jpg&w=3840&q=75",
     slug: "pavani-heights",
     type: "Premium Apartments",
-  },
-  {
-    name: "Pavani Mirai",
-    area: "2.46 Acres",
-    location: "Financial District, Hyderabad",
-    image:
-      "http://d3p1hokpi6aqc3.cloudfront.net/night_view.png",
-    slug: "pavani-mirai",
-    type: "Premium Residences",
   },
 ] as const;
 
