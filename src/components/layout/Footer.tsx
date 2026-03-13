@@ -152,7 +152,6 @@ export default function Footer() {
 
       {/* ═══ Main Content ═══ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-14">
-
         {/* ── Row 1: Logo + Tagline | Offices (side by side) ── */}
         <div className="footer-top-row pt-10 md:pt-14 pb-8 md:pb-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-start">
           {/* Logo + tagline */}
@@ -173,14 +172,20 @@ export default function Footer() {
                 href={`tel:${CONTACT_INFO.phone}`}
                 className="flex items-center gap-2 text-white/50 text-sm hover:text-gold transition-colors group"
               >
-                <Phone size={12} className="text-gold/50 group-hover:text-gold transition-colors" />
+                <Phone
+                  size={12}
+                  className="text-gold/50 group-hover:text-gold transition-colors"
+                />
                 {CONTACT_INFO.phone}
               </a>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
                 className="flex items-center gap-2 text-white/50 text-sm hover:text-gold transition-colors group"
               >
-                <Mail size={12} className="text-gold/50 group-hover:text-gold transition-colors" />
+                <Mail
+                  size={12}
+                  className="text-gold/50 group-hover:text-gold transition-colors"
+                />
                 {CONTACT_INFO.email}
               </a>
             </div>
@@ -274,11 +279,17 @@ export default function Footer() {
 
           {/* Legal links */}
           <div className="flex items-center gap-4 text-white/40 text-xs tracking-wider">
-            <a href="/privacypolicy" className="hover:text-gold transition-colors duration-300">
+            <a
+              href="/privacypolicy"
+              className="hover:text-gold transition-colors duration-300"
+            >
               Privacy Policy
             </a>
             <span className="text-white/10">|</span>
-            <a href="/Terms" className="hover:text-gold transition-colors duration-300">
+            <a
+              href="/Terms"
+              className="hover:text-gold transition-colors duration-300"
+            >
               Terms
             </a>
           </div>
@@ -294,7 +305,7 @@ export default function Footer() {
             className="text-white/20 text-xs tracking-wider"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
-            Designed & Developed by Lokesh Bavandla
+            Designed & Developed by Wingman Brandworks LLP
           </p>
         </div>
       </div>
