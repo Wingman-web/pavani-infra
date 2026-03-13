@@ -325,8 +325,8 @@ export default function FeaturedProjects() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${nextProject.image})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/25 via-transparent to-[#0A1620]/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/60 via-transparent to-[#0A1620]/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/25 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/50 via-transparent to-transparent" />
       <div className="absolute inset-0 bg-gold/[0.02]" />
 
       <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2">
@@ -348,7 +348,7 @@ export default function FeaturedProjects() {
         </h4>
       </div>
 
-      <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-[#0A1620]/50 to-transparent pointer-events-none" />
+      {/* Right edge removed */}
     </div>
   );
 
@@ -462,8 +462,8 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/30 via-transparent to-[#0A1620]/60" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/60 via-transparent to-[#0A1620]/30" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0A1620]/30 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1620]/50 via-transparent to-transparent" />
 
                   {/* Project name & type on left image */}
                   <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2 z-10">
@@ -485,7 +485,7 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
               ))}
-              <div className="absolute top-0 right-0 bottom-0 w-14 bg-gradient-to-l from-[#0A1620]/60 to-transparent pointer-events-none z-10" />
+              {/* Right edge removed */}
             </div>
 
             {/* ── PROJECT PAGES ── */}
