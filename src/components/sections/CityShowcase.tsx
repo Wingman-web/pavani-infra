@@ -132,7 +132,7 @@ function MobileLayout() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-cream pt-14 pb-6 px-5">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative w-full h-full opacity-[0.12]">
+        <div className="relative w-full h-full opacity-[0.8]">
           <Image src="/images/india-topographic-map.png" alt="" fill className="object-contain object-center" sizes="100vw" />
         </div>
       </div>
@@ -176,7 +176,7 @@ function MobileLayout() {
                 <div className="relative w-24 h-20 shrink-0 rounded-lg overflow-hidden">
                   <Image src={card.image} alt={`Pavani Infra project in ${card.city}`} fill className="object-cover" sizes="96px" />
                 </div>
-                <span className="text-sm font-semibold text-navy tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
+                <span className="text-base font-semibold text-navy tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
                   {card.city}
                 </span>
               </div>
@@ -362,7 +362,7 @@ function DesktopLayout() {
     <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-cream pt-16 pb-8 md:pt-24 md:pb-12">
       {/* Background map */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative w-full h-full max-w-5xl mx-auto opacity-[0.18]">
+        <div className="relative w-full h-full max-w-5xl mx-auto opacity-[0.8]">
           <Image src="/images/india-topographic-map.png" alt="" fill className="object-contain object-center" sizes="1000px" priority />
         </div>
       </div>
@@ -418,7 +418,7 @@ function DesktopLayout() {
                 />
               </div>
               <div className="py-2 lg:py-2.5 px-3 text-center border-t border-cream-dark/20">
-                <span className="text-xs md:text-sm font-semibold text-navy tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
+                <span className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-navy tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
                   {card.city}
                 </span>
               </div>
