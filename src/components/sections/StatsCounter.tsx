@@ -94,12 +94,11 @@ export default function StatsCounter() {
         }
       );
 
-      // Counter animations — play once, no reverse on scroll back
+      // Counter animations — each stat triggers independently on its own row
       const numberEls = section.querySelectorAll<HTMLElement>(".stat-number");
       const ghostEls = section.querySelectorAll<HTMLElement>(".stat-ghost-num");
       const targets = STATS.map((s) => s.value);
       const suffixes = STATS.map((s) => s.suffix);
-      const objs = targets.map(() => ({ value: 0 }));
 
       // Use a stepped approach for low numbers to make counting visible
       const getCountDuration = (target: number) => {
@@ -108,32 +107,27 @@ export default function StatsCounter() {
         return 1.8;
       };
 
-      const counterTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".stats-container",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
+      statRows.forEach((row, i) => {
+        const obj = { value: 0 };
 
-      objs.forEach((obj, i) => {
-        counterTl.to(
-          obj,
-          {
-            value: targets[i],
-            duration: getCountDuration(targets[i]),
-            ease: "power2.out",
-            onUpdate: () => {
-              const val = Math.round(obj.value);
-              const text =
-                (targets[i] >= 1000 ? val.toLocaleString() : String(val)) +
-                suffixes[i];
-              if (numberEls[i]) numberEls[i].textContent = text;
-              if (ghostEls[i]) ghostEls[i].textContent = text;
-            },
+        gsap.to(obj, {
+          value: targets[i],
+          duration: getCountDuration(targets[i]),
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 85%",
+            toggleActions: "play none none none",
           },
-          i * 0.2
-        );
+          onUpdate: () => {
+            const val = Math.round(obj.value);
+            const text =
+              (targets[i] >= 1000 ? val.toLocaleString() : String(val)) +
+              suffixes[i];
+            if (numberEls[i]) numberEls[i].textContent = text;
+            if (ghostEls[i]) ghostEls[i].textContent = text;
+          },
+        });
       });
     }, section);
 
