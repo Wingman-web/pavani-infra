@@ -104,8 +104,11 @@ function MobileLayout() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 70%",
-          toggleActions: "play none none none",
+          start: "top top",
+          end: "+=120%",
+          pin: true,
+          scrub: 0.8,
+          anticipatePin: 1,
         },
       });
 
@@ -124,6 +127,9 @@ function MobileLayout() {
         { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power3.out" },
         "-=0.8"
       );
+
+      /* Hold the completed state briefly so users can see it */
+      tl.to({}, { duration: 0.5 });
     }, section);
 
     return () => ctx.revert();
@@ -293,8 +299,11 @@ function DesktopLayout() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 60%",
-          toggleActions: "play none none none",
+          start: "top top",
+          end: "+=200%",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
         },
         onComplete: () => { hasAnimatedRef.current = true; },
       });
@@ -335,6 +344,9 @@ function DesktopLayout() {
           ease: "back.out(3)",
         }, `pinsStart+=${i * 0.12}`);
       });
+
+      /* Hold the completed state so users can admire it */
+      tl.to({}, { duration: 0.8 });
     }, section);
 
     /* Debounced resize handler — recalculates positions after animation */
