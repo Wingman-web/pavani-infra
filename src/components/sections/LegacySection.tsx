@@ -113,8 +113,8 @@ export default function LegacySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #7a1519 0%, #981b21 50%, #7a1519 100%)" }}
+      className="relative pt-0 pb-16 md:pt-0 md:pb-24 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #981b21 0%, #981b21 8%, #7a1519 30%, #981b21 60%, #7a1519 100%)" }}
     >
       {/* Ambient background glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -126,12 +126,6 @@ export default function LegacySection() {
       <img
         src="/images/Gold Waves.svg"
         alt=""
-        className="absolute -top-12 -right-10 w-[550px] md:w-[750px] opacity-[0.50] pointer-events-none select-none rotate-[8deg]"
-        aria-hidden="true"
-      />
-      <img
-        src="/images/Gold Waves.svg"
-        alt=""
         className="absolute -bottom-16 -left-14 w-[480px] md:w-[650px] opacity-[0.50] pointer-events-none select-none rotate-[188deg]"
         aria-hidden="true"
       />
@@ -140,7 +134,7 @@ export default function LegacySection() {
       <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-[#d3b973]/[0.1] to-transparent pointer-events-none" />
       <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-[#d3b973]/[0.1] to-transparent pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-4 md:px-8 text-center relative">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 text-center relative pt-16 md:pt-24">
         {/* Top decorative line */}
         <div className="legacy-line-top w-24 h-px bg-[#d3b973]/40 mx-auto mb-5 origin-center" />
 

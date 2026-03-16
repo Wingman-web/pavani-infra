@@ -210,7 +210,7 @@ export default function Testimonials() {
         <img
           src="/images/Gold Waves.svg"
           alt=""
-          className="absolute -bottom-10 -right-8 w-[450px] md:w-[620px] opacity-[0.50] pointer-events-none select-none rotate-[175deg] scale-y-[-1]"
+          className="absolute -bottom-2 right-0 w-[450px] md:w-[620px] opacity-[0.50] pointer-events-none select-none rotate-[175deg] scale-y-[-1]"
           aria-hidden="true"
         />
 

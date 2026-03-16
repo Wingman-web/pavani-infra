@@ -86,15 +86,6 @@ export default function FeaturedProjects() {
           }
         }
 
-        gsap.from(
-          ".fp-side-nav",
-          {
-            opacity: 0, duration: 0.8, delay: 0.5, ease: "power3.out",
-            scrollTrigger: { trigger: section, start: "top 75%", once: true },
-            clearProps: "opacity",
-          }
-        );
-
         // First page content — animate in then clear inline styles
         gsap.from(
           ".fp-page-0 .pg-detail",
@@ -303,6 +294,34 @@ export default function FeaturedProjects() {
         </a>
       </div>
 
+      {/* Navigation buttons — bottom right of page */}
+      <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 z-30 flex items-center gap-3">
+        <button
+          onClick={(e) => { e.stopPropagation(); flipPrev(); }}
+          disabled={isAnimating || idx <= 0}
+          className={`flex items-center justify-center w-10 h-10 lg:w-11 lg:h-11 rounded-full transition-all duration-300 ${
+            idx <= 0
+              ? "bg-white/5 text-white/15 cursor-not-allowed"
+              : "bg-gold/20 text-gold border border-gold/40 hover:bg-gold hover:text-[#7a1519] hover:shadow-[0_0_20px_rgba(211,185,115,0.3)] cursor-pointer"
+          }`}
+          aria-label="Previous project"
+        >
+          <ChevronLeft size={16} />
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); flipNext(); }}
+          disabled={isAnimating || idx >= total - 1}
+          className={`flex items-center justify-center w-10 h-10 lg:w-11 lg:h-11 rounded-full transition-all duration-300 ${
+            idx >= total - 1
+              ? "bg-white/5 text-white/15 cursor-not-allowed"
+              : "bg-gold/20 text-gold border border-gold/40 hover:bg-gold hover:text-[#7a1519] hover:shadow-[0_0_20px_rgba(211,185,115,0.3)] cursor-pointer"
+          }`}
+          aria-label="Next project"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
+
       <div
         className="pg-shadow absolute inset-0 pointer-events-none z-20 opacity-0"
         style={{
@@ -377,34 +396,6 @@ export default function FeaturedProjects() {
           DESKTOP — 3D Brochure Book
          ══════════════════════════════════════════════════════ */}
       <div className="hidden md:flex items-center justify-center py-4 lg:py-6 relative">
-
-        {/* Prev — left side */}
-        <button
-          onClick={flipPrev}
-          disabled={isAnimating || currentPage <= 0}
-          className={`fp-side-nav absolute left-3 lg:left-6 xl:left-10 top-1/2 -translate-y-1/2 z-40 flex items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full border-2 transition-all duration-400 ${
-            currentPage <= 0
-              ? "border-[#0e1a26]/10 text-[#0e1a26]/15 cursor-not-allowed"
-              : "border-gold-contrast/40 text-gold-contrast/60 hover:border-gold-contrast hover:text-gold-contrast hover:bg-gold-contrast/10 hover:shadow-[0_0_20px_rgba(122,91,21,0.15)] cursor-pointer"
-          }`}
-          aria-label="Previous project"
-        >
-          <ChevronLeft size={18} />
-        </button>
-
-        {/* Next — right side */}
-        <button
-          onClick={flipNext}
-          disabled={isAnimating || currentPage >= total - 1}
-          className={`fp-side-nav absolute right-3 lg:right-6 xl:right-10 top-1/2 -translate-y-1/2 z-40 flex items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full border-2 transition-all duration-400 ${
-            currentPage >= total - 1
-              ? "border-[#0e1a26]/10 text-[#0e1a26]/15 cursor-not-allowed"
-              : "border-gold-contrast/40 text-gold-contrast/60 hover:border-gold-contrast hover:text-gold-contrast hover:bg-gold-contrast/10 hover:shadow-[0_0_20px_rgba(122,91,21,0.15)] cursor-pointer"
-          }`}
-          aria-label="Next project"
-        >
-          <ChevronRight size={18} />
-        </button>
 
         <div
           style={{ perspective: "1800px", perspectiveOrigin: "50% 45%" }}

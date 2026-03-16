@@ -8,7 +8,6 @@ export default function Preloader() {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const alreadySeen = document.cookie.includes("preloaderSeen=true");
     const container = containerRef.current;
     if (!container) return;
 
@@ -23,29 +22,16 @@ export default function Preloader() {
       },
     });
 
-    if (alreadySeen) {
-      // Quick slide-up for return visitors
-      tl.to(container, {
-        yPercent: -100,
-        duration: 0.6,
-        ease: "power3.inOut",
-      });
-      return () => {
-        tl.kill();
-        document.body.style.overflow = "";
-      };
-    }
-
-    // Logo visible immediately, gold glow fades in, then exit
+    // Always show full preloader animation (4s hold)
     tl.set(container, { opacity: 1 })
       // Gold radial glow fades in behind logo
       .fromTo(
         ".preloader-glow",
         { opacity: 0 },
-        { opacity: 1, duration: 0.8, ease: "power2.out" }
+        { opacity: 1, duration: 0.5, ease: "power2.out" }
       )
-      // Brief hold
-      .to({}, { duration: 0.6 })
+      // Hold for 1.5 seconds total visible time
+      .to({}, { duration: 1 })
 
       // === EXIT: Slide UP ===
       .to(".preloader-content", {

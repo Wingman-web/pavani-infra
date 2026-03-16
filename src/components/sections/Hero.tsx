@@ -189,8 +189,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Subtle gold line at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent z-20" />
     </section>
   );
 }
