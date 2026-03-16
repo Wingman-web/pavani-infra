@@ -200,6 +200,20 @@ export default function Testimonials() {
         {/* Ambient gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold/[0.03] blur-[160px] rounded-full pointer-events-none" />
 
+        {/* Gold wave decorations */}
+        <img
+          src="/images/Gold Waves.svg"
+          alt=""
+          className="absolute -top-14 -left-10 w-[650px] md:w-[880px] opacity-[0.50] pointer-events-none select-none -rotate-[5deg]"
+          aria-hidden="true"
+        />
+        <img
+          src="/images/Gold Waves.svg"
+          alt=""
+          className="absolute -bottom-10 -right-8 w-[450px] md:w-[620px] opacity-[0.50] pointer-events-none select-none rotate-[175deg] scale-y-[-1]"
+          aria-hidden="true"
+        />
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           {/* ── Header ── */}
           <div className="testi-header text-center mb-10 md:mb-14">

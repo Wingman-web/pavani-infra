@@ -112,6 +112,45 @@ export default function BlogInsights() {
       ref={sectionRef}
       className="relative py-16 md:py-24 overflow-hidden bg-[#FAFAFA]"
     >
+      {/* Scattered dot pattern background */}
+      <div className="absolute inset-0 pointer-events-none opacity-25">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dot-scatter" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="1.2" fill="#981b21"/>
+              <circle cx="10" cy="10" r="0.8" fill="#d3b973"/>
+              <circle cx="50" cy="50" r="0.8" fill="#d3b973"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#dot-scatter)"/>
+        </svg>
+      </div>
+      {/* Decorative corner ornaments */}
+      <div className="absolute top-8 left-8 w-24 h-24 pointer-events-none opacity-25">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#981b21] to-transparent" />
+        <div className="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-[#981b21] to-transparent" />
+        <div className="absolute top-3 left-3 w-2 h-2 rotate-45 border border-[#d3b973]" />
+      </div>
+      <div className="absolute top-8 right-8 w-24 h-24 pointer-events-none opacity-25">
+        <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-[#981b21] to-transparent" />
+        <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-[#981b21] to-transparent" />
+        <div className="absolute top-3 right-3 w-2 h-2 rotate-45 border border-[#d3b973]" />
+      </div>
+      <div className="absolute bottom-8 left-8 w-24 h-24 pointer-events-none opacity-25">
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#981b21] to-transparent" />
+        <div className="absolute bottom-0 left-0 w-[1px] h-full bg-gradient-to-t from-[#981b21] to-transparent" />
+        <div className="absolute bottom-3 left-3 w-2 h-2 rotate-45 border border-[#d3b973]" />
+      </div>
+      <div className="absolute bottom-8 right-8 w-24 h-24 pointer-events-none opacity-25">
+        <div className="absolute bottom-0 right-0 w-full h-[1px] bg-gradient-to-l from-[#981b21] to-transparent" />
+        <div className="absolute bottom-0 right-0 w-[1px] h-full bg-gradient-to-b from-[#981b21] to-transparent" />
+        <div className="absolute bottom-3 right-3 w-2 h-2 rotate-45 border border-[#d3b973]" />
+      </div>
+      {/* Warm ambient glow from top */}
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(211,185,115,0.1)_0%,transparent_65%)] pointer-events-none" />
+      {/* Subtle bottom glow */}
+      <div className="absolute -bottom-10 right-[20%] w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(152,27,33,0.075)_0%,transparent_60%)] pointer-events-none" />
+
       {/* ═══ Content ═══ */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}

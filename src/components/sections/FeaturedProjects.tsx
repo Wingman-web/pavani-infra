@@ -325,28 +325,7 @@ export default function FeaturedProjects() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${nextProject.image})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#7a1519]/25 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#7a1519]/50 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-gold/[0.02]" />
 
-      <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2">
-        <div className="w-8 h-[1px] bg-gold/30" />
-        <span
-          className="text-white/30 text-[11px] tracking-[0.2em] uppercase"
-          style={{ fontFamily: "var(--font-mono-custom)" }}
-        >
-          {nextProject.type}
-        </span>
-      </div>
-
-      <div className="absolute bottom-16 left-6 right-6">
-        <h4
-          className="text-2xl lg:text-4xl font-bold text-white/80 tracking-tight"
-          style={{ fontFamily: "var(--font-display-custom)" }}
-        >
-          {nextProject.name}
-        </h4>
-      </div>
 
       {/* Right edge removed */}
     </div>
@@ -358,6 +337,26 @@ export default function FeaturedProjects() {
       className="relative py-16 md:py-24 overflow-hidden"
       style={{ background: "#FAFAFA" }}
     >
+      {/* Architectural blueprint grid background */}
+      <div className="absolute inset-0 pointer-events-none opacity-5">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="blueprint-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <rect width="80" height="80" fill="none" stroke="#981b21" strokeWidth="0.5"/>
+              <rect width="40" height="40" fill="none" stroke="#981b21" strokeWidth="0.25"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#blueprint-grid)"/>
+        </svg>
+      </div>
+      {/* Diagonal gold accent lines */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-50">
+        <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[1px] bg-gradient-to-r from-transparent via-[#d3b973] to-transparent rotate-[35deg]" />
+        <div className="absolute -top-[10%] -right-[10%] w-[500px] h-[1px] bg-gradient-to-r from-transparent via-[#d3b973] to-transparent rotate-[35deg]" />
+        <div className="absolute bottom-[15%] -left-[5%] w-[450px] h-[1px] bg-gradient-to-r from-transparent via-[#d3b973] to-transparent rotate-[35deg]" />
+        <div className="absolute bottom-[25%] -left-[5%] w-[550px] h-[1px] bg-gradient-to-r from-transparent via-[#d3b973] to-transparent rotate-[35deg]" />
+      </div>
+
       {/* ─── Desktop section header ─── */}
       <div ref={desktopHeaderRef} className="hidden md:block text-center pb-4 lg:pb-6 z-30 relative">
         <span
@@ -462,27 +461,7 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#7a1519]/30 via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#7a1519]/50 via-transparent to-transparent" />
 
-                  {/* Project name & type on left image */}
-                  <div className="absolute bottom-4 left-5 right-5 flex items-center gap-2 z-10">
-                    <div className="w-8 h-[1px] bg-gold/30" />
-                    <span
-                      className="text-white/30 text-[11px] tracking-[0.2em] uppercase"
-                      style={{ fontFamily: "var(--font-mono-custom)" }}
-                    >
-                      {project.type}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-16 left-6 right-6 z-10">
-                    <h4
-                      className="text-2xl lg:text-4xl font-bold text-white/80 tracking-tight"
-                      style={{ fontFamily: "var(--font-display-custom)" }}
-                    >
-                      {project.name}
-                    </h4>
-                  </div>
                 </div>
               ))}
               {/* Right edge removed */}
@@ -576,8 +555,6 @@ export default function FeaturedProjects() {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#7a1519]/80 via-[#7a1519]/30 to-transparent" />
-                  <div className="absolute inset-0 bg-gold/[0.02]" />
                   <div className="absolute top-3 right-3">
                     <span
                       className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-[#7a1519]/40 backdrop-blur-sm"

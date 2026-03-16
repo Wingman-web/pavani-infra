@@ -146,6 +146,7 @@ export default function StatsCounter() {
         <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-gold/[0.02] blur-[120px] rounded-full" />
       </div>
 
+
       {/* Decorative vertical line running through the center */}
       <div className="absolute top-0 left-1/2 -translate-x-px w-px h-full bg-gradient-to-b from-transparent via-gold/[0.06] to-transparent pointer-events-none hidden lg:block" />
 

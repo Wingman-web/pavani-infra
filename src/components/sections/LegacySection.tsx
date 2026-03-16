@@ -122,6 +122,20 @@ export default function LegacySection() {
         <div className="absolute top-[30%] left-[15%] w-[300px] h-[200px] bg-[#d3b973]/[0.03] blur-[120px] rounded-full" />
       </div>
 
+      {/* Gold wave decorations */}
+      <img
+        src="/images/Gold Waves.svg"
+        alt=""
+        className="absolute -top-12 -right-10 w-[550px] md:w-[750px] opacity-[0.50] pointer-events-none select-none rotate-[8deg]"
+        aria-hidden="true"
+      />
+      <img
+        src="/images/Gold Waves.svg"
+        alt=""
+        className="absolute -bottom-16 -left-14 w-[480px] md:w-[650px] opacity-[0.50] pointer-events-none select-none rotate-[188deg]"
+        aria-hidden="true"
+      />
+
       {/* Subtle side accents */}
       <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-[#d3b973]/[0.1] to-transparent pointer-events-none" />
       <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-[#d3b973]/[0.1] to-transparent pointer-events-none" />
