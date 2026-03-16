@@ -1,138 +1,95 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Send, ChevronDown, Phone, Mail } from "lucide-react";
+import { CONTACT_INFO } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CtaBanner() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    message: "",
+  });
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Background parallax glow shift
-      gsap.to(".cta-glow", {
-        y: -60,
-        scale: 1.3,
-        scrollTrigger: {
-          trigger: section,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
-
-      // Diamond icon: slow rotation + fade in
+      /* ── Top line expands ── */
       gsap.fromTo(
-        ".cta-diamond",
-        { opacity: 0, scale: 0.5, rotation: -90 },
+        ".cta-top-line",
+        { scaleX: 0 },
         {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
+          scaleX: 1,
           duration: 0.8,
-          ease: "back.out(1.5)",
+          ease: "power2.inOut",
           scrollTrigger: {
             trigger: section,
-            start: "top 80%",
-            end: "top 55%",
+            start: "top 90%",
+            end: "top 65%",
             scrub: 0.6,
           },
         }
       );
 
-      // Title words reveal one by one — scrub-linked
+      /* ── Left CTA content reveal ── */
       gsap.fromTo(
-        ".cta-word",
-        { opacity: 0, y: 50, rotateX: -20 },
+        ".cta-left > *",
+        { opacity: 0, y: 35 },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
-          duration: 0.4,
+          duration: 0.5,
           stagger: 0.08,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: ".cta-title",
-            start: "top 85%",
-            end: "top 55%",
+            trigger: section,
+            start: "top 80%",
+            end: "top 45%",
             scrub: 0.6,
           },
         }
       );
 
-      // Description
+      /* ── Right form content reveal ── */
       gsap.fromTo(
-        ".cta-desc",
+        ".cta-right > *",
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.5,
+          stagger: 0.06,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: ".cta-desc",
-            start: "top 90%",
-            end: "top 70%",
-            scrub: 0.5,
+            trigger: ".cta-right",
+            start: "top 85%",
+            end: "top 45%",
+            scrub: 0.6,
           },
         }
       );
 
-      // Buttons stagger in
+      /* ── Accent line on form expands ── */
       gsap.fromTo(
-        ".cta-btn",
-        { opacity: 0, y: 20, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.4,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".cta-buttons",
-            start: "top 92%",
-            end: "top 72%",
-            scrub: 0.5,
-          },
-        }
-      );
-
-      // Gold sweep line across section
-      gsap.fromTo(
-        ".cta-sweep",
-        { xPercent: -100 },
-        {
-          xPercent: 100,
-          duration: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            end: "bottom 40%",
-            scrub: 1,
-          },
-        }
-      );
-
-      // Decorative lines expand
-      gsap.fromTo(
-        ".cta-line",
+        ".form-accent-line",
         { scaleX: 0 },
         {
           scaleX: 1,
-          duration: 0.8,
-          stagger: 0.2,
+          duration: 0.6,
           ease: "power2.inOut",
           scrollTrigger: {
-            trigger: section,
-            start: "top 75%",
-            end: "top 45%",
+            trigger: ".cta-right",
+            start: "top 80%",
+            end: "top 55%",
             scrub: 0.6,
           },
         }
@@ -142,109 +99,228 @@ export default function CtaBanner() {
     return () => ctx.revert();
   }, []);
 
-  const titleWords = ["Begin", "Your", "New", "Chapter", "Today"];
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
 
   return (
     <section
       ref={sectionRef}
       className="relative py-16 md:py-24 overflow-hidden"
-      style={{ perspective: "1000px" }}
+      style={{
+        background:
+          "linear-gradient(160deg, #b89d56 0%, #d3b973 30%, #e0cc94 55%, #d3b973 75%, #b89d56 100%)",
+      }}
     >
-      {/* Dark background */}
-      <div className="absolute inset-0 bg-[#7a1519]" />
+      {/* Top accent line */}
+      <div className="cta-top-line absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#0e1a26]/10 to-transparent origin-center" />
 
-      {/* Animated gold glow — parallax */}
-      <div className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(211,185,115,0.05)_0%,transparent_55%)] pointer-events-none" />
+      {/* Layered glows for depth and richness */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.12)_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(184,157,86,0.3)_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(152,27,33,0.04)_0%,transparent_50%)] pointer-events-none" />
 
-      {/* Gold sweep line — moves across on scroll */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="cta-sweep absolute top-0 left-0 w-[40%] h-full"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(211,185,115,0.03) 40%, rgba(211,185,115,0.06) 50%, rgba(211,185,115,0.03) 60%, transparent 100%)",
-          }}
-        />
-      </div>
+      {/* ═══ Content ═══ */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
 
-      {/* Decorative border lines */}
-      <div className="cta-line absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent origin-center" />
-      <div className="cta-line absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent origin-center" />
-
-
-      <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
-        <div className="text-center">
-          {/* Diamond icon with rotation */}
-          <div className="mb-8 flex justify-center">
-            <svg
-              className="cta-diamond w-12 h-12 opacity-0"
-              viewBox="0 0 86 34"
-              fill="none"
+          {/* ── LEFT: CTA Content ── */}
+          <div className="cta-left lg:pt-4">
+            <span
+              className="text-[#981b21]/80 text-sm tracking-[0.3em] uppercase block mb-4"
+              style={{ fontFamily: "var(--font-mono-custom)" }}
             >
-              <path
-                d="M27.4062 32.7174L43.3399 24.3041L27.4062 15.8906V32.7174Z"
-                fill="#d3b973"
-                opacity="0.5"
-              />
-              <path
-                d="M59.251 15.8906L43.3174 24.3041L59.251 32.7174V15.8906Z"
-                fill="#d3b973"
-                opacity="0.5"
-              />
-              <path
-                d="M27.4062 15.8933L43.3315 0.0371094L59.2503 15.8869L27.4062 15.8933Z"
-                fill="#d3b973"
-                opacity="0.5"
-              />
-            </svg>
+              The Next Step
+            </span>
+
+            <h2
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0e1a26] tracking-tight mb-6 leading-[1.1]"
+              style={{ fontFamily: "var(--font-display-custom)" }}
+            >
+              Begin Your
+              <br />
+              <span className="text-[#981b21]">Dream Together</span>
+            </h2>
+
+            <div className="w-16 h-px bg-[#0e1a26]/20 mb-7" />
+
+            <p
+              className="text-[#0e1a26]/70 text-base md:text-lg leading-relaxed mb-10 max-w-sm"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              A home is more than walls — it&apos;s the foundation for
+              generations. Let us help you build your legacy.
+            </p>
+
+            {/* Contact info */}
+            <div className="space-y-4">
+              <a
+                href={`tel:${CONTACT_INFO.phone}`}
+                className="flex items-center gap-3 text-[#0e1a26]/70 text-sm hover:text-[#981b21] transition-colors duration-300 group"
+              >
+                <Phone size={15} className="text-[#981b21]/60 group-hover:text-[#981b21] transition-colors" />
+                {CONTACT_INFO.phone}
+              </a>
+              <a
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="flex items-center gap-3 text-[#0e1a26]/70 text-sm hover:text-[#981b21] transition-colors duration-300 group"
+              >
+                <Mail size={15} className="text-[#981b21]/60 group-hover:text-[#981b21] transition-colors" />
+                {CONTACT_INFO.email}
+              </a>
+            </div>
           </div>
 
-          {/* Title — word by word reveal */}
-          <h2
-            className="cta-title text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight"
-            style={{
-              fontFamily: "var(--font-display-custom)",
-              perspective: "600px",
-            }}
-          >
-            {titleWords.map((word, i) => (
-              <span
-                key={i}
-                className={`cta-word inline-block opacity-0 mr-[0.25em] ${
-                  word === "Chapter" || word === "Today"
-                    ? "text-gold"
-                    : "text-white"
-                }`}
+          {/* ── RIGHT: Form ── */}
+          <div className="cta-right">
+            <h3
+              className="text-[#0e1a26] font-semibold text-lg md:text-xl tracking-wide mb-2"
+              style={{ fontFamily: "var(--font-display-custom)" }}
+            >
+              Send Us A Message
+            </h3>
+            <div className="form-accent-line w-14 h-px bg-linear-to-r from-[#981b21]/40 to-transparent mb-8 origin-left" />
+
+            <form onSubmit={handleSubmit}>
+              {/* Row 1: Full Name + Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-7">
+                <div>
+                  <label
+                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    style={{ fontFamily: "var(--font-mono-custom)" }}
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    style={{ fontFamily: "var(--font-mono-custom)" }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Row 2: Phone + Preferred City */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-9">
+                <div>
+                  <label
+                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    style={{ fontFamily: "var(--font-mono-custom)" }}
+                  >
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="relative">
+                  <label
+                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    style={{ fontFamily: "var(--font-mono-custom)" }}
+                  >
+                    Preferred City
+                  </label>
+                  <select
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base outline-none appearance-none pr-8 cursor-pointer focus:border-[#981b21]/50 transition-colors duration-500"
+                    value={formData.city}
+                    onChange={(e) =>
+                      setFormData({ ...formData, city: e.target.value })
+                    }
+                    required
+                  >
+                    <option value="" disabled className="bg-[#d3b973] text-[#0e1a26]">
+                      Select City
+                    </option>
+                    {["Hyderabad", "Bangalore", "Chennai", "Vijayawada", "Nellore"].map(
+                      (city) => (
+                        <option
+                          key={city}
+                          value={city}
+                          className="bg-[#d3b973] text-[#0e1a26]"
+                        >
+                          {city}
+                        </option>
+                      )
+                    )}
+                  </select>
+                  <ChevronDown
+                    size={14}
+                    className="absolute right-0 bottom-3 text-[#0e1a26]/30 pointer-events-none"
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="mb-9">
+                <label
+                  className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                  style={{ fontFamily: "var(--font-mono-custom)" }}
+                >
+                  Message
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Tell us about your requirements..."
+                  className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500 resize-none"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 bg-[#981b21] text-[#FAFAFA] text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-[0_0_30px_rgba(152,27,33,0.3)]"
+                style={{ fontFamily: "var(--font-mono-custom)" }}
               >
-                {word}
-              </span>
-            ))}
-          </h2>
-
-          {/* Description */}
-          <p className="cta-desc opacity-0 text-white/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-10">
-            A home is more than walls — it&apos;s the foundation for
-            generations. Let us help you build your legacy.
-          </p>
-
-          {/* Buttons */}
-          <div className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="/contact-us"
-              className="cta-btn group relative px-10 py-4 bg-gold text-[#0e1a26] font-semibold text-sm tracking-wider uppercase rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(211,185,115,0.3)]"
-            >
-              <span className="relative z-10">Request a Call</span>
-              <div className="absolute inset-0 bg-gold-light transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-            </a>
-            <a
-              href="/project"
-              className="cta-btn px-10 py-4 border border-gold/30 text-gold font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-gold/10 transition-all duration-500"
-            >
-              Browse Projects
-            </a>
+                <span className="relative z-10 flex items-center gap-2.5">
+                  <Send
+                    size={14}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                  />
+                  Submit Enquiry
+                </span>
+                <div className="absolute inset-0 bg-[#7a1519] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              </button>
+            </form>
           </div>
         </div>
       </div>
+
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#0e1a26]/15 to-transparent" />
     </section>
   );
 }

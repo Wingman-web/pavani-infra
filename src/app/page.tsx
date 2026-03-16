@@ -12,7 +12,7 @@ import LegacySection from "@/components/sections/LegacySection";
 import CityShowcase from "@/components/sections/CityShowcase";
 import Testimonials from "@/components/sections/Testimonials";
 import BlogInsights from "@/components/sections/BlogInsights";
-import ContactForm from "@/components/sections/ContactForm";
+import CtaBanner from "@/components/sections/CtaBanner";
 
 const Preloader = dynamic(() => import("@/components/sections/Preloader"), {
   ssr: false,
@@ -41,7 +41,7 @@ export default function HomePage() {
         <FeaturedProjects />
         <Testimonials />
         <BlogInsights />
-        <ContactForm />
+        <CtaBanner />
       </main>
       <Footer />
     </SmoothScrollProvider>
