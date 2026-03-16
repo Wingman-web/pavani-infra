@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${jetbrains.variable}`}>
-      <body className="bg-cream text-navy antialiased">
+      <body className="bg-[#FAFAFA] text-[#0e1a26] antialiased">
         {children}
       </body>
     </html>

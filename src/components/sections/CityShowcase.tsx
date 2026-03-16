@@ -71,11 +71,11 @@ function MapPin({ className }: { className?: string }) {
       {/* Pin body */}
       <path
         d="M14 0C6.268 0 0 6.268 0 14c0 9.8 12.348 20.625 12.876 21.09a1.5 1.5 0 0 0 2.248 0C15.652 34.625 28 23.8 28 14 28 6.268 21.732 0 14 0Z"
-        fill="#C0392B"
+        fill="#981b21"
       />
       {/* Inner highlight */}
       <circle cx="14" cy="13" r="5.5" fill="white" />
-      <circle cx="14" cy="13" r="3" fill="#C0392B" />
+      <circle cx="14" cy="13" r="3" fill="#981b21" />
     </svg>
   );
 }
@@ -136,7 +136,7 @@ function MobileLayout() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-cream pt-14 pb-6 px-5">
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#FAFAFA] pt-14 pb-6 px-5">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-full h-full opacity-[0.8]">
           <Image src="/images/india-topographic-map.png" alt="" fill className="object-contain object-center" sizes="100vw" />
@@ -146,14 +146,14 @@ function MobileLayout() {
       <div className="relative z-10 mb-10">
         <div ref={titleRef}>
           <h2
-            className="text-2xl font-bold text-navy tracking-tight leading-[1.1] uppercase"
+            className="text-3xl font-bold text-[#0e1a26] tracking-tight leading-[1.1] uppercase"
             style={{ fontFamily: "var(--font-display-custom)" }}
           >
             Multiple Cities,<br />One Unified Vision
           </h2>
         </div>
         <p ref={subtitleRef}
-          className="text-navy/50 text-sm max-w-xs leading-relaxed mt-3"
+          className="text-[#0e1a26]/60 text-sm max-w-xs leading-relaxed mt-3"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Pavani Infra has shaped skylines and changed lives across India.
@@ -163,7 +163,7 @@ function MobileLayout() {
       <div className="relative z-10">
         <div
           ref={lineRef}
-          className="absolute left-5.5 top-3 bottom-3 w-0.5 bg-linear-to-b from-[#C0392B] via-[#E74C3C] to-[#C0392B]"
+          className="absolute left-5.5 top-3 bottom-3 w-0.5 bg-linear-to-b from-red via-red-light to-red"
           style={{ zIndex: 0 }}
         />
         <div className="flex flex-col gap-6">
@@ -175,14 +175,14 @@ function MobileLayout() {
               style={{ zIndex: 1 }}
             >
               <div className="relative shrink-0 w-11 flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-[#C0392B] relative z-10" />
-                <div className="absolute w-6 h-6 rounded-full border border-[#C0392B]/30 city-dot-ring" />
+                <div className="w-3 h-3 rounded-full bg-red relative z-10" />
+                <div className="absolute w-6 h-6 rounded-full border border-red/30 city-dot-ring" />
               </div>
-              <div className="flex-1 flex items-center gap-3 bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(13,26,38,0.08)] p-2">
+              <div className="flex-1 flex items-center gap-3 bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(152,27,33,0.06)] p-2">
                 <div className="relative w-24 h-20 shrink-0 rounded-lg overflow-hidden">
                   <Image src={card.image} alt={`Pavani Infra project in ${card.city}`} fill className="object-cover" sizes="96px" />
                 </div>
-                <span className="text-base font-semibold text-navy tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
+                <span className="text-base font-semibold text-[#0e1a26] tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
                   {card.city}
                 </span>
               </div>
@@ -371,7 +371,7 @@ function DesktopLayout() {
   }, [computeLayout, applyPositions]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-cream pt-16 pb-8 md:pt-24 md:pb-12">
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-[#FAFAFA] pt-16 pb-8 md:pt-24 md:pb-12">
       {/* Background map */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-full h-full max-w-5xl mx-auto opacity-[0.8]">
@@ -383,14 +383,14 @@ function DesktopLayout() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12">
         <div ref={titleRef}>
           <h2
-            className="text-3xl md:text-4xl lg:text-[3.2rem] font-bold text-navy tracking-tight leading-[1.08] uppercase"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0e1a26] tracking-tight leading-[1.08] uppercase"
             style={{ fontFamily: "var(--font-display-custom)" }}
           >
             Multiple Cities,<br />One Unified Vision
           </h2>
         </div>
         <p ref={subtitleRef}
-          className="text-navy/50 text-sm md:text-[15px] max-w-sm leading-relaxed"
+          className="text-[#0e1a26]/60 text-sm md:text-[15px] max-w-sm leading-relaxed"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Pavani Infra has shaped skylines and changed lives across India. These
@@ -419,7 +419,7 @@ function DesktopLayout() {
               <MapPin />
             </div>
 
-            <div className="w-32 md:w-36 lg:w-44 xl:w-52 bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(13,26,38,0.1)] hover:shadow-[0_8px_32px_rgba(13,26,38,0.16)] transition-shadow duration-500 cursor-pointer group">
+            <div className="w-32 md:w-36 lg:w-44 xl:w-52 bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(152,27,33,0.08)] hover:shadow-[0_8px_32px_rgba(152,27,33,0.12)] transition-shadow duration-500 cursor-pointer group">
               <div className="relative w-full aspect-[4/3] overflow-hidden">
                 <Image
                   src={card.image}
@@ -429,8 +429,8 @@ function DesktopLayout() {
                   sizes="(max-width: 768px) 128px, (max-width: 1024px) 144px, (max-width: 1280px) 176px, 208px"
                 />
               </div>
-              <div className="py-2 lg:py-2.5 px-3 text-center border-t border-cream-dark/20">
-                <span className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-navy tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
+              <div className="py-2 lg:py-2.5 px-3 text-center border-t border-[#e0e0e0]/20">
+                <span className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-[#0e1a26] tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
                   {card.city}
                 </span>
               </div>

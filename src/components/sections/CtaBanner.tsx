@@ -147,14 +147,14 @@ export default function CtaBanner() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 md:py-20 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ perspective: "1000px" }}
     >
       {/* Dark background */}
-      <div className="absolute inset-0 bg-surface-primary" />
+      <div className="absolute inset-0 bg-[#7a1519]" />
 
       {/* Animated gold glow — parallax */}
-      <div className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(223,192,99,0.05)_0%,transparent_55%)] pointer-events-none" />
+      <div className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(211,185,115,0.05)_0%,transparent_55%)] pointer-events-none" />
 
       {/* Gold sweep line — moves across on scroll */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -162,7 +162,7 @@ export default function CtaBanner() {
           className="cta-sweep absolute top-0 left-0 w-[40%] h-full"
           style={{
             background:
-              "linear-gradient(90deg, transparent 0%, rgba(223,192,99,0.03) 40%, rgba(223,192,99,0.06) 50%, rgba(223,192,99,0.03) 60%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, rgba(211,185,115,0.03) 40%, rgba(211,185,115,0.06) 50%, rgba(211,185,115,0.03) 60%, transparent 100%)",
           }}
         />
       </div>
@@ -183,17 +183,17 @@ export default function CtaBanner() {
             >
               <path
                 d="M27.4062 32.7174L43.3399 24.3041L27.4062 15.8906V32.7174Z"
-                fill="#DFC063"
+                fill="#d3b973"
                 opacity="0.5"
               />
               <path
                 d="M59.251 15.8906L43.3174 24.3041L59.251 32.7174V15.8906Z"
-                fill="#DFC063"
+                fill="#d3b973"
                 opacity="0.5"
               />
               <path
                 d="M27.4062 15.8933L43.3315 0.0371094L59.2503 15.8869L27.4062 15.8933Z"
-                fill="#DFC063"
+                fill="#d3b973"
                 opacity="0.5"
               />
             </svg>
@@ -222,7 +222,7 @@ export default function CtaBanner() {
           </h2>
 
           {/* Description */}
-          <p className="cta-desc opacity-0 text-white/40 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-10">
+          <p className="cta-desc opacity-0 text-white/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-10">
             A home is more than walls — it&apos;s the foundation for
             generations. Let us help you build your legacy.
           </p>
@@ -231,14 +231,14 @@ export default function CtaBanner() {
           <div className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/contact-us"
-              className="cta-btn group relative px-10 py-4 bg-gold text-surface-primary font-semibold text-[15px] tracking-wider uppercase rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(223,192,99,0.3)]"
+              className="cta-btn group relative px-10 py-4 bg-gold text-[#0e1a26] font-semibold text-sm tracking-wider uppercase rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(211,185,115,0.3)]"
             >
               <span className="relative z-10">Request a Call</span>
               <div className="absolute inset-0 bg-gold-light transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             </a>
             <a
               href="/project"
-              className="cta-btn px-10 py-4 border border-gold/30 text-gold font-medium text-[15px] tracking-wider uppercase rounded-sm hover:bg-gold/10 transition-all duration-400"
+              className="cta-btn px-10 py-4 border border-gold/30 text-gold font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-gold/10 transition-all duration-500"
             >
               Browse Projects
             </a>

@@ -74,12 +74,12 @@ export default function Preloader() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] pointer-events-auto bg-cream"
+      className="fixed inset-0 z-[9999] pointer-events-auto bg-[#981b21]"
     >
       {/* Gold radial glow behind logo — fades in for rich feel */}
       <div className="preloader-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-0 pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(223, 192, 99,0.10) 0%, rgba(223, 192, 99,0.04) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(211, 185, 115,0.10) 0%, rgba(211, 185, 115,0.04) 40%, transparent 70%)",
           filter: "blur(60px)",
         }}
       />

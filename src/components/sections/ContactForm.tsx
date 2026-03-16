@@ -110,7 +110,7 @@ export default function ContactForm() {
       className="relative py-16 md:py-24 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #0F1923 0%, #111D2B 50%, #0D1720 100%)",
+          "linear-gradient(180deg, #7a1519 0%, #981b21 50%, #7a1519 100%)",
       }}
     >
       {/* Top gold accent line */}
@@ -126,14 +126,14 @@ export default function ContactForm() {
           {/* ── LEFT: CTA Content ── */}
           <div className="cta-left lg:pt-4">
             <span
-              className="text-gold/60 text-sm tracking-[0.3em] uppercase block mb-4"
+              className="text-gold/70 text-sm tracking-[0.3em] uppercase block mb-4"
               style={{ fontFamily: "var(--font-mono-custom)" }}
             >
               The Next Step
             </span>
 
             <h2
-              className="text-3xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight mb-6 leading-[1.1]"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-[1.1]"
               style={{ fontFamily: "var(--font-display-custom)" }}
             >
               Begin Your
@@ -144,7 +144,7 @@ export default function ContactForm() {
             <div className="w-16 h-[1px] bg-gold/40 mb-7" />
 
             <p
-              className="text-white/50 text-base md:text-lg leading-relaxed mb-10 max-w-sm"
+              className="text-white/70 text-base md:text-lg leading-relaxed mb-10 max-w-sm"
               style={{ fontFamily: "var(--font-body)" }}
             >
               A home is more than walls — it&apos;s the foundation for
@@ -155,14 +155,14 @@ export default function ContactForm() {
             <div className="space-y-4">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-3 text-white/50 text-sm hover:text-gold transition-colors duration-300 group"
+                className="flex items-center gap-3 text-white/70 text-sm hover:text-gold transition-colors duration-300 group"
               >
                 <Phone size={15} className="text-gold/50 group-hover:text-gold transition-colors" />
                 {CONTACT_INFO.phone}
               </a>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-3 text-white/50 text-sm hover:text-gold transition-colors duration-300 group"
+                className="flex items-center gap-3 text-white/70 text-sm hover:text-gold transition-colors duration-300 group"
               >
                 <Mail size={15} className="text-gold/50 group-hover:text-gold transition-colors" />
                 {CONTACT_INFO.email}
@@ -186,7 +186,7 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-7">
                 <div>
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-gold/60 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Full Name
@@ -194,7 +194,7 @@ export default function ContactForm() {
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/35 outline-none focus:border-gold/50 transition-colors duration-500"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -204,7 +204,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-gold/60 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Email
@@ -212,7 +212,7 @@ export default function ContactForm() {
                   <input
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/35 outline-none focus:border-gold/50 transition-colors duration-500"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -226,7 +226,7 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-9">
                 <div>
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-gold/60 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Phone
@@ -234,7 +234,7 @@ export default function ContactForm() {
                   <input
                     type="tel"
                     placeholder="+91 98765 43210"
-                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/35 outline-none focus:border-gold/50 transition-colors duration-500"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -244,7 +244,7 @@ export default function ContactForm() {
                 </div>
                 <div className="relative">
                   <label
-                    className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-gold/60 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Preferred City
@@ -257,7 +257,7 @@ export default function ContactForm() {
                     }
                     required
                   >
-                    <option value="" disabled className="bg-surface-primary">
+                    <option value="" disabled className="bg-[#7a1519]">
                       Select City
                     </option>
                     {["Hyderabad", "Bangalore", "Chennai", "Vijayawada", "Nellore"].map(
@@ -265,7 +265,7 @@ export default function ContactForm() {
                         <option
                           key={city}
                           value={city}
-                          className="bg-surface-primary text-white"
+                          className="bg-[#7a1519] text-white"
                         >
                           {city}
                         </option>
@@ -282,7 +282,7 @@ export default function ContactForm() {
               {/* Message */}
               <div className="mb-9">
                 <label
-                  className="text-gold/50 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                  className="text-gold/60 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Message
@@ -290,7 +290,7 @@ export default function ContactForm() {
                 <textarea
                   rows={3}
                   placeholder="Tell us about your requirements..."
-                  className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/20 outline-none focus:border-gold/50 transition-colors duration-500 resize-none"
+                  className="w-full bg-transparent border-b border-white/10 pb-3 text-white text-base placeholder:text-white/35 outline-none focus:border-gold/50 transition-colors duration-500 resize-none"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -301,7 +301,7 @@ export default function ContactForm() {
               {/* Submit */}
               <button
                 type="submit"
-                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 border border-gold/30 text-gold text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:bg-gold hover:text-surface-primary hover:border-gold hover:shadow-[0_0_30px_rgba(223,192,99,0.15)]"
+                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 border border-gold/30 text-gold text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:bg-gold hover:text-[#0e1a26] hover:border-gold hover:shadow-[0_0_30px_rgba(211,185,115,0.15)]"
                 style={{ fontFamily: "var(--font-mono-custom)" }}
               >
                 <span className="relative z-10 flex items-center gap-2.5">
@@ -316,6 +316,9 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
+
+      {/* Gold seam between Contact and CTA Banner */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/30 to-transparent" />
     </section>
   );
 }

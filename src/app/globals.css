@@ -1,28 +1,30 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-gold: #DFC063;
-  --color-gold-light: #E8D08A;
-  --color-gold-dark: #C4A44D;
+  --color-gold: #d3b973;
+  --color-gold-light: #e0cc94;
+  --color-gold-dark: #b89d56;
   --color-gold-contrast: #7A5B15;
-  --color-emerald: #2A6B5A;
-  --color-emerald-light: #3A8B74;
-  --color-emerald-dark: #1E5244;
-  --color-surface-void: #0D1A26;
-  --color-surface-primary: #0D1A26;
-  --color-surface-elevated: #142536;
-  --color-surface-subtle: #1a3045;
-  --color-cream: #EBDEC9;
-  --color-cream-light: #F2E8D8;
-  --color-cream-dark: #D9CCBA;
-  --color-navy: #0D1A26;
+  --color-red: #981b21;
+  --color-red-light: #b22a31;
+  --color-red-dark: #7a1519;
+  --color-red-deeper: #5c1116;
+  --color-surface-void: #0e1a26;
+  --color-surface-primary: #FAFAFA;
+  --color-surface-elevated: #f5f5f5;
+  --color-surface-subtle: #ebebeb;
+  --color-cream: #FAFAFA;
+  --color-cream-light: #ffffff;
+  --color-cream-dark: #f0ede8;
+  --color-navy: #0e1a26;
   --font-sans: 'Proxima Nova', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-display: 'Avenir Next', 'Avenir', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-mono: var(--font-mono-custom);
 }
 
 :root {
-  --gold-rgb: 223, 192, 99;
+  --gold-rgb: 211, 185, 115;
+  --red-rgb: 152, 27, 33;
   --font-display-custom: 'Avenir Next', 'Avenir', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'Proxima Nova', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-mono-custom: 'JetBrains Mono', monospace;
@@ -44,8 +46,8 @@ html.lenis body {
 
 /* === Base === */
 body {
-  background: #EBDEC9;
-  color: #0D1A26;
+  background: #FAFAFA;
+  color: #0e1a26;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,8 +66,8 @@ body::before {
 
 /* === Selection === */
 ::selection {
-  background: rgba(223, 192, 99, 0.3);
-  color: #0D1A26;
+  background: rgba(152, 27, 33, 0.3);
+  color: #0e1a26;
 }
 
 /* === Gold Underline Animation === */
@@ -81,7 +83,7 @@ body::before {
   left: 0;
   width: 0;
   height: 1px;
-  background: #DFC063;
+  background: #d3b973;
   transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -99,17 +101,17 @@ body::before {
 
 /* === Scrolled Header (non-hero sections) === */
 .header-scrolled {
-  background: rgba(235, 222, 201, 0.92);
+  background: rgba(250, 250, 250, 0.92);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  box-shadow: 0 1px 20px rgba(13, 26, 38, 0.1);
+  box-shadow: 0 1px 20px rgba(152, 27, 33, 0.08);
 }
 
 .glass-gold {
-  background: rgba(223, 192, 99, 0.03);
+  background: rgba(211, 185, 115, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(223, 192, 99, 0.08);
+  border: 1px solid rgba(211, 185, 115, 0.08);
 }
 
 /* === Keyframes === */
@@ -176,16 +178,16 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #EBDEC9;
+  background: #FAFAFA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(223, 192, 99, 0.4);
+  background: rgba(152, 27, 33, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(223, 192, 99, 0.6);
+  background: rgba(152, 27, 33, 0.6);
 }
 
 /* === City Connection Dot Pulse === */
@@ -213,11 +215,11 @@ body::before {
 
 /* === Input Styles === */
 .input-field {
-  background: rgba(13, 26, 38, 0.05);
-  border: 1px solid rgba(13, 26, 38, 0.12);
+  background: rgba(152, 27, 33, 0.05);
+  border: 1px solid rgba(152, 27, 33, 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
-  color: #0D1A26;
+  color: #0e1a26;
   padding: 0.875rem 1rem;
   border-radius: 0.5rem;
   font-family: var(--font-body);
@@ -225,8 +227,8 @@ body::before {
 }
 
 .input-field:focus {
-  border-color: rgba(223, 192, 99, 0.5);
-  box-shadow: 0 0 0 3px rgba(223, 192, 99, 0.15);
+  border-color: rgba(152, 27, 33, 0.5);
+  box-shadow: 0 0 0 3px rgba(152, 27, 33, 0.15);
 }
 
 .input-field::placeholder {
@@ -293,7 +295,7 @@ body::before {
 .deco-corner::after {
   content: '';
   position: absolute;
-  background: rgba(223, 192, 99, 0.3);
+  background: rgba(211, 185, 115, 0.3);
 }
 
 .deco-corner--tl::before { top: 0; left: 0; width: 100%; height: 1px; }
@@ -309,19 +311,19 @@ body::before {
 .page-fold-shadow {
   box-shadow:
     inset -8px 0 30px -10px rgba(0, 0, 0, 0.5),
-    inset 3px 0 8px -3px rgba(223, 192, 99, 0.05);
+    inset 3px 0 8px -3px rgba(211, 185, 115, 0.05);
 }
 
 .page-fold-shadow-right {
   box-shadow:
     inset 8px 0 30px -10px rgba(0, 0, 0, 0.5),
-    inset -3px 0 8px -3px rgba(223, 192, 99, 0.05);
+    inset -3px 0 8px -3px rgba(211, 185, 115, 0.05);
 }
 
 /* Gold spine line */
 @keyframes spine-glow {
-  0%, 100% { box-shadow: 0 0 15px rgba(223, 192, 99, 0.15); }
-  50% { box-shadow: 0 0 25px rgba(223, 192, 99, 0.25); }
+  0%, 100% { box-shadow: 0 0 15px rgba(211, 185, 115, 0.15); }
+  50% { box-shadow: 0 0 25px rgba(211, 185, 115, 0.25); }
 }
 
 /* Page flip shadow that follows the page */

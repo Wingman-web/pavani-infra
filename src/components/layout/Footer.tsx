@@ -106,7 +106,7 @@ export default function Footer() {
 
       /* ── Office dots pulse ── */
       gsap.to(".footer-office-dot", {
-        boxShadow: "0 0 10px rgba(42,107,90,0.6)",
+        boxShadow: "0 0 10px rgba(211,185,115,0.6)",
         duration: 1.5,
         repeat: -1,
         yoyo: true,
@@ -141,7 +141,7 @@ export default function Footer() {
       className="relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #0A141E 0%, #0C1820 50%, #080F18 100%)",
+          "linear-gradient(180deg, #5c1116 0%, #7a1519 50%, #5c1116 100%)",
       }}
     >
       {/* Top accent line */}
@@ -163,14 +163,14 @@ export default function Footer() {
                 className="h-12 sm:h-14 md:h-16 w-auto"
               />
             </a>
-            <p className="text-white/50 text-sm leading-relaxed max-w-[280px] mt-3">
+            <p className="text-white/70 text-sm leading-relaxed max-w-[280px] mt-3">
               Premier Real Estate Developers crafting quality spaces since 1995.
             </p>
             {/* Contact row */}
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-2 text-white/50 text-sm hover:text-gold transition-colors group"
+                className="flex items-center gap-2 text-white/70 text-sm hover:text-gold transition-colors group"
               >
                 <Phone
                   size={12}
@@ -180,7 +180,7 @@ export default function Footer() {
               </a>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-2 text-white/50 text-sm hover:text-gold transition-colors group"
+                className="flex items-center gap-2 text-white/70 text-sm hover:text-gold transition-colors group"
               >
                 <Mail
                   size={12}
@@ -204,7 +204,7 @@ export default function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-white/50 text-sm hover:text-gold hover:pl-1 transition-all duration-300 block"
+                  className="text-white/70 text-sm hover:text-gold hover:pl-1 transition-all duration-300 block"
                 >
                   {link.label}
                 </a>
@@ -215,7 +215,7 @@ export default function Footer() {
           {/* Offices */}
           <div className="md:col-span-5 md:col-start-9">
             <div className="flex items-center gap-2 mb-4">
-              <MapPin size={13} className="text-emerald" />
+              <MapPin size={13} className="text-gold" />
               <h4
                 className="text-gold/70 text-xs tracking-[0.25em] uppercase"
                 style={{ fontFamily: "var(--font-mono-custom)" }}
@@ -225,27 +225,27 @@ export default function Footer() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="relative pl-4 border-l border-emerald/30">
-                <div className="footer-office-dot absolute top-1.5 -left-[3px] w-1.5 h-1.5 rounded-full bg-emerald" />
+              <div className="relative pl-4 border-l border-gold/30">
+                <div className="footer-office-dot absolute top-1.5 -left-[3px] w-1.5 h-1.5 rounded-full bg-gold" />
                 <p
                   className="text-gold/60 text-[11px] tracking-[0.2em] uppercase mb-1"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Hyderabad
                 </p>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-white/70 text-sm leading-relaxed">
                   {CONTACT_INFO.offices.hyderabad}
                 </p>
               </div>
-              <div className="relative pl-4 border-l border-emerald/30">
-                <div className="footer-office-dot absolute top-1.5 -left-[3px] w-1.5 h-1.5 rounded-full bg-emerald" />
+              <div className="relative pl-4 border-l border-gold/30">
+                <div className="footer-office-dot absolute top-1.5 -left-[3px] w-1.5 h-1.5 rounded-full bg-gold" />
                 <p
                   className="text-gold/60 text-[11px] tracking-[0.2em] uppercase mb-1"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Bangalore
                 </p>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-white/70 text-sm leading-relaxed">
                   {CONTACT_INFO.offices.bangalore}
                 </p>
               </div>
@@ -297,12 +297,12 @@ export default function Footer() {
 
         {/* ── Row 3: Copyright ── */}
         <div className="footer-bottom py-5 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-white/30 text-xs text-center sm:text-left tracking-wider">
+          <p className="text-white/45 text-xs text-center sm:text-left tracking-wider">
             &copy; {new Date().getFullYear()} SAI SRAVANTHI INFRA PROJECTS
             PRIVATE LIMITED. All Rights Reserved.
           </p>
           <p
-            className="text-white/20 text-xs tracking-wider"
+            className="text-white/35 text-xs tracking-wider"
             style={{ fontFamily: "var(--font-mono-custom)" }}
           >
             Designed & Developed by Wingman Brandworks LLP

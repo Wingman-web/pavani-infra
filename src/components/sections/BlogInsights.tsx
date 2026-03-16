@@ -110,7 +110,7 @@ export default function BlogInsights() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 md:py-20 overflow-hidden bg-cream"
+      className="relative py-16 md:py-24 overflow-hidden bg-[#FAFAFA]"
     >
       {/* ═══ Content ═══ */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
@@ -123,7 +123,7 @@ export default function BlogInsights() {
             Insights
           </span>
           <h2
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-navy tracking-tight mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0e1a26] tracking-tight mb-6"
             style={{ fontFamily: "var(--font-display-custom)" }}
           >
             Real Estate <span className="text-gold-contrast">Trends</span>
@@ -143,7 +143,7 @@ export default function BlogInsights() {
 
               <a
                 href={`/blogs/${blog.slug}`}
-                className="blog-card group block rounded-lg overflow-hidden border border-[#0D1A26]/10 bg-white/60 hover:border-gold/40 transition-all duration-500 relative"
+                className="blog-card group block rounded-lg overflow-hidden border border-[#0e1a26]/10 bg-white/60 hover:border-gold/40 transition-all duration-500 relative"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {/* Image area */}
@@ -154,7 +154,7 @@ export default function BlogInsights() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1A26]/60 via-[#0D1A26]/15 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a26]/60 via-[#0e1a26]/15 to-transparent" />
                   <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.08] transition-colors duration-500" />
 
                   {/* Hover arrow */}
@@ -162,7 +162,7 @@ export default function BlogInsights() {
                     <div className="w-8 h-8 rounded-full bg-gold/90 flex items-center justify-center shadow-lg shadow-gold/20">
                       <ArrowUpRight
                         size={14}
-                        className="text-surface-primary"
+                        className="text-[#FAFAFA]"
                       />
                     </div>
                   </div>
@@ -171,16 +171,16 @@ export default function BlogInsights() {
                 {/* Content */}
                 <div className="p-5">
                   <div className="flex items-center gap-1.5 mb-3">
-                    <Calendar size={12} className="text-emerald-dark" />
+                    <Calendar size={12} className="text-gold-dark" />
                     <span
-                      className="text-emerald-dark text-[13px] tracking-wider"
+                      className="text-gold-dark text-[13px] tracking-wider"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {blog.date}
                     </span>
                   </div>
 
-                  <h3 className="text-base md:text-lg font-medium text-navy/80 leading-relaxed line-clamp-2 group-hover:text-gold-contrast transition-colors duration-300">
+                  <h3 className="text-base md:text-lg font-medium text-[#0e1a26]/80 leading-relaxed line-clamp-2 group-hover:text-gold-contrast transition-colors duration-300">
                     {blog.title}
                   </h3>
 
@@ -201,7 +201,7 @@ export default function BlogInsights() {
         <div className="blog-view-all text-center mt-10">
           <a
             href="/blogs"
-            className="inline-flex items-center gap-2 px-8 py-3.5 border border-gold-dark text-gold-contrast text-sm tracking-wider uppercase rounded-sm hover:bg-gold-contrast hover:text-cream transition-all duration-500 group"
+            className="inline-flex items-center gap-2 px-8 py-3.5 border border-gold-dark text-gold-contrast text-sm tracking-wider uppercase rounded-sm hover:bg-gold-contrast hover:text-white transition-all duration-500 group"
           >
             View All Insights
             <ArrowUpRight
