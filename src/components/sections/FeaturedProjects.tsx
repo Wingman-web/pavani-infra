@@ -229,10 +229,10 @@ export default function FeaturedProjects() {
       className="absolute inset-0 overflow-hidden rounded-r-sm paper-texture"
       style={{
         backfaceVisibility: "hidden",
-        background: "linear-gradient(150deg, #7a1519 0%, #981b21 50%, #7a1519 100%)",
+        background: "#950921",
       }}
     >
-      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-[#7a1519]/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-[#950921]/60 to-transparent pointer-events-none z-10" />
 
       {/* Page number — top right */}
       <div className="absolute top-6 right-6 lg:top-8 lg:right-10 z-10 flex items-baseline gap-1 select-none pointer-events-none">
@@ -302,7 +302,7 @@ export default function FeaturedProjects() {
           className={`flex items-center justify-center w-10 h-10 lg:w-11 lg:h-11 rounded-full transition-all duration-300 ${
             idx <= 0
               ? "bg-white/5 text-white/15 cursor-not-allowed"
-              : "bg-gold/20 text-gold border border-gold/40 hover:bg-gold hover:text-[#7a1519] hover:shadow-[0_0_20px_rgba(211,185,115,0.3)] cursor-pointer"
+              : "bg-gold/20 text-gold border border-gold/40 hover:bg-gold hover:text-[#950921] hover:shadow-[0_0_20px_rgba(211,185,115,0.3)] cursor-pointer"
           }`}
           aria-label="Previous project"
         >
@@ -314,7 +314,7 @@ export default function FeaturedProjects() {
           className={`flex items-center justify-center w-10 h-10 lg:w-11 lg:h-11 rounded-full transition-all duration-300 ${
             idx >= total - 1
               ? "bg-white/5 text-white/15 cursor-not-allowed"
-              : "bg-gold/20 text-gold border border-gold/40 hover:bg-gold hover:text-[#7a1519] hover:shadow-[0_0_20px_rgba(211,185,115,0.3)] cursor-pointer"
+              : "bg-gold/20 text-gold border border-gold/40 hover:bg-gold hover:text-[#950921] hover:shadow-[0_0_20px_rgba(211,185,115,0.3)] cursor-pointer"
           }`}
           aria-label="Next project"
         >
@@ -361,8 +361,8 @@ export default function FeaturedProjects() {
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="blueprint-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <rect width="80" height="80" fill="none" stroke="#981b21" strokeWidth="0.5"/>
-              <rect width="40" height="40" fill="none" stroke="#981b21" strokeWidth="0.25"/>
+              <rect width="80" height="80" fill="none" stroke="#950921" strokeWidth="0.5"/>
+              <rect width="40" height="40" fill="none" stroke="#950921" strokeWidth="0.25"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#blueprint-grid)"/>
@@ -548,7 +548,7 @@ export default function FeaturedProjects() {
                   />
                   <div className="absolute top-3 right-3">
                     <span
-                      className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-[#7a1519]/40 backdrop-blur-sm"
+                      className="text-gold/50 text-[11px] tracking-[0.2em] uppercase border border-gold/15 px-2.5 py-1 rounded-full bg-[#950921]/40 backdrop-blur-sm"
                       style={{ fontFamily: "var(--font-mono-custom)" }}
                     >
                       {project.type}

@@ -138,7 +138,7 @@ export default function StatsCounter() {
     <section
       ref={sectionRef}
       className="relative py-16 md:py-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #7a1519 0%, #981b21 50%, #7a1519 100%)" }}
+      style={{ background: "#950921" }}
     >
       {/* Ambient effects */}
       <div className="absolute inset-0 pointer-events-none">

@@ -5,10 +5,10 @@
   --color-gold-light: #e0cc94;
   --color-gold-dark: #b89d56;
   --color-gold-contrast: #7A5B15;
-  --color-red: #981b21;
-  --color-red-light: #b22a31;
-  --color-red-dark: #7a1519;
-  --color-red-deeper: #5c1116;
+  --color-red: #950921;
+  --color-red-light: #950921;
+  --color-red-dark: #950921;
+  --color-red-deeper: #950921;
   --color-surface-void: #0e1a26;
   --color-surface-primary: #FAFAFA;
   --color-surface-elevated: #f5f5f5;
@@ -24,7 +24,7 @@
 
 :root {
   --gold-rgb: 211, 185, 115;
-  --red-rgb: 152, 27, 33;
+  --red-rgb: 149, 9, 33;
   --font-display-custom: 'Avenir Next', 'Avenir', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'Proxima Nova', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
   --font-mono-custom: 'JetBrains Mono', monospace;
@@ -66,7 +66,7 @@ body::before {
 
 /* === Selection === */
 ::selection {
-  background: rgba(152, 27, 33, 0.3);
+  background: rgba(149, 9, 33, 0.3);
   color: #0e1a26;
 }
 
@@ -104,7 +104,7 @@ body::before {
   background: rgba(250, 250, 250, 0.92);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  box-shadow: 0 1px 20px rgba(152, 27, 33, 0.08);
+  box-shadow: 0 1px 20px rgba(149, 9, 33, 0.08);
 }
 
 .glass-gold {
@@ -182,12 +182,12 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(152, 27, 33, 0.4);
+  background: rgba(149, 9, 33, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(152, 27, 33, 0.6);
+  background: rgba(149, 9, 33, 0.6);
 }
 
 /* === City Connection Dot Pulse === */
@@ -215,8 +215,8 @@ body::before {
 
 /* === Input Styles === */
 .input-field {
-  background: rgba(152, 27, 33, 0.05);
-  border: 1px solid rgba(152, 27, 33, 0.12);
+  background: rgba(149, 9, 33, 0.05);
+  border: 1px solid rgba(149, 9, 33, 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
   color: #0e1a26;
@@ -227,8 +227,8 @@ body::before {
 }
 
 .input-field:focus {
-  border-color: rgba(152, 27, 33, 0.5);
-  box-shadow: 0 0 0 3px rgba(152, 27, 33, 0.15);
+  border-color: rgba(149, 9, 33, 0.5);
+  box-shadow: 0 0 0 3px rgba(149, 9, 33, 0.15);
 }
 
 .input-field::placeholder {

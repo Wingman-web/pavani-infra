@@ -118,7 +118,7 @@ export default function Header() {
                 transformOrigin: "right center",
               }}
             >
-              <div className="absolute inset-0 bg-[#7a1519]">
+              <div className="absolute inset-0 bg-[#950921]">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div
                     className="absolute inset-0"

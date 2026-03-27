@@ -110,7 +110,7 @@ export default function ContactForm() {
       className="relative py-16 md:py-24 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #7a1519 0%, #981b21 50%, #7a1519 100%)",
+          "#950921",
       }}
     >
       {/* Top gold accent line */}
@@ -257,7 +257,7 @@ export default function ContactForm() {
                     }
                     required
                   >
-                    <option value="" disabled className="bg-[#7a1519]">
+                    <option value="" disabled className="bg-[#950921]">
                       Select City
                     </option>
                     {["Hyderabad", "Bangalore", "Chennai", "Vijayawada", "Nellore"].map(
@@ -265,7 +265,7 @@ export default function ContactForm() {
                         <option
                           key={city}
                           value={city}
-                          className="bg-[#7a1519] text-white"
+                          className="bg-[#950921] text-white"
                         >
                           {city}
                         </option>

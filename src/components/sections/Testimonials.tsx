@@ -190,7 +190,7 @@ export default function Testimonials() {
         className="relative py-16 md:py-24 overflow-hidden"
         style={{
           background:
-            "linear-gradient(180deg, #7a1519 0%, #981b21 50%, #7a1519 100%)",
+            "#950921",
         }}
       >
         {/* Gold frame lines */}
@@ -255,7 +255,7 @@ export default function Testimonials() {
                 </AnimatePresence>
 
                 {/* Gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#7a1519]/50 via-transparent to-[#7a1519]/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#950921]/50 via-transparent to-[#950921]/20" />
                 <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.06] transition-colors duration-500" />
 
                 {/* Film frame corners */}
@@ -294,7 +294,7 @@ export default function Testimonials() {
                   <div className="absolute top-6 left-0 bottom-6 w-[2px] bg-gradient-to-b from-red/50 via-gold/40 to-red/30 rounded-full" />
 
                   {/* Counter badge — top-right */}
-                  <div className="absolute -top-4 right-6 md:right-10 flex items-baseline gap-1.5 bg-[#981b21] px-3 py-1 border border-red-dark/30 rounded-full">
+                  <div className="absolute -top-4 right-6 md:right-10 flex items-baseline gap-1.5 bg-[#950921] px-3 py-1 border border-red-dark/30 rounded-full">
                     <span
                       className="text-gold text-lg font-bold"
                       style={{ fontFamily: "var(--font-display-custom)" }}

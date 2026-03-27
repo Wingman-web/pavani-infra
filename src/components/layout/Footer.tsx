@@ -141,7 +141,7 @@ export default function Footer() {
       className="relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, #5c1116 0%, #7a1519 50%, #5c1116 100%)",
+          "#950921",
       }}
     >
       {/* Top accent line */}

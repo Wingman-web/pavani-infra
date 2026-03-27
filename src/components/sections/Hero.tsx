@@ -84,7 +84,7 @@ export default function Hero() {
         }}
       >
         {/* Dark red background */}
-        <div className="absolute inset-0 bg-[#981b21]" />
+        <div className="absolute inset-0 bg-[#950921]" />
         {/* Subtle radial glow for depth */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -115,7 +115,7 @@ export default function Hero() {
             >
               <source src={VIDEO_URL} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#981b21]/25 via-transparent to-[#981b21]/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#950921]/25 via-transparent to-[#950921]/40 pointer-events-none" />
             <div
               className="absolute inset-0 pointer-events-none"
               style={{

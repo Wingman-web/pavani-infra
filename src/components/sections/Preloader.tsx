@@ -60,7 +60,7 @@ export default function Preloader() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] pointer-events-auto bg-[#981b21]"
+      className="fixed inset-0 z-[9999] pointer-events-auto bg-[#950921]"
     >
       {/* Gold radial glow behind logo — fades in for rich feel */}
       <div className="preloader-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-0 pointer-events-none"

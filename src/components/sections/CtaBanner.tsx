@@ -119,7 +119,7 @@ export default function CtaBanner() {
       {/* Layered glows for depth and richness */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.12)_0%,transparent_60%)] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(184,157,86,0.3)_0%,transparent_60%)] pointer-events-none" />
-      <div className="absolute top-1/3 right-0 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(152,27,33,0.04)_0%,transparent_50%)] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(149,9,33,0.04)_0%,transparent_50%)] pointer-events-none" />
 
       {/* ═══ Content ═══ */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
@@ -128,7 +128,7 @@ export default function CtaBanner() {
           {/* ── LEFT: CTA Content ── */}
           <div className="cta-left lg:pt-4">
             <span
-              className="text-[#981b21]/80 text-sm tracking-[0.3em] uppercase block mb-4"
+              className="text-[#950921]/80 text-sm tracking-[0.3em] uppercase block mb-4"
               style={{ fontFamily: "var(--font-mono-custom)" }}
             >
               The Next Step
@@ -140,7 +140,7 @@ export default function CtaBanner() {
             >
               Begin Your
               <br />
-              <span className="text-[#981b21]">Dream Together</span>
+              <span className="text-[#950921]">Dream Together</span>
             </h2>
 
             <div className="w-16 h-px bg-[#0e1a26]/20 mb-7" />
@@ -157,16 +157,16 @@ export default function CtaBanner() {
             <div className="space-y-4">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-3 text-[#0e1a26]/70 text-sm hover:text-[#981b21] transition-colors duration-300 group"
+                className="flex items-center gap-3 text-[#0e1a26]/70 text-sm hover:text-[#950921] transition-colors duration-300 group"
               >
-                <Phone size={15} className="text-[#981b21]/60 group-hover:text-[#981b21] transition-colors" />
+                <Phone size={15} className="text-[#950921]/60 group-hover:text-[#950921] transition-colors" />
                 {CONTACT_INFO.phone}
               </a>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-3 text-[#0e1a26]/70 text-sm hover:text-[#981b21] transition-colors duration-300 group"
+                className="flex items-center gap-3 text-[#0e1a26]/70 text-sm hover:text-[#950921] transition-colors duration-300 group"
               >
-                <Mail size={15} className="text-[#981b21]/60 group-hover:text-[#981b21] transition-colors" />
+                <Mail size={15} className="text-[#950921]/60 group-hover:text-[#950921] transition-colors" />
                 {CONTACT_INFO.email}
               </a>
             </div>
@@ -180,14 +180,14 @@ export default function CtaBanner() {
             >
               Send Us A Message
             </h3>
-            <div className="form-accent-line w-14 h-px bg-linear-to-r from-[#981b21]/40 to-transparent mb-8 origin-left" />
+            <div className="form-accent-line w-14 h-px bg-linear-to-r from-[#950921]/40 to-transparent mb-8 origin-left" />
 
             <form onSubmit={handleSubmit}>
               {/* Row 1: Full Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-7">
                 <div>
                   <label
-                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-[#950921]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Full Name
@@ -195,7 +195,7 @@ export default function CtaBanner() {
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#950921]/50 transition-colors duration-500"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -205,7 +205,7 @@ export default function CtaBanner() {
                 </div>
                 <div>
                   <label
-                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-[#950921]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Email
@@ -213,7 +213,7 @@ export default function CtaBanner() {
                   <input
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#950921]/50 transition-colors duration-500"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -227,7 +227,7 @@ export default function CtaBanner() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-9">
                 <div>
                   <label
-                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-[#950921]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Phone
@@ -235,7 +235,7 @@ export default function CtaBanner() {
                   <input
                     type="tel"
                     placeholder="+91 98765 43210"
-                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#950921]/50 transition-colors duration-500"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -245,13 +245,13 @@ export default function CtaBanner() {
                 </div>
                 <div className="relative">
                   <label
-                    className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                    className="text-[#950921]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                     style={{ fontFamily: "var(--font-mono-custom)" }}
                   >
                     Preferred City
                   </label>
                   <select
-                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base outline-none appearance-none pr-8 cursor-pointer focus:border-[#981b21]/50 transition-colors duration-500"
+                    className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base outline-none appearance-none pr-8 cursor-pointer focus:border-[#950921]/50 transition-colors duration-500"
                     value={formData.city}
                     onChange={(e) =>
                       setFormData({ ...formData, city: e.target.value })
@@ -283,7 +283,7 @@ export default function CtaBanner() {
               {/* Message */}
               <div className="mb-9">
                 <label
-                  className="text-[#981b21]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
+                  className="text-[#950921]/70 text-[11px] tracking-[0.2em] uppercase block mb-2.5"
                   style={{ fontFamily: "var(--font-mono-custom)" }}
                 >
                   Message
@@ -291,7 +291,7 @@ export default function CtaBanner() {
                 <textarea
                   rows={3}
                   placeholder="Tell us about your requirements..."
-                  className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#981b21]/50 transition-colors duration-500 resize-none"
+                  className="w-full bg-transparent border-b border-[#0e1a26]/15 pb-3 text-[#0e1a26] text-base placeholder:text-[#0e1a26]/30 outline-none focus:border-[#950921]/50 transition-colors duration-500 resize-none"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -302,7 +302,7 @@ export default function CtaBanner() {
               {/* Submit */}
               <button
                 type="submit"
-                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 bg-[#981b21] text-[#FAFAFA] text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-[0_0_30px_rgba(152,27,33,0.3)]"
+                className="group relative inline-flex items-center gap-2.5 px-10 py-3.5 bg-[#950921] text-[#FAFAFA] text-sm tracking-[0.15em] uppercase overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-[0_0_30px_rgba(149,9,33,0.3)]"
                 style={{ fontFamily: "var(--font-mono-custom)" }}
               >
                 <span className="relative z-10 flex items-center gap-2.5">
@@ -312,7 +312,7 @@ export default function CtaBanner() {
                   />
                   Submit Enquiry
                 </span>
-                <div className="absolute inset-0 bg-[#7a1519] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-[#950921] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
               </button>
             </form>
           </div>

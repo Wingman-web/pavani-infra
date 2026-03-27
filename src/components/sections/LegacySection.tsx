@@ -114,7 +114,7 @@ export default function LegacySection() {
     <section
       ref={sectionRef}
       className="relative pt-0 pb-16 md:pt-0 md:pb-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #981b21 0%, #981b21 8%, #7a1519 30%, #981b21 60%, #7a1519 100%)" }}
+      style={{ background: "#950921" }}
     >
       {/* Ambient background glow */}
       <div className="absolute inset-0 pointer-events-none">

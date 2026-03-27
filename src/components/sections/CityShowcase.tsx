@@ -71,11 +71,11 @@ function MapPin({ className }: { className?: string }) {
       {/* Pin body */}
       <path
         d="M14 0C6.268 0 0 6.268 0 14c0 9.8 12.348 20.625 12.876 21.09a1.5 1.5 0 0 0 2.248 0C15.652 34.625 28 23.8 28 14 28 6.268 21.732 0 14 0Z"
-        fill="#981b21"
+        fill="#950921"
       />
       {/* Inner highlight */}
       <circle cx="14" cy="13" r="5.5" fill="white" />
-      <circle cx="14" cy="13" r="3" fill="#981b21" />
+      <circle cx="14" cy="13" r="3" fill="#950921" />
     </svg>
   );
 }
@@ -178,7 +178,7 @@ function MobileLayout() {
                 <div className="w-3 h-3 rounded-full bg-red relative z-10" />
                 <div className="absolute w-6 h-6 rounded-full border border-red/30 city-dot-ring" />
               </div>
-              <div className="flex-1 flex items-center gap-3 bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(152,27,33,0.06)] p-2">
+              <div className="flex-1 flex items-center gap-3 bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(149,9,33,0.06)] p-2">
                 <div className="relative w-24 h-20 shrink-0 rounded-lg overflow-hidden">
                   <Image src={card.image} alt={`Pavani Infra project in ${card.city}`} fill className="object-cover" sizes="96px" />
                 </div>
@@ -419,7 +419,7 @@ function DesktopLayout() {
               <MapPin />
             </div>
 
-            <div className="w-32 md:w-36 lg:w-44 xl:w-52 bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(152,27,33,0.08)] hover:shadow-[0_8px_32px_rgba(152,27,33,0.12)] transition-shadow duration-500 cursor-pointer group">
+            <div className="w-32 md:w-36 lg:w-44 xl:w-52 bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(149,9,33,0.08)] hover:shadow-[0_8px_32px_rgba(149,9,33,0.12)] transition-shadow duration-500 cursor-pointer group">
               <div className="relative w-full aspect-[4/3] overflow-hidden">
                 <Image
                   src={card.image}
