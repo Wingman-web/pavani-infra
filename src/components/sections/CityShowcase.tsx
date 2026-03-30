@@ -1,79 +1,55 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /* ── Card data ── */
 const CITY_CARDS = [
   {
     city: "Hyderabad",
     image: "https://backend.pavaniinfra.com/uploads/Pavani_Felicity_ea55966d27.jpg",
-    stackOffsetX: -20,
-    stackOffsetY: -10,
-    stackRotation: -10,
   },
   {
     city: "Bangalore",
     image: "https://backend.pavaniinfra.com/uploads/MIRABILIA_ddb7ad0906.jpg",
-    stackOffsetX: -7,
-    stackOffsetY: -5,
-    stackRotation: 4,
   },
   {
     city: "Chennai",
     image: "https://backend.pavaniinfra.com/uploads/Pavani_Northstar_97a57a504e.jpg",
-    stackOffsetX: 0,
-    stackOffsetY: 0,
-    stackRotation: 0,
   },
   {
     city: "Vijayawada",
     image: "https://backend.pavaniinfra.com/uploads/Pavani_Solitaire_aaa5e8c629.jpg",
-    stackOffsetX: 9,
-    stackOffsetY: 5,
-    stackRotation: -6,
   },
   {
     city: "Nellore",
     image: "https://backend.pavaniinfra.com/uploads/Pavani_Vista_f5574ad651.png",
-    stackOffsetX: 17,
-    stackOffsetY: -7,
-    stackRotation: 8,
   },
 ];
 
-/*
- * Y-offsets for zigzag: down, up, down, up, down
- * Values are % of (containerHeight - cardHeight)
- */
-const Y_PATTERN = [0.45, 0.0, 0.55, 0.05, 0.4];
+/* Zigzag Y offsets in px — down, up, down, up, down */
+const Y_OFFSETS_LG = [80, -20, 100, -10, 70];
+const Y_OFFSETS_MD = [50, -10, 60, -5, 45];
 const ROTATIONS = [-4, 3, -2, 4, -3];
 
 /* ═══════════════════════════════════════════════
-   MAP PIN — inline SVG, drops onto each card
+   MAP PIN — inline SVG
    ═══════════════════════════════════════════════ */
 function MapPin({ className }: { className?: string }) {
   return (
     <svg
       className={className}
-      width="28"
-      height="36"
+      width="32"
+      height="42"
       viewBox="0 0 28 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Drop shadow */}
       <ellipse cx="14" cy="34" rx="5" ry="2" fill="rgba(0,0,0,0.15)" />
-      {/* Pin body */}
       <path
         d="M14 0C6.268 0 0 6.268 0 14c0 9.8 12.348 20.625 12.876 21.09a1.5 1.5 0 0 0 2.248 0C15.652 34.625 28 23.8 28 14 28 6.268 21.732 0 14 0Z"
         fill="#950921"
       />
-      {/* Inner highlight */}
       <circle cx="14" cy="13" r="5.5" fill="white" />
       <circle cx="14" cy="13" r="3" fill="#950921" />
     </svg>
@@ -81,78 +57,27 @@ function MapPin({ className }: { className?: string }) {
 }
 
 /* ═══════════════════════════════════════════════
-   MOBILE LAYOUT — vertical card list with line
+   MOBILE LAYOUT — static vertical card list
    ═══════════════════════════════════════════════ */
 function MobileLayout() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const lineRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-    if (!section || cards.length === 0) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set(titleRef.current, { opacity: 0, y: 40 });
-      gsap.set(subtitleRef.current, { opacity: 0, y: 25 });
-      gsap.set(lineRef.current, { scaleY: 0, transformOrigin: "top center" });
-      gsap.set(cards, { opacity: 0, x: -30 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=120%",
-          pin: true,
-          scrub: 0.8,
-          anticipatePin: 1,
-        },
-      });
-
-      tl.to(titleRef.current, {
-        opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
-      });
-      tl.to(subtitleRef.current,
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-        "-=0.5"
-      );
-      tl.to(lineRef.current,
-        { scaleY: 1, duration: 1.2, ease: "power2.inOut" },
-        "-=0.3"
-      );
-      tl.to(cards,
-        { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power3.out" },
-        "-=0.8"
-      );
-
-      /* Hold the completed state briefly so users can see it */
-      tl.to({}, { duration: 0.5 });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[#FAFAFA] pt-14 pb-6 px-5">
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <section className="relative bg-[#FAFAFA] py-16 px-5">
+      {/* Background map */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <div className="relative w-full h-full opacity-[0.8]">
           <Image src="/images/india-topographic-map.png" alt="" fill className="object-contain object-center" sizes="100vw" />
         </div>
       </div>
 
+      {/* Title */}
       <div className="relative z-10 mb-10">
-        <div ref={titleRef}>
-          <h2
-            className="text-3xl font-bold text-[#0e1a26] tracking-tight leading-[1.1] uppercase"
-            style={{ fontFamily: "var(--font-display-custom)" }}
-          >
-            Multiple Cities,<br />One Unified Vision
-          </h2>
-        </div>
-        <p ref={subtitleRef}
+        <h2
+          className="text-3xl font-bold text-[#0e1a26] tracking-tight leading-[1.1] uppercase"
+          style={{ fontFamily: "var(--font-display-custom)" }}
+        >
+          Multiple Cities,<br />One Unified Vision
+        </h2>
+        <p
           className="text-[#0e1a26]/60 text-sm max-w-xs leading-relaxed mt-3"
           style={{ fontFamily: "var(--font-body)" }}
         >
@@ -160,17 +85,16 @@ function MobileLayout() {
         </p>
       </div>
 
+      {/* Cards */}
       <div className="relative z-10">
         <div
-          ref={lineRef}
           className="absolute left-5.5 top-3 bottom-3 w-0.5 bg-linear-to-b from-red via-red-light to-red"
           style={{ zIndex: 0 }}
         />
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           {CITY_CARDS.map((card, i) => (
             <div
               key={`mobile-card-${i}`}
-              ref={(el: HTMLDivElement | null) => { cardsRef.current[i] = el; }}
               className="relative flex items-center gap-4"
               style={{ zIndex: 1 }}
             >
@@ -178,11 +102,14 @@ function MobileLayout() {
                 <div className="w-3 h-3 rounded-full bg-red relative z-10" />
                 <div className="absolute w-6 h-6 rounded-full border border-red/30 city-dot-ring" />
               </div>
-              <div className="flex-1 flex items-center gap-3 bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(149,9,33,0.06)] p-2">
-                <div className="relative w-24 h-20 shrink-0 rounded-lg overflow-hidden">
-                  <Image src={card.image} alt={`Pavani Infra project in ${card.city}`} fill className="object-cover" sizes="96px" />
+              <div className="flex-1 flex items-center gap-4 bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(149,9,33,0.06)] p-2.5">
+                <div className="relative w-28 h-22 shrink-0 rounded-lg overflow-hidden">
+                  <Image src={card.image} alt={`Pavani Infra project in ${card.city}`} fill className="object-cover" sizes="112px" />
                 </div>
-                <span className="text-base font-semibold text-[#0e1a26] tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
+                <span
+                  className="text-base font-semibold text-[#0e1a26] tracking-wider"
+                  style={{ fontFamily: "var(--font-display-custom)" }}
+                >
                   {card.city}
                 </span>
               </div>
@@ -195,185 +122,26 @@ function MobileLayout() {
 }
 
 /* ═══════════════════════════════════════════════
-   DESKTOP / TABLET LAYOUT — spread animation
-   Cards spread from center stack to zigzag layout.
-   After spreading, a map pin drops onto each card.
+   DESKTOP / TABLET LAYOUT — static zigzag layout
+   Uses flex row with translateY for zigzag.
+   Cards stay in normal flow — no clipping.
    ═══════════════════════════════════════════════ */
 function DesktopLayout() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const pinsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const hasAnimatedRef = useRef(false);
-
-  const computeLayout = useCallback(() => {
-    const container = containerRef.current;
-    const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-    if (!container || cards.length === 0) return null;
-
-    const rect = container.getBoundingClientRect();
-    const style = getComputedStyle(container);
-    const padL = parseFloat(style.paddingLeft) || 0;
-    const padR = parseFloat(style.paddingRight) || 0;
-    const cardW = cards[0].offsetWidth;
-    const cardH = cards[0].offsetHeight;
-    const count = CITY_CARDS.length;
-
-    const usableW = rect.width - padL - padR;
-
-    const cx = rect.width / 2 - cardW / 2;
-    const cy = rect.height / 2 - cardH / 2;
-
-    /* Compute gap — enforce minimum of 12px between cards */
-    const totalGap = usableW - count * cardW;
-    const rawGap = totalGap / (count - 1);
-    const minGap = 12;
-    const gap = Math.max(rawGap, minGap);
-
-    /* If gap was clamped, center the cards within the usable space */
-    const actualTotalWidth = count * cardW + (count - 1) * gap;
-    const startOffset = padL + Math.max(0, (usableW - actualTotalWidth) / 2);
-
-    const ySpace = Math.max(rect.height - cardH, 0);
-
-    /* Dampen the zigzag when vertical space is tight — below 250px
-       of ySpace, flatten the pattern toward center (0.5) */
-    const dampFactor = Math.min(ySpace / 250, 1);
-
-    const spreadPos = CITY_CARDS.map((_card, i) => {
-      const x = startOffset + i * (cardW + gap);
-      const dampedY = 0.5 + (Y_PATTERN[i] - 0.5) * dampFactor;
-      const y = Math.max(0, Math.min(dampedY * ySpace, ySpace));
-      return { x, y };
-    });
-
-    return { rect, cx, cy, cardW, cardH, spreadPos };
-  }, []);
-
-  /* Apply positions instantly (used on resize after initial animation) */
-  const applyPositions = useCallback(() => {
-    const layout = computeLayout();
-    if (!layout) return;
-
-    const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-    const { spreadPos } = layout;
-
-    cards.forEach((card, i) => {
-      gsap.set(card, {
-        x: spreadPos[i].x,
-        y: spreadPos[i].y,
-        rotation: ROTATIONS[i],
-      });
-    });
-  }, [computeLayout]);
+  const [isLg, setIsLg] = useState(false);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const container = containerRef.current;
-    const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-    const pins = pinsRef.current.filter(Boolean) as HTMLDivElement[];
-    if (!section || !container || cards.length === 0) return;
+    const check = () => setIsLg(window.innerWidth >= 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
-    const layout = computeLayout();
-    if (!layout) return;
-
-    const { cx, cy, spreadPos } = layout;
-
-    const ctx = gsap.context(() => {
-      gsap.set(titleRef.current, { opacity: 0, y: 50 });
-      gsap.set(subtitleRef.current, { opacity: 0, y: 35 });
-
-      gsap.set(cards, {
-        x: (i: number) => cx + CITY_CARDS[i].stackOffsetX,
-        y: cy + 400,
-        rotation: (i: number) => CITY_CARDS[i].stackRotation,
-        opacity: 0,
-        scale: 0.88,
-      });
-
-      /* Hide pins: shifted up and invisible */
-      gsap.set(pins, { opacity: 0, y: -30, scale: 0.5 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=200%",
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        },
-        onComplete: () => { hasAnimatedRef.current = true; },
-      });
-
-      /* Phase 1 — cards fly into stack */
-      tl.to(cards, {
-        y: (i: number) => cy + CITY_CARDS[i].stackOffsetY,
-        opacity: 1, scale: 1, duration: 0.9, stagger: 0.08, ease: "power3.out",
-      });
-
-      tl.addLabel("stacked", "+=0.5");
-
-      /* Phase 2 — cards spread edge-to-edge */
-      tl.to(cards, {
-        x: (i: number) => spreadPos[i].x,
-        y: (i: number) => spreadPos[i].y,
-        rotation: (i: number) => ROTATIONS[i],
-        duration: 1.3, stagger: 0.07, ease: "power3.inOut",
-      }, "stacked");
-
-      tl.to(titleRef.current,
-        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
-        "stacked+=0.15"
-      );
-      tl.to(subtitleRef.current,
-        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
-        "stacked+=0.35"
-      );
-
-      /* Phase 3 — map pins drop onto cards */
-      tl.addLabel("pinsStart", "stacked+=1.1");
-      pins.forEach((pin, i) => {
-        tl.to(pin, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          ease: "back.out(3)",
-        }, `pinsStart+=${i * 0.12}`);
-      });
-
-      /* Hold the completed state so users can admire it */
-      tl.to({}, { duration: 0.8 });
-    }, section);
-
-    /* Debounced resize handler — recalculates positions after animation */
-    let resizeTimer: ReturnType<typeof setTimeout>;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (hasAnimatedRef.current) {
-          applyPositions();
-          ScrollTrigger.refresh();
-        }
-      }, 150);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      ctx.revert();
-      window.removeEventListener("resize", handleResize);
-      clearTimeout(resizeTimer);
-    };
-  }, [computeLayout, applyPositions]);
+  const yOffsets = isLg ? Y_OFFSETS_LG : Y_OFFSETS_MD;
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-[#FAFAFA] pt-16 pb-8 md:pt-24 md:pb-12">
-      {/* Background map */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <section className="relative bg-[#FAFAFA] pt-16 pb-8 md:pt-20 md:pb-12">
+      {/* Background map — contained so it doesn't bleed */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <div className="relative w-full h-full max-w-5xl mx-auto opacity-[0.8]">
           <Image src="/images/india-topographic-map.png" alt="" fill className="object-contain object-center" sizes="1000px" priority />
         </div>
@@ -381,7 +149,7 @@ function DesktopLayout() {
 
       {/* Title + Subtitle */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12">
-        <div ref={titleRef}>
+        <div>
           <h2
             className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0e1a26] tracking-tight leading-[1.08] uppercase"
             style={{ fontFamily: "var(--font-display-custom)" }}
@@ -389,7 +157,7 @@ function DesktopLayout() {
             Multiple Cities,<br />One Unified Vision
           </h2>
         </div>
-        <p ref={subtitleRef}
+        <p
           className="text-[#0e1a26]/60 text-sm md:text-[15px] max-w-sm leading-relaxed"
           style={{ fontFamily: "var(--font-body)" }}
         >
@@ -398,46 +166,49 @@ function DesktopLayout() {
         </p>
       </div>
 
-      {/* Cards container */}
-      <div
-        ref={containerRef}
-        className="relative w-full max-w-7xl mx-auto h-[60vh] md:h-[62vh] lg:h-[68vh] min-h-[400px] mt-16 md:mt-20 px-6 md:px-12 lg:px-20"
-      >
-        {/* Cards with map pins */}
-        {CITY_CARDS.map((card, i) => (
-          <div
-            key={`city-card-${i}`}
-            ref={(el: HTMLDivElement | null) => { cardsRef.current[i] = el; }}
-            className="absolute top-0 left-0 will-change-transform"
-            style={{ zIndex: CITY_CARDS.length - i + 1 }}
-          >
-            {/* Map pin — positioned above the card, centered */}
+      {/* Cards — flex row, zigzag via translateY */}
+      <div className="relative z-10 max-w-7xl mx-auto mt-16 md:mt-20 px-6 md:px-12 lg:px-20">
+        <div className="flex justify-between items-start gap-3 md:gap-4 lg:gap-6">
+          {CITY_CARDS.map((card, i) => (
             <div
-              ref={(el: HTMLDivElement | null) => { pinsRef.current[i] = el; }}
-              className="absolute -top-8 left-1/2 -translate-x-1/2 z-10 pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+              key={`city-card-${i}`}
+              className="relative flex-1 min-w-0"
+              style={{
+                transform: `translateY(${yOffsets[i]}px) rotate(${ROTATIONS[i]}deg)`,
+                zIndex: CITY_CARDS.length - i + 1,
+              }}
             >
-              <MapPin />
-            </div>
+              {/* Map pin */}
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-10 pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+                <MapPin />
+              </div>
 
-            <div className="w-32 md:w-36 lg:w-44 xl:w-52 bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(149,9,33,0.08)] hover:shadow-[0_8px_32px_rgba(149,9,33,0.12)] transition-shadow duration-500 cursor-pointer group">
-              <div className="relative w-full aspect-[4/3] overflow-hidden">
-                <Image
-                  src={card.image}
-                  alt={`Pavani Infra project in ${card.city}`}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 128px, (max-width: 1024px) 144px, (max-width: 1280px) 176px, 208px"
-                />
-              </div>
-              <div className="py-2 lg:py-2.5 px-3 text-center border-t border-[#e0e0e0]/20">
-                <span className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-[#0e1a26] tracking-wider" style={{ fontFamily: "var(--font-display-custom)" }}>
-                  {card.city}
-                </span>
+              <div className="bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(149,9,33,0.08)] hover:shadow-[0_8px_32px_rgba(149,9,33,0.12)] transition-shadow duration-500 cursor-pointer group">
+                <div className="relative w-full aspect-4/3 overflow-hidden">
+                  <Image
+                    src={card.image}
+                    alt={`Pavani Infra project in ${card.city}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 20vw, (max-width: 1024px) 18vw, 15vw"
+                  />
+                </div>
+                <div className="py-2.5 lg:py-3 px-2 text-center border-t border-[#e0e0e0]/20">
+                  <span
+                    className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-[#0e1a26] tracking-wider"
+                    style={{ fontFamily: "var(--font-display-custom)" }}
+                  >
+                    {card.city}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
+      {/* Bottom spacing to account for zigzag offset */}
+      <div className="h-16 md:h-20 lg:h-24" />
     </section>
   );
 }
