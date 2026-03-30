@@ -47,6 +47,7 @@ export const PROJECTS = [
       "http://d3p1hokpi6aqc3.cloudfront.net/night_view.png",
     slug: "pavani-mirai",
     type: "Premium Residences",
+    rera: "P02400007735",
   },
   {
     name: "Pavani Felicity",
@@ -56,6 +57,7 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FPavani_Felicity_ea55966d27.jpg&w=1080&q=75",
     slug: "pavani-felicity",
     type: "Luxury Living",
+    rera: "P02200005477",
   },
   {
     name: "Pavani Solitaire",
@@ -65,6 +67,7 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FPavani_Solitaire_aaa5e8c629.jpg&w=1080&q=75",
     slug: "pavani-solitaire",
     type: "Premium Apartments",
+    rera: "P06180040095",
   },
   {
     name: "Pavani Mirabilia",
@@ -74,6 +77,7 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FMIRABILIA_ddb7ad0906.jpg&w=1080&q=75",
     slug: "pavani-mirabilia",
     type: "Township",
+    rera: "PRM/KA/RERA/1251/446/PR/120922/005235",
   },
   {
     name: "Pavani Northstar",
@@ -83,6 +87,7 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FPavani_Northstar_97a57a504e.jpg&w=1080&q=75",
     slug: "pavani-northstar",
     type: "Premium Residences",
+    rera: "TN/02/Building/0020/2022",
   },
   {
     name: "Pavani Heights",
@@ -92,6 +97,7 @@ export const PROJECTS = [
       "https://pavaniinfra.com/_next/image?url=https%3A%2F%2Fbackend.pavaniinfra.com%2Fuploads%2FBackground_3ce9601f4a.jpg&w=3840&q=75",
     slug: "pavani-heights",
     type: "Premium Apartments",
+    rera: "PRM/KA/RERA/1251/446/PR/240822/005177",
   },
 ] as const;
 
