@@ -90,7 +90,7 @@ export default function Hero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at 50% 30%, rgba(211,185,115,0.06) 0%, transparent 60%)",
+              "radial-gradient(ellipse at 50% 30%, rgba(151,28,32,0.12) 0%, transparent 60%)",
           }}
         />
 
@@ -101,7 +101,7 @@ export default function Hero() {
               borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
               transformStyle: "preserve-3d",
               boxShadow:
-                "0 8px 60px rgba(0,0,0,0.4), 0 0 80px rgba(211,185,115,0.08), inset 0 0 0 1px rgba(211,185,115,0.15)",
+                "0 8px 60px rgba(0,0,0,0.4), 0 0 80px rgba(151,28,32,0.3), inset 0 0 0 2px rgba(151,28,32,0.6)",
             }}
           >
             <video
@@ -120,22 +120,22 @@ export default function Hero() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse at center, transparent 40%, rgba(5,5,5,0.55) 100%)",
+                  "radial-gradient(ellipse at center, transparent 40%, rgba(151,28,32,0.35) 100%)",
               }}
             />
             <div
               className="hero-frame-glow absolute inset-[5px] pointer-events-none opacity-0"
               style={{
                 borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
-                border: "1px solid rgba(211,185,115,0.25)",
+                border: "2px solid rgba(211,185,115,1)",
                 boxShadow:
-                  "inset 0 0 80px rgba(5,5,5,0.4), 0 0 40px rgba(211,185,115,0.06)",
+                  "inset 0 0 80px rgba(5,5,5,0.4), 0 0 40px rgba(211,185,115,0.5)",
               }}
             />
-            <div className="hero-frame-ornament absolute bottom-5 left-5 w-8 h-8 border-b border-l border-gold/30 opacity-0" />
-            <div className="hero-frame-ornament absolute bottom-5 right-5 w-8 h-8 border-b border-r border-gold/30 opacity-0" />
-            <div className="hero-frame-ornament absolute top-[40%] left-5 w-5 h-10 border-l border-gold/20 opacity-0" />
-            <div className="hero-frame-ornament absolute top-[40%] right-5 w-5 h-10 border-r border-gold/20 opacity-0" />
+            <div className="hero-frame-ornament absolute bottom-5 left-5 w-8 h-8 border-b-2 border-l-2 border-gold opacity-0" />
+            <div className="hero-frame-ornament absolute bottom-5 right-5 w-8 h-8 border-b-2 border-r-2 border-gold opacity-0" />
+            <div className="hero-frame-ornament absolute top-[40%] left-5 w-5 h-10 border-l-2 border-gold opacity-0" />
+            <div className="hero-frame-ornament absolute top-[40%] right-5 w-5 h-10 border-r-2 border-gold opacity-0" />
           </div>
         </div>
 
@@ -145,15 +145,10 @@ export default function Hero() {
             margin: "24px 24px 40px 24px",
             borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
             boxShadow:
-              "0 0 60px rgba(211,185,115,0.08), 0 0 120px rgba(211,185,115,0.04)",
+              "0 0 60px rgba(151,28,32,0.3), 0 0 120px rgba(151,28,32,0.15)",
           }}
         />
 
-        <div className="absolute inset-0 z-[3] pointer-events-none opacity-[0.04]">
-          <div className="absolute top-0 left-[25%] w-px h-full bg-gold" />
-          <div className="absolute top-0 left-[50%] w-px h-full bg-gold" />
-          <div className="absolute top-0 left-[75%] w-px h-full bg-gold" />
-        </div>
 
         {/* Scroll indicator */}
         <div className="hero-scroll-indicator absolute bottom-3 sm:bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center opacity-0">
