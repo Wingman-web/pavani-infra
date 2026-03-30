@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "@/lib/constants";
-import { MapPin, Maximize2, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -263,20 +263,6 @@ export default function FeaturedProjects() {
                         background: "linear-gradient(to top, rgba(0,0,0,0.15) 0%, transparent 40%)",
                       }}
                     />
-
-                    {/* View icon on hover — center only */}
-                    <div
-                      className="absolute top-4 right-4 z-10"
-                      style={{
-                        opacity: isCenter && hoveredCenter ? 1 : 0,
-                        transform: isCenter && hoveredCenter ? "scale(1)" : "scale(0.8)",
-                        transition: "opacity 0.35s ease, transform 0.35s ease",
-                      }}
-                    >
-                      <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-                        <Maximize2 size={14} className="text-white" />
-                      </div>
-                    </div>
                   </div>
                 </div>
               );
