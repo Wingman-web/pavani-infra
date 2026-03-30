@@ -193,9 +193,9 @@ function DesktopLayout() {
                     sizes="(max-width: 768px) 20vw, (max-width: 1024px) 18vw, 15vw"
                   />
                 </div>
-                <div className="py-2.5 lg:py-3 px-2 text-center border-t border-[#e0e0e0]/20">
+                <div className="py-1 px-1 text-center border-t border-[#e0e0e0]/20">
                   <span
-                    className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-[#0e1a26] tracking-wider"
+                    className="text-[10px] md:text-xs lg:text-sm font-semibold text-[#0e1a26] tracking-wider leading-none"
                     style={{ fontFamily: "var(--font-display-custom)" }}
                   >
                     {card.city}
