@@ -39,8 +39,8 @@ function MapPin({ className }: { className?: string }) {
   return (
     <svg
       className={className}
-      width="32"
-      height="42"
+      width="20"
+      height="26"
       viewBox="0 0 28 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -167,8 +167,8 @@ function DesktopLayout() {
       </div>
 
       {/* Cards — flex row, zigzag via translateY */}
-      <div className="relative z-10 max-w-7xl mx-auto mt-16 md:mt-20 px-6 md:px-12 lg:px-20">
-        <div className="flex justify-between items-start gap-3 md:gap-4 lg:gap-6">
+      <div className="relative z-10 max-w-7xl mx-auto mt-16 md:mt-20 px-4 md:px-8 lg:px-12">
+        <div className="flex justify-between items-start gap-2 md:gap-3 lg:gap-4">
           {CITY_CARDS.map((card, i) => (
             <div
               key={`city-card-${i}`}
@@ -178,19 +178,19 @@ function DesktopLayout() {
                 zIndex: CITY_CARDS.length - i + 1,
               }}
             >
-              {/* Map pin */}
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-10 pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+              {/* Map pin — sits right above the card, touching it */}
+              <div className="flex justify-center mb-[-2px] z-10 pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]">
                 <MapPin />
               </div>
 
-              <div className="bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(149,9,33,0.08)] hover:shadow-[0_8px_32px_rgba(149,9,33,0.12)] transition-shadow duration-500 cursor-pointer group">
+              <div className="bg-white rounded-xl shadow-[0_4px_24px_rgba(149,9,33,0.08)] hover:shadow-[0_8px_32px_rgba(149,9,33,0.12)] transition-shadow duration-500 cursor-pointer group overflow-hidden">
                 <div className="relative w-full aspect-4/3 overflow-hidden">
                   <Image
                     src={card.image}
                     alt={`Pavani Infra project in ${card.city}`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 20vw, (max-width: 1024px) 18vw, 15vw"
+                    sizes="(max-width: 768px) 30vw, (max-width: 1024px) 22vw, 18vw"
                   />
                 </div>
                 <div className="py-1 px-1 text-center border-t border-[#e0e0e0]/20">
