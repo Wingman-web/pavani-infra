@@ -75,7 +75,7 @@ function MobileLayout() {
           Multiple Cities,<br />One Unified Vision
         </h2>
         <p
-          className="text-[#0e1a26]/60 text-sm max-w-xs leading-relaxed mt-3"
+          className="text-[#3a3a3a] text-base max-w-xs leading-relaxed mt-3"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Pavani Infra has shaped skylines and changed lives across India.
@@ -181,7 +181,7 @@ function DesktopLayout() {
           </h2>
         </div>
         <p
-          className="text-[#0e1a26]/60 text-sm md:text-[15px] max-w-sm leading-relaxed"
+          className="text-[#3a3a3a] text-base md:text-lg max-w-sm leading-relaxed"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Pavani Infra has shaped skylines and changed lives across India. These
