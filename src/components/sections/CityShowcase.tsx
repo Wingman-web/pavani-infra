@@ -7,7 +7,8 @@ import Image from "next/image";
 const CITY_CARDS = [
   {
     city: "Hyderabad",
-    image: "https://backend.pavaniinfra.com/uploads/Pavani_Felicity_ea55966d27.jpg",
+    image:
+      "https://backend.pavaniinfra.com/uploads/Pavani_Felicity_ea55966d27.jpg",
   },
   {
     city: "Bangalore",
@@ -15,15 +16,18 @@ const CITY_CARDS = [
   },
   {
     city: "Chennai",
-    image: "https://backend.pavaniinfra.com/uploads/Pavani_Northstar_97a57a504e.jpg",
+    image:
+      "https://backend.pavaniinfra.com/uploads/Pavani_Northstar_97a57a504e.jpg",
   },
   {
     city: "Vijayawada",
-    image: "https://backend.pavaniinfra.com/uploads/Pavani_Solitaire_aaa5e8c629.jpg",
+    image:
+      "https://backend.pavaniinfra.com/uploads/Pavani_Solitaire_aaa5e8c629.jpg",
   },
   {
     city: "Nellore",
-    image: "https://backend.pavaniinfra.com/uploads/Pavani_Vista_f5574ad651.png",
+    image:
+      "https://backend.pavaniinfra.com/uploads/Pavani_Vista_f5574ad651.png",
   },
 ];
 
@@ -62,7 +66,13 @@ function MobileLayout() {
       {/* Background map — fills entire section */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="relative w-full h-full opacity-[0.4]">
-          <Image src="/images/india-topographic-map.png" alt="" fill className="object-cover object-center" sizes="100vw" />
+          <Image
+            src="/images/india-topographic-map.png"
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+          />
         </div>
       </div>
 
@@ -72,10 +82,12 @@ function MobileLayout() {
           className="text-3xl font-bold text-[#0e1a26] tracking-tight leading-[1.1] uppercase"
           style={{ fontFamily: "var(--font-display-custom)" }}
         >
-          Multiple Cities,<br />One Unified Vision
+          Multiple Cities,
+          <br />
+          One Unified Vision
         </h2>
         <p
-          className="text-[#3a3a3a] text-base max-w-xs leading-relaxed mt-3"
+          className="text-[#3a3a3a] text-base font-semibold md:text-lg max-w-md leading-relaxed mt-3"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Pavani Infra has shaped skylines and changed lives across India.
@@ -163,7 +175,14 @@ function DesktopLayout() {
       {/* Background map — fills entire section top to bottom */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="relative w-full h-full opacity-[0.4]">
-          <Image src="/images/india-topographic-map.png" alt="" fill className="object-cover object-center" sizes="100vw" priority />
+          <Image
+            src="/images/india-topographic-map.png"
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
         </div>
       </div>
 
@@ -177,11 +196,13 @@ function DesktopLayout() {
             className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0e1a26] tracking-tight leading-[1.08] uppercase"
             style={{ fontFamily: "var(--font-display-custom)" }}
           >
-            Multiple Cities,<br />One Unified Vision
+            Multiple Cities,
+            <br />
+            One Unified Vision
           </h2>
         </div>
         <p
-          className="text-[#3a3a3a] text-base md:text-lg max-w-sm leading-relaxed"
+          className="text-[#000] text-base md:text-lg font-medium max-w-xs lg:max-w-base xl:max-w-lg leading-relaxed"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Pavani Infra has shaped skylines and changed lives across India. These
