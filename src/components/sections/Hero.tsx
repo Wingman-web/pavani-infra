@@ -94,7 +94,7 @@ export default function Hero() {
           }}
         />
 
-        <div className="absolute inset-0 flex items-center justify-center pt-6 pb-8 md:pt-8 md:pb-10 px-6 md:px-12 lg:px-20">
+        <div className="absolute inset-0 flex items-center justify-center pt-14 pb-8 md:pt-16 md:pb-10 lg:pt-20 px-6 md:px-12 lg:px-20">
           <div
             className="hero-video-frame relative w-full h-full overflow-hidden opacity-0"
             style={{
@@ -142,7 +142,7 @@ export default function Hero() {
         <div
           className="hero-frame-glow absolute inset-0 pointer-events-none opacity-0"
           style={{
-            margin: "24px 24px 40px 24px",
+            margin: "56px 24px 40px 24px",
             borderRadius: "50% 50% 2% 2% / 30% 30% 2% 2%",
             boxShadow:
               "0 0 60px rgba(151,28,32,0.3), 0 0 120px rgba(151,28,32,0.15)",
